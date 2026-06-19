@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { API_BASE } from "@/lib/apiBase";
 
 interface AuthUser {
   id: number;
@@ -24,7 +25,6 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
-const API_BASE = "/api";
 const TIMEOUT_MS = 10000;
 
 export function fetchWithTimeout(url: string, options: RequestInit = {}): Promise<Response> {
