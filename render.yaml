@@ -1,28 +1,15 @@
 services:
-  # Backend API
   - type: web
     name: rakz-api
     env: node
     region: oregon
     plan: free
-    buildCommand: npm install -g pnpm && pnpm install --frozen-lockfile && cd artifacts/api-server && pnpm run build
-    startCommand: cd artifacts/api-server && pnpm run start
+    buildCommand: corepack enable && corepack prepare pnpm@latest --activate && pnpm install --no-frozen-lockfile && cd artifacts/api-server && pnpm run build
+    startCommand: cd artifacts/api-server && node --enable-source-maps ./dist/index.mjs
     envVars:
       - key: NODE_ENV
         value: production
       - key: PORT
         value: 10000
       - key: DATABASE_URL
-        sync: false
-
-  # Frontend
-  - type: web
-    name: rakz-frontend
-    env: static
-    region: oregon
-    plan: free
-    buildCommand: npm install -g pnpm && pnpm install --frozen-lockfile && cd artifacts/seenjeem && pnpm run build
-    staticPublishPath: artifacts/seenjeem/dist/public
-    envVars:
-      - key: VITE_API_BASE
         sync: false
