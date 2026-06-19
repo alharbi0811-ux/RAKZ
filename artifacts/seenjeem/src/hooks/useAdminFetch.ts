@@ -1,12 +1,13 @@
 import { useAuth } from "@/context/AuthContext";
 import { useCallback } from "react";
+import { API_BASE } from "@/lib/apiBase";
 
 export function useAdminFetch() {
   const { token } = useAuth();
 
   const adminFetch = useCallback(
     async (url: string, options?: RequestInit) => {
-      const res = await fetch(`/api${url}`, {
+      const res = await fetch(`${API_BASE}${url}`, {
         ...options,
         headers: {
           "Content-Type": "application/json",
