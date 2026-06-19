@@ -6,6 +6,24 @@ import router from "./routes/index";
 
 const app: Express = express();
 
+const allowedOrigins = [
+  "https://rakzz-frontend.onrender.com",
+  "http://localhost:3000",
+];
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  })
+);
+
 app.use(
   pinoHttp({
     logger,
@@ -26,7 +44,6 @@ app.use(
   })
 );
 
-app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
