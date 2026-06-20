@@ -5,7 +5,7 @@ import { Check, Info, X, Search, Lock } from "lucide-react";
 import { useLocation } from "wouter";
 import { useAuth } from "@/context/AuthContext";
 
-const API_BASE = "/api";
+import { API_BASE } from "@/lib/apiBase";
 
 type Category = {
   id: string;
