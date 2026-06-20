@@ -1,8 +1,8 @@
+import { API_BASE } from "@/lib/apiBase";
 import { useEffect, useState, useCallback } from "react";
 import { Palette, RotateCcw, Save, Eye, EyeOff, ChevronDown, ChevronUp } from "lucide-react";
 import { useAdminFetch } from "@/hooks/useAdminFetch";
 
-const API_BASE = "/api";
 
 interface LayoutSettings {
   bgColor: string;
