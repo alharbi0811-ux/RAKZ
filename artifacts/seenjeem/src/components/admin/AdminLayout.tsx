@@ -3,7 +3,7 @@ import { useLocation, Link } from "wouter";
 import { useAuth } from "@/context/AuthContext";
 import {
   LayoutDashboard, FolderOpen, HelpCircle, Users,
-  LogOut, Menu, X, ChevronLeft, QrCode, Globe, Palette, Settings2, BookOpen, MessageSquare, Zap
+  LogOut, Menu, X, ChevronLeft, QrCode, Globe, Palette, Settings2, BookOpen, MessageSquare
 } from "lucide-react";
 
 interface NavItem {
@@ -17,7 +17,6 @@ const navItems: NavItem[] = [
   { icon: <LayoutDashboard size={16} />, label: "لوحة التحكم", href: "/admin", exact: true },
   { icon: <FolderOpen size={16} />, label: "الفئات", href: "/admin/categories" },
   { icon: <HelpCircle size={16} />, label: "الأسئلة", href: "/admin/questions" },
-  { icon: <Zap size={16} />, label: "إضافة جماعية", href: "/admin/bulk-questions" },
   { icon: <Users size={16} />, label: "المستخدمون", href: "/admin/users" },
   { icon: <QrCode size={16} />, label: "قوالب QR", href: "/admin/qr-templates" },
   { icon: <Globe size={16} />, label: "الصفحات الخارجية", href: "/admin/external-pages" },
