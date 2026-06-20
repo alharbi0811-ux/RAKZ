@@ -1,3 +1,4 @@
+import { API_BASE } from "@/lib/apiBase";
 import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Navbar } from "@/components/sections/Navbar";
@@ -5,7 +6,7 @@ import { Check, Info, X, Search, Lock } from "lucide-react";
 import { useLocation } from "wouter";
 import { useAuth } from "@/context/AuthContext";
 
-import { API_BASE } from "@/lib/apiBase";
+
 
 type Category = {
   id: string;
