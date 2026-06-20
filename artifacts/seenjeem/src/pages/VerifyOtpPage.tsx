@@ -1,10 +1,11 @@
+import { API_BASE } from "@/lib/apiBase";
 import { useState, useEffect, useRef } from "react";
 import { useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import { ShieldCheck, RefreshCw, LogIn } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 
-const API_BASE = "/api";
+
 
 interface OtpSession {
   tempToken: string;
