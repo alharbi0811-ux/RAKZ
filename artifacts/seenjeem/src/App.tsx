@@ -154,7 +154,7 @@ function App() {
         <TooltipProvider>
           <ViewportProvider>
             <ThemeProvider>
-              <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+              <WouterRouter base={import.meta.env.BASE_URL.slice(0, -1) || "/"}>
                 <AppShell />
               </WouterRouter>
               <Toaster />
