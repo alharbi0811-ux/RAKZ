@@ -8,6 +8,7 @@ import { About } from "@/components/sections/About";
 import { HelpTools } from "@/components/sections/HelpTools";
 import { Faq } from "@/components/sections/Faq";
 import { FeedbackModal } from "@/components/FeedbackModal";
+import { useAuth } from "@/context/AuthContext";
 
 /* ─────────────────── Game Modes ─────────────────── */
 
@@ -25,6 +26,7 @@ const MODES = [
     accent: "#a78bfa",
     accentBg: "rgba(139,92,246,0.85)",
     path: "/start-game",
+    adminOnly: false,
   },
   {
     Icon: BookOpenCheck,
@@ -39,6 +41,7 @@ const MODES = [
     accent: "#c4b5fd",
     accentBg: "rgba(109,40,217,0.85)",
     path: "/study-setup",
+    adminOnly: true,
   },
 ];
 
@@ -48,6 +51,9 @@ function GameModes() {
   const [, navigate] = useLocation();
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
   const [ripples, setRipples] = useState<Ripple[]>([null, null]);
+  const { user } = useAuth();
+
+  const visibleModes = MODES.filter(m => !m.adminOnly || user?.isAdmin);
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>, path: string, i: number) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -75,11 +81,10 @@ function GameModes() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {MODES.map(({ Icon, title, desc, cta, badge, bg, border, glow, glowHover, accent, accentBg, path }, i) => {
+          {visibleModes.map(({ Icon, title, desc, cta, badge, bg, border, glow, glowHover, accent, accentBg, path }, i) => {
             const dimmed = hoveredIdx !== null && hoveredIdx !== i;
 
             return (
-              /* ── Float wrapper: CSS drives the y-float, Framer drives hover/tap ── */
               <div key={i} className={`game-float-${i}`}>
                 <motion.div
                   initial={{ opacity: 0, y: 40, scale: 0.94 }}
@@ -160,7 +165,6 @@ function GameModes() {
                   {/* Content */}
                   <div className="relative z-10 flex flex-col items-center justify-center text-center p-10 flex-1">
 
-                    {/* Icon box — gentle pulse on hover */}
                     <motion.div
                       className="w-20 h-20 rounded-2xl flex items-center justify-center mb-6"
                       style={{
@@ -173,18 +177,15 @@ function GameModes() {
                       <Icon size={38} style={{ color: accent }} />
                     </motion.div>
 
-                    {/* Title */}
                     <h2 className="text-4xl md:text-5xl font-black text-white mb-3 leading-tight">
                       {title}
                     </h2>
 
-                    {/* Desc */}
                     <p className="font-medium text-lg mb-8 leading-relaxed whitespace-pre-line"
                       style={{ color: "rgba(255,255,255,0.5)" }}>
                       {desc}
                     </p>
 
-                    {/* CTA — 3-D press feel */}
                     <motion.div
                       whileHover={{ scale: 1.07, boxShadow: `0 6px 32px ${glow}` }}
                       whileTap={{ scale: 0.94, y: 3 }}
