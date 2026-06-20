@@ -3,7 +3,7 @@ import { useLocation, Link } from "wouter";
 import { useAuth } from "@/context/AuthContext";
 import {
   LayoutDashboard, FolderOpen, HelpCircle, Users,
-  LogOut, Menu, X, ChevronLeft, QrCode, Globe, Palette, Settings2, BookOpen, MessageSquare
+  LogOut, Menu, X, ChevronLeft, QrCode, Globe, Palette, Settings2, BookOpen, MessageSquare, Zap
 } from "lucide-react";
 
 interface NavItem {
@@ -17,6 +17,7 @@ const navItems: NavItem[] = [
   { icon: <LayoutDashboard size={16} />, label: "لوحة التحكم", href: "/admin", exact: true },
   { icon: <FolderOpen size={16} />, label: "الفئات", href: "/admin/categories" },
   { icon: <HelpCircle size={16} />, label: "الأسئلة", href: "/admin/questions" },
+  { icon: <Zap size={16} />, label: "إضافة جماعية", href: "/admin/bulk-questions" },
   { icon: <Users size={16} />, label: "المستخدمون", href: "/admin/users" },
   { icon: <QrCode size={16} />, label: "قوالب QR", href: "/admin/qr-templates" },
   { icon: <Globe size={16} />, label: "الصفحات الخارجية", href: "/admin/external-pages" },
@@ -38,7 +39,6 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
 
   return (
     <div className="min-h-screen flex" dir="rtl" style={{ background: "#f5f3ff", color: "#1a1a2e" }}>
-      {/* Mobile overlay */}
       {sidebarOpen && (
         <div
           className="fixed inset-0 bg-black/30 z-20 lg:hidden backdrop-blur-sm"
@@ -46,7 +46,6 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
         />
       )}
 
-      {/* Sidebar */}
       <aside
         className={`fixed top-0 right-0 h-full w-60 z-30 flex flex-col transition-transform duration-300
           ${sidebarOpen ? "translate-x-0" : "translate-x-full lg:translate-x-0"} lg:sticky lg:top-0 lg:h-screen`}
@@ -56,7 +55,6 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
           boxShadow: "-4px 0 24px rgba(106,0,244,0.06)",
         }}
       >
-        {/* Logo */}
         <div className="px-5 py-5 flex items-center justify-between" style={{ borderBottom: "1px solid rgba(123,63,242,0.1)" }}>
           <div className="flex items-center gap-3">
             <div
@@ -75,13 +73,12 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
           </button>
         </div>
 
-        {/* Nav */}
         <nav className="flex-1 px-3 py-4 overflow-y-auto space-y-1">
           {navItems.map((item) => {
             const active = isActive(item);
             return (
               <Link key={item.href + item.label} href={item.href}>
-                <a
+                
                   onClick={() => setSidebarOpen(false)}
                   className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all relative"
                   style={
@@ -105,7 +102,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
 
           <div className="pt-4 mt-4" style={{ borderTop: "1px solid rgba(123,63,242,0.1)" }}>
             <Link href="/">
-              <a
+              
                 className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all hover:bg-purple-50"
                 style={{ color: "#9ca3af" }}
               >
@@ -116,7 +113,6 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
           </div>
         </nav>
 
-        {/* User */}
         <div className="px-4 py-4" style={{ borderTop: "1px solid rgba(123,63,242,0.1)" }}>
           <div
             className="flex items-center gap-3 px-3 py-3 rounded-xl"
@@ -146,9 +142,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
         </div>
       </aside>
 
-      {/* Main */}
       <div className="flex-1 flex flex-col min-w-0 lg:mr-60">
-        {/* Top bar */}
         <header
           className="sticky top-0 z-10 px-6 py-3.5 flex items-center justify-between"
           style={{
@@ -178,7 +172,6 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
           </div>
         </header>
 
-        {/* Content */}
         <main className="flex-1 p-6">
           {children}
         </main>
