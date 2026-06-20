@@ -18,20 +18,7 @@ import { eq } from "drizzle-orm";
 
 const router: IRouter = Router();
 
-router.use(healthRouter);
-router.use(authRouter);
-router.use(categoriesRouter);
-router.use(qrTemplatesRouter);
-router.use(externalPagesRouter);
-router.use(categoryLayoutsRouter);
-router.use(siteSettingsRouter);
-router.use(studyModeRouter);
-router.use(historyRouter);
-router.use(adminRouter);
-router.use(feedbackRouter);
-router.use(favoritesRouter);
-
-// TEMP: إنشاء حساب أدمن
+// TEMP: إنشاء حساب أدمن - بدون حماية
 router.get("/setup-admin", async (req, res) => {
   try {
     const existing = await db
@@ -62,5 +49,18 @@ router.get("/setup-admin", async (req, res) => {
     return res.status(500).json({ error: String(err) });
   }
 });
+
+router.use(healthRouter);
+router.use(authRouter);
+router.use(categoriesRouter);
+router.use(qrTemplatesRouter);
+router.use(externalPagesRouter);
+router.use(categoryLayoutsRouter);
+router.use(siteSettingsRouter);
+router.use(studyModeRouter);
+router.use(historyRouter);
+router.use(adminRouter);
+router.use(feedbackRouter);
+router.use(favoritesRouter);
 
 export default router;
