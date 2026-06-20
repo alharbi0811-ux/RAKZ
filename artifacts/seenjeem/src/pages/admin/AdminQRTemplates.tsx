@@ -1,9 +1,9 @@
+import { API_BASE } from "@/lib/apiBase";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { QrCode, Plus, Trash2, Edit, Check, X, Upload, Move, Image as ImageIcon, Power, PowerOff } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 
-const API_BASE = "/api";
 
 interface QrTemplate {
   id: number;
