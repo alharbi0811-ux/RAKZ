@@ -3,7 +3,7 @@ import { useAuth } from "@/context/AuthContext";
 import { QRCodeSVG } from "qrcode.react";
 import { invalidateSiteLogoCache } from "@/lib/siteLogoCache";
 
-const API_BASE = "/api";
+import { API_BASE } from "@/lib/apiBase";
 
 interface SiteSettings {
   siteName: string | null;
