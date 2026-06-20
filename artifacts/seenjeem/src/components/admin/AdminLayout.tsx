@@ -76,38 +76,31 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
           {navItems.map((item) => {
             const active = isActive(item);
             return (
-              <Link key={item.href + item.label} href={item.href}>
-                
-                  onClick={() => setSidebarOpen(false)}
-                  className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all relative"
-                  style={
-                    active
-                      ? {
-                          background: GRAD,
-                          color: "#ffffff",
-                          boxShadow: "0 4px 14px rgba(106,0,244,0.3)",
-                        }
-                      : {
-                          color: "#6b7280",
-                        }
-                  }
-                >
-                  <span>{item.icon}</span>
-                  {item.label}
-                </a>
+              <Link
+                key={item.href + item.label}
+                href={item.href}
+                onClick={() => setSidebarOpen(false)}
+                className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all relative"
+                style={
+                  active
+                    ? { background: GRAD, color: "#ffffff", boxShadow: "0 4px 14px rgba(106,0,244,0.3)" }
+                    : { color: "#6b7280" }
+                }
+              >
+                <span>{item.icon}</span>
+                {item.label}
               </Link>
             );
           })}
 
           <div className="pt-4 mt-4" style={{ borderTop: "1px solid rgba(123,63,242,0.1)" }}>
-            <Link href="/">
-              
-                className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all hover:bg-purple-50"
-                style={{ color: "#9ca3af" }}
-              >
-                <ChevronLeft size={16} />
-                العودة للموقع
-              </a>
+            <Link
+              href="/"
+              className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all hover:bg-purple-50"
+              style={{ color: "#9ca3af" }}
+            >
+              <ChevronLeft size={16} />
+              العودة للموقع
             </Link>
           </div>
         </nav>
