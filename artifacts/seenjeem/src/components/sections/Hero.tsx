@@ -12,7 +12,7 @@ const ORBS = [
 
 export function Hero() {
   return (
-    <section className="relative flex flex-col items-center justify-center min-h-[36vh] sm:min-h-[42vh] md:min-h-[46vh] lg:min-h-[52vh]">
+    <section className="relative flex flex-col items-center justify-center min-h-[46vh] lg:min-h-[52vh]">
 
       {/* Background */}
       <div className="absolute inset-0 overflow-hidden rounded-b-[4rem]">
@@ -40,7 +40,7 @@ export function Hero() {
       </div>
 
       {/* Content — stagger on page load */}
-      <div className="relative z-10 text-center flex flex-col items-center pt-14 sm:pt-16 md:pt-20 lg:pt-24 pb-6 px-4">
+      <div className="relative z-10 text-center flex flex-col items-center pt-20 lg:pt-24 pb-6 px-4">
 
         <motion.img
           src="/logo-white.png"
@@ -48,7 +48,7 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.75, y: -16 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.75, type: "spring", bounce: 0.4 }}
-          className="w-24 sm:w-32 md:w-40 lg:w-60 xl:w-80 mb-4"
+          className="w-40 lg:w-60 xl:w-80 mb-4"
           style={{
             mixBlendMode: "screen",
             filter: "drop-shadow(0 0 10px rgba(255,255,255,0.6)) drop-shadow(0 0 28px rgba(200,150,255,0.3))",
@@ -80,7 +80,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.42, duration: 0.5 }}
-          className="text-white font-black text-xl sm:text-2xl md:text-2xl lg:text-4xl tracking-wide mb-2"
+          className="text-white font-black text-2xl lg:text-4xl tracking-wide mb-2"
           dir="rtl"
         >
           فكر بسرعة...  جاوب بدقة
@@ -90,7 +90,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.5 }}
-          className="text-white/65 font-semibold text-sm sm:text-base md:text-base lg:text-xl px-2"
+          className="text-white/65 font-semibold text-base lg:text-xl px-2"
           dir="rtl"
         >
           لعبة أسئلة جماعية — فئات متنوعة لكل المناسبات
