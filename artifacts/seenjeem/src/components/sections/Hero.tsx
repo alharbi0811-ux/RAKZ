@@ -12,7 +12,7 @@ const ORBS = [
 
 export function Hero() {
   return (
-    <section className="relative flex flex-col items-center justify-center" style={{ minHeight: "52vh" }}>
+    <section className="relative flex flex-col items-center justify-center min-h-[40vh] sm:min-h-[48vh] md:min-h-[52vh]">
 
       {/* Background */}
       <div className="absolute inset-0 overflow-hidden rounded-b-[4rem]">
@@ -40,7 +40,7 @@ export function Hero() {
       </div>
 
       {/* Content — stagger on page load */}
-      <div className="relative z-10 text-center flex flex-col items-center pt-24 pb-8">
+      <div className="relative z-10 text-center flex flex-col items-center pt-16 sm:pt-20 md:pt-24 pb-8 px-4">
 
         <motion.img
           src="/logo-white.png"
@@ -48,7 +48,7 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.75, y: -16 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.75, type: "spring", bounce: 0.4 }}
-          className="w-40 md:w-60 lg:w-80 mb-4"
+          className="w-24 sm:w-36 md:w-60 lg:w-80 mb-4"
           style={{
             mixBlendMode: "screen",
             filter: "drop-shadow(0 0 10px rgba(255,255,255,0.6)) drop-shadow(0 0 28px rgba(200,150,255,0.3))",
@@ -59,7 +59,7 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.85 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.28, duration: 0.45 }}
-          className="mb-3 flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-black"
+          className="mb-3 flex items-center gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-black"
           style={{
             background: "rgba(234,179,8,0.12)",
             border: "1px solid rgba(234,179,8,0.45)",
@@ -80,7 +80,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.42, duration: 0.5 }}
-          className="text-white font-black text-3xl md:text-4xl tracking-wide mb-2"
+          className="text-white font-black text-xl sm:text-2xl md:text-4xl tracking-wide mb-2"
           dir="rtl"
         >
           فكر بسرعة...  جاوب بدقة
@@ -90,7 +90,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.5 }}
-          className="text-white/65 font-semibold text-lg md:text-xl"
+          className="text-white/65 font-semibold text-sm sm:text-base md:text-xl px-2"
           dir="rtl"
         >
           لعبة أسئلة جماعية — فئات متنوعة لكل المناسبات
