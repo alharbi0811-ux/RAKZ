@@ -40,8 +40,8 @@ export function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isDark
-          ? `bg-[#0a0010]/90 backdrop-blur-md border-b border-white/5 ${isScrolled ? "shadow-[0_4px_24px_rgba(123,47,190,0.18)] py-3" : "py-5"}`
-          : `bg-white/95 backdrop-blur-md ${isScrolled ? "shadow-[0_4px_20px_rgba(0,0,0,0.08)] py-3" : "py-5"}`
+          ? `bg-[#0a0010]/90 backdrop-blur-md border-b border-white/5 ${isScrolled ? "shadow-[0_4px_24px_rgba(123,47,190,0.18)] py-2 md:py-3" : "py-2.5 md:py-5"}`
+          : `bg-white/95 backdrop-blur-md ${isScrolled ? "shadow-[0_4px_20px_rgba(0,0,0,0.08)] py-2 md:py-3" : "py-2.5 md:py-5"}`
       }`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -52,7 +52,7 @@ export function Navbar() {
               <img
                 src="/logo-rakez-new.png"
                 alt="ركز"
-                className="h-20 md:h-24 w-auto hover:scale-105 transition-transform"
+                className="h-12 sm:h-14 md:h-24 w-auto hover:scale-105 transition-transform"
                 style={{ filter: "drop-shadow(0 0 10px rgba(123, 47, 190, 0.5)) drop-shadow(0 0 22px rgba(123, 47, 190, 0.25))" }}
               />
             </Link>
