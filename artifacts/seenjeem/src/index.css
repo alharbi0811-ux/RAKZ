@@ -686,3 +686,48 @@ button {
     opacity: 1;
   }
 }
+
+/* ════════════════════════════════════════════════════════════════
+   FIX: CategoryCard internal spacing
+   منع تداخل الأزرار مع صورة الفئة
+   ════════════════════════════════════════════════════════════════ */
+
+/* المسافات بين أعمدة الكارد (أزرار - صورة - أزرار) */
+.score-btn-col {
+  padding: 6px 4px !important;
+  gap: 6px !important;
+}
+
+/* مسافة جانبية للصورة */
+.score-img-wrap {
+  padding: 6px 4px !important;
+}
+
+/* في وضع landscape على الموبايل: مسافات أصغر لكن واضحة */
+@media (orientation: landscape) and (max-width: 1024px) {
+  .score-btn-col {
+    padding: 4px 6px !important;
+    gap: 5px !important;
+  }
+
+  .score-img-wrap {
+    padding: 4px 6px !important;
+  }
+
+  /* الأزرار تأخذ كل المساحة المتاحة لكن مع مسافة */
+  .score-btn {
+    margin: 0 !important;
+  }
+}
+
+/* على شاشات أكبر: مسافات مريحة */
+@media (min-width: 1025px) {
+  .score-btn-col {
+    padding: 10px 8px !important;
+    gap: 8px !important;
+  }
+
+  .score-img-wrap {
+    padding: 8px !important;
+  }
+}
