@@ -456,3 +456,171 @@
 .ripple-container:active::after {
   animation: ripple 0.5s ease-out;
 }
+
+/* ════════════════════════════════════════════════════════════════
+   SAFE RESPONSIVE ADDITIONS (media queries only)
+   لا تلمس body / html / قواعد عالمية
+   ════════════════════════════════════════════════════════════════ */
+
+/* ────────────────────────────────────────────────────────
+   SMALL PHONES (iPhone SE, iPhone mini) — up to 380px
+   ──────────────────────────────────────────────────────── */
+@media (max-width: 380px) {
+  .score-btn {
+    width: 42px !important;
+    height: 42px !important;
+    min-width: 42px !important;
+    min-height: 42px !important;
+    font-size: 11px !important;
+    border-radius: 10px !important;
+  }
+
+  .score-cat-img {
+    width: 88px !important;
+    height: 88px !important;
+  }
+
+  .score-img-wrap {
+    width: 38% !important;
+    min-width: 68px !important;
+  }
+
+  .score-gameboard {
+    padding: 4px !important;
+    gap: 4px !important;
+  }
+
+  .score-gameboard > div {
+    gap: 4px !important;
+  }
+
+  .score-topbar {
+    min-height: 46px !important;
+    height: 46px !important;
+  }
+
+  .score-bottombar {
+    min-height: 46px !important;
+    height: 46px !important;
+  }
+
+  .topbar-icon-btn {
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    min-height: 34px !important;
+  }
+
+  .score-bottombar .h-8 {
+    height: 28px !important;
+    min-width: 32px !important;
+    font-size: 11px !important;
+  }
+}
+
+/* ────────────────────────────────────────────────────────
+   TABLETS / iPad — 768-1024px
+   ──────────────────────────────────────────────────────── */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .score-btn {
+    width: 70px !important;
+    height: 70px !important;
+    min-width: 70px !important;
+    min-height: 70px !important;
+    font-size: 20px !important;
+    border-radius: 18px !important;
+  }
+
+  .score-cat-img {
+    width: 150px !important;
+    height: 150px !important;
+  }
+
+  .score-img-wrap {
+    min-width: 130px !important;
+  }
+
+  .score-gameboard {
+    padding: 10px !important;
+    gap: 10px !important;
+  }
+
+  .score-gameboard > div {
+    gap: 10px !important;
+  }
+
+  .score-topbar {
+    min-height: 60px !important;
+    height: 60px !important;
+  }
+
+  .score-bottombar {
+    min-height: 60px !important;
+    height: 60px !important;
+  }
+
+  .topbar-icon-btn {
+    width: 46px !important;
+    height: 46px !important;
+    min-width: 46px !important;
+    min-height: 46px !important;
+  }
+}
+
+/* ────────────────────────────────────────────────────────
+   TV / VERY LARGE SCREENS — 1920px+
+   ──────────────────────────────────────────────────────── */
+@media (min-width: 1920px) {
+  .score-btn {
+    width: 90px !important;
+    height: 90px !important;
+    font-size: 26px !important;
+    border-radius: 20px !important;
+  }
+
+  .score-cat-img {
+    width: 200px !important;
+    height: 200px !important;
+  }
+
+  .score-img-wrap {
+    min-width: 180px !important;
+  }
+}
+
+/* ────────────────────────────────────────────────────────
+   iOS Safari: fix 100vh issue (only affects elements with .h-screen)
+   ──────────────────────────────────────────────────────── */
+@supports (height: 100dvh) {
+  .h-screen {
+    height: 100dvh;
+  }
+  .min-h-screen {
+    min-height: 100dvh;
+  }
+}
+
+/* ────────────────────────────────────────────────────────
+   Prevent iOS auto-zoom on input focus (mobile only)
+   ──────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  input[type="text"],
+  input[type="number"],
+  input[type="email"],
+  input[type="password"],
+  input[type="tel"],
+  input[type="search"],
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+}
+
+/* ────────────────────────────────────────────────────────
+   Prevent double-tap zoom on game buttons
+   ──────────────────────────────────────────────────────── */
+.score-btn,
+.topbar-icon-btn,
+button {
+  touch-action: manipulation;
+}
