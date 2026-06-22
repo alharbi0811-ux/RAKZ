@@ -731,3 +731,107 @@ button {
     padding: 8px !important;
   }
 }
+
+/* ════════════════════════════════════════════════════════════════
+   FINAL FIX — iPhone landscape (game screen)
+   شاشة iPhone في الوضع الأفقي: عرض كبير لكن ارتفاع قصير جداً (< 500px)
+   ════════════════════════════════════════════════════════════════ */
+@media (orientation: landscape) and (max-height: 500px) {
+
+  /* صور الفئات: صغيرة */
+  .score-cat-img {
+    width: 52px !important;
+    height: 52px !important;
+    border-radius: 8px !important;
+  }
+
+  .score-img-wrap {
+    width: 22% !important;
+    min-width: 48px !important;
+    padding: 2px !important;
+  }
+
+  /* الأزرار: مدمجة */
+  .score-btn {
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    min-height: 36px !important;
+    font-size: 11px !important;
+    border-radius: 8px !important;
+    padding: 0 !important;
+  }
+
+  /* أعمدة الأزرار: مسافات صغيرة */
+  .score-btn-col {
+    padding: 3px 4px !important;
+    gap: 4px !important;
+    flex: 1 !important;
+  }
+
+  /* لوحة اللعبة: مسافات صغيرة */
+  .score-gameboard {
+    padding: 3px !important;
+    gap: 3px !important;
+  }
+
+  .score-gameboard > div {
+    gap: 3px !important;
+  }
+
+  /* أشرطة علوية وسفلية: مدمجة */
+  .score-topbar,
+  .score-bottombar {
+    min-height: 38px !important;
+    height: 38px !important;
+    padding: 0 8px !important;
+  }
+
+  .topbar-icon-btn {
+    width: 28px !important;
+    height: 28px !important;
+    min-width: 28px !important;
+    min-height: 28px !important;
+  }
+
+  /* اسم الفئة تحت الصورة */
+  .shrink-0.px-3.py-2.text-center.font-black.text-sm.truncate {
+    font-size: 9px !important;
+    padding: 2px 3px !important;
+    line-height: 1.2 !important;
+  }
+
+  /* بطاقة النقاط في الـ bottombar */
+  .score-bottombar .h-8 {
+    height: 26px !important;
+    min-width: 28px !important;
+    font-size: 10px !important;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   iPad portrait / landscape (شاشة كبيرة مع ارتفاع كافي)
+   ════════════════════════════════════════════════════════════════ */
+@media (min-width: 768px) and (max-width: 1024px) and (min-height: 600px) {
+  .score-btn {
+    width: 64px !important;
+    height: 64px !important;
+    min-width: 64px !important;
+    min-height: 64px !important;
+    font-size: 18px !important;
+    border-radius: 14px !important;
+  }
+
+  .score-cat-img {
+    width: 110px !important;
+    height: 110px !important;
+  }
+
+  .score-img-wrap {
+    min-width: 100px !important;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   شاشات الكمبيوتر الكبيرة (لا تتأثر)
+   ════════════════════════════════════════════════════════════════ */
