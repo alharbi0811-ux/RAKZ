@@ -80,7 +80,7 @@ function GameModes() {
           <div className="flex-1 h-px" style={{ background: "rgba(123,47,190,0.15)" }} />
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className={`grid grid-cols-1 gap-5 ${visibleModes.length === 1 ? "max-w-lg mx-auto" : "md:grid-cols-2"}`}>
           {visibleModes.map(({ Icon, title, desc, cta, badge, bg, border, glow, glowHover, accent, accentBg, path }, i) => {
             const dimmed = hoveredIdx !== null && hoveredIdx !== i;
 
