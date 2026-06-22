@@ -624,3 +624,65 @@
 button {
   touch-action: manipulation;
 }
+
+/* ════════════════════════════════════════════════════════════════
+   ROTATE DEVICE PROMPT — اقلب الجهاز للأفقي
+   تظهر فقط على الموبايل في وضع portrait
+   ════════════════════════════════════════════════════════════════ */
+.rotate-device-prompt {
+  display: none;
+}
+
+/* تظهر فقط على الموبايل (تحت 1024px) عندما يكون الجهاز عمودي */
+@media (orientation: portrait) and (max-width: 1024px) {
+  .rotate-device-prompt {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    text-align: center;
+    background: linear-gradient(135deg, #1a0033 0%, #2d0a6e 40%, #5b1db8 80%, #7B3FF2 100%);
+    color: #ffffff;
+  }
+
+  .rotate-device-prompt .rotate-icon-wrap {
+    margin-bottom: 28px;
+    color: rgba(255,255,255,0.92);
+    animation: rotatePulse 2.2s ease-in-out infinite;
+  }
+
+  .rotate-device-prompt h2 {
+    font-size: 28px;
+    font-weight: 900;
+    margin-bottom: 16px;
+    letter-spacing: 0.02em;
+  }
+
+  .rotate-device-prompt p {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.75);
+    max-width: 320px;
+  }
+
+  /* إخفاء صفحة اللعبة عندما يكون portrait */
+  .score-page-wrapper {
+    display: none !important;
+  }
+}
+
+@keyframes rotatePulse {
+  0%, 100% {
+    transform: rotate(0deg);
+    opacity: 0.85;
+  }
+  50% {
+    transform: rotate(-90deg);
+    opacity: 1;
+  }
+}
