@@ -40,29 +40,29 @@ export function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isDark
-          ? `bg-[#0a0010]/90 backdrop-blur-md border-b border-white/5 ${isScrolled ? "shadow-[0_4px_24px_rgba(123,47,190,0.18)] py-2 md:py-3" : "py-2.5 md:py-5"}`
-          : `bg-white/95 backdrop-blur-md ${isScrolled ? "shadow-[0_4px_20px_rgba(0,0,0,0.08)] py-2 md:py-3" : "py-2.5 md:py-5"}`
+          ? `bg-[#0a0010]/90 backdrop-blur-md border-b border-white/5 ${isScrolled ? "shadow-[0_4px_24px_rgba(123,47,190,0.18)] py-2 md:py-2 lg:py-3" : "py-2.5 md:py-3 lg:py-5"}`
+          : `bg-white/95 backdrop-blur-md ${isScrolled ? "shadow-[0_4px_20px_rgba(0,0,0,0.08)] py-2 md:py-2 lg:py-3" : "py-2.5 md:py-3 lg:py-5"}`
       }`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
 
-          <div className="flex items-center gap-8">
+          <div className="flex items-center gap-3 md:gap-4 lg:gap-6 xl:gap-8">
             <Link href="/" className="flex-shrink-0 z-10">
               <img
                 src="/logo-rakez-new.png"
                 alt="ركز"
-                className="h-12 sm:h-14 md:h-24 w-auto hover:scale-105 transition-transform"
+                className="h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 w-auto hover:scale-105 transition-transform"
                 style={{ filter: "drop-shadow(0 0 10px rgba(123, 47, 190, 0.5)) drop-shadow(0 0 22px rgba(123, 47, 190, 0.25))" }}
               />
             </Link>
 
-            <nav className="hidden md:flex items-center gap-12">
+            <nav className="hidden md:flex items-center gap-5 lg:gap-8 xl:gap-12">
               {navLinks.map((link) => (
                 <button
                   key={link.name}
                   onClick={() => navigate(link.href)}
-                  className="text-foreground hover:text-primary font-medium transition-colors relative group text-center text-[25px]"
+                  className="text-foreground hover:text-primary font-medium transition-colors relative group text-center text-base md:text-lg lg:text-[22px] xl:text-[25px]"
                 >
                   {link.name}
                   <span className="absolute -bottom-1 right-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
@@ -142,7 +142,7 @@ export function Navbar() {
             ) : (
               <button
                 onClick={() => navigate("/login")}
-                className="text-foreground hover:text-primary flex items-center gap-2 font-medium px-4 py-2 rounded-full hover:bg-foreground/5 transition-colors"
+                className="text-foreground hover:text-primary flex items-center gap-2 font-medium text-sm md:text-base lg:text-lg px-3 md:px-4 py-2 rounded-full hover:bg-foreground/5 transition-colors"
               >
                 <User size={20} />
                 <span>تسجيل الدخول</span>
