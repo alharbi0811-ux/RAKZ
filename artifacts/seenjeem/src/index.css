@@ -837,135 +837,102 @@ button {
    ════════════════════════════════════════════════════════════════ */
 
 /* ════════════════════════════════════════════════════════════════
-   LEGENDARY CARDS — تصميم جديد للفئات فقط
-   لا يلمس الخلفية ولا الأشرطة العلوية والسفلية
+   SHIELD DESIGN — تصميم درعي للفئات
+   الصف العلوي: دروع عادية (الرأس مربع، القاعدة مدببة لأسفل)
+   الصف السفلي: دروع مقلوبة
+   كل الحواف دائرية ناعمة
    ════════════════════════════════════════════════════════════════ */
 
-/* خلفية الكارد: بنفسجي داكن متوهج */
-.cosmic-game .score-gameboard > div > div {
-  background: linear-gradient(135deg,
-    rgba(45,20,90,0.92) 0%,
-    rgba(75,30,140,0.85) 50%,
-    rgba(45,20,90,0.92) 100%) !important;
-  border: 1.5px solid rgba(200,140,255,0.55) !important;
-  border-radius: 18px !important;
-  backdrop-filter: blur(8px);
-  box-shadow:
-    0 0 28px rgba(168,85,247,0.4),
-    0 4px 16px rgba(0,0,0,0.15),
-    inset 0 1px 0 rgba(255,255,255,0.1) !important;
-  transition: all 0.3s ease;
+/* ─── الصف العلوي: دروع عادية ─── */
+.cosmic-game .score-gameboard > div:nth-child(1) > div {
+  background-color: transparent !important;
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20165%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20d%3D%22M%2018%206%20Q%206%206%206%2018%20L%206%20110%20Q%206%20120%2014%20126%20L%2092%20158%20Q%20100%20162%20108%20158%20L%20186%20126%20Q%20194%20120%20194%20110%20L%20194%2018%20Q%20194%206%20182%206%20Z%22%20fill%3D%22white%22%20stroke%3D%22%238b5cf6%22%20stroke-width%3D%222.5%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E") !important;
+  background-size: 100% 100% !important;
+  background-repeat: no-repeat !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  filter: drop-shadow(0 4px 12px rgba(123,63,242,0.2));
+  padding: 12px 18px 28px !important;
+  transition: filter 0.3s ease, transform 0.3s ease;
 }
 
-.cosmic-game .score-gameboard > div > div:hover {
-  border-color: rgba(220,180,255,0.85) !important;
-  box-shadow:
-    0 0 40px rgba(168,85,247,0.6),
-    0 8px 24px rgba(0,0,0,0.2),
-    inset 0 1px 0 rgba(255,255,255,0.15) !important;
+.cosmic-game .score-gameboard > div:nth-child(1) > div:hover {
+  filter: drop-shadow(0 6px 20px rgba(123,63,242,0.35));
+  transform: translateY(-2px);
+}
+
+/* ─── الصف السفلي: دروع مقلوبة ─── */
+.cosmic-game .score-gameboard > div:nth-child(2) > div {
+  background-color: transparent !important;
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20165%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20d%3D%22M%2092%207%20Q%20100%203%20108%207%20L%20186%2039%20Q%20194%2045%20194%2055%20L%20194%20147%20Q%20194%20159%20182%20159%20L%2018%20159%20Q%206%20159%206%20147%20L%206%2055%20Q%206%2045%2014%2039%20Z%22%20fill%3D%22white%22%20stroke%3D%22%238b5cf6%22%20stroke-width%3D%222.5%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E") !important;
+  background-size: 100% 100% !important;
+  background-repeat: no-repeat !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  filter: drop-shadow(0 -4px 12px rgba(123,63,242,0.2));
+  padding: 28px 18px 12px !important;
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.cosmic-game .score-gameboard > div:nth-child(2) > div:hover {
+  filter: drop-shadow(0 -6px 20px rgba(123,63,242,0.35));
   transform: translateY(-2px);
 }
 
 /* ─── الأزرار: 3 درجات بنفسجي من غامق لفاتح ─── */
-
-/* زر 200 (الأول في العمود) */
 .cosmic-game .score-btn-col > button:nth-of-type(1):not(:disabled) {
-  background: linear-gradient(135deg, #4c1d95 0%, #7c3aed 100%) !important;
+  background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%) !important;
   border: 1px solid rgba(200,140,255,0.6) !important;
   color: #ffffff !important;
-  text-shadow: 0 0 6px rgba(255,255,255,0.4);
-  box-shadow:
-    0 0 12px rgba(168,85,247,0.5),
-    inset 0 1px 0 rgba(255,255,255,0.2),
-    inset 0 -2px 4px rgba(0,0,0,0.2) !important;
+  box-shadow: 0 2px 8px rgba(123,63,242,0.35), inset 0 1px 0 rgba(255,255,255,0.2) !important;
   transition: all 0.2s ease;
 }
 
-/* زر 400 (الثاني) */
 .cosmic-game .score-btn-col > button:nth-of-type(2):not(:disabled) {
-  background: linear-gradient(135deg, #5b21b6 0%, #a855f7 100%) !important;
+  background: linear-gradient(135deg, #8b5cf6 0%, #c084fc 100%) !important;
   border: 1px solid rgba(220,180,255,0.7) !important;
   color: #ffffff !important;
-  text-shadow: 0 0 8px rgba(255,255,255,0.5);
-  box-shadow:
-    0 0 14px rgba(200,140,255,0.6),
-    inset 0 1px 0 rgba(255,255,255,0.25),
-    inset 0 -2px 4px rgba(0,0,0,0.2) !important;
+  box-shadow: 0 2px 10px rgba(168,85,247,0.4), inset 0 1px 0 rgba(255,255,255,0.25) !important;
   transition: all 0.2s ease;
 }
 
-/* زر 600 (الثالث - الأقوى توهجاً) */
 .cosmic-game .score-btn-col > button:nth-of-type(3):not(:disabled) {
-  background: linear-gradient(135deg, #6d28d9 0%, #c084fc 100%) !important;
-  border: 1px solid rgba(230,200,255,0.85) !important;
+  background: linear-gradient(135deg, #a855f7 0%, #d8b4fe 100%) !important;
+  border: 1px solid rgba(230,200,255,0.8) !important;
   color: #ffffff !important;
-  text-shadow: 0 0 10px rgba(255,255,255,0.7);
-  box-shadow:
-    0 0 18px rgba(220,180,255,0.75),
-    inset 0 1px 0 rgba(255,255,255,0.3),
-    inset 0 -2px 4px rgba(0,0,0,0.2) !important;
+  box-shadow: 0 2px 12px rgba(200,140,255,0.5), inset 0 1px 0 rgba(255,255,255,0.3) !important;
   transition: all 0.2s ease;
 }
 
-/* تأثيرات الـ hover للأزرار */
 .cosmic-game .score-btn-col > button:not(:disabled):hover {
-  filter: brightness(1.2);
+  filter: brightness(1.15);
   transform: scale(1.05);
-  box-shadow:
-    0 0 28px rgba(220,180,255,0.9),
-    0 4px 16px rgba(123,63,242,0.5),
-    inset 0 1px 0 rgba(255,255,255,0.35) !important;
+  box-shadow: 0 4px 16px rgba(168,85,247,0.6), inset 0 1px 0 rgba(255,255,255,0.35) !important;
 }
 
-/* الأزرار المستخدمة (disabled) */
+/* الأزرار المستخدمة */
 .cosmic-game .score-btn:disabled {
-  background: rgba(40,20,70,0.35) !important;
-  border-color: rgba(100,60,160,0.2) !important;
-  color: rgba(180,150,220,0.3) !important;
-  text-shadow: none !important;
+  background: rgba(200,180,230,0.35) !important;
+  border-color: rgba(168,85,247,0.15) !important;
+  color: rgba(140,110,180,0.5) !important;
   box-shadow: none !important;
 }
 
-/* ─── صورة الفئة: هالة دائرية متوهجة ─── */
-.cosmic-game .score-img-wrap {
-  position: relative;
-}
-
-.cosmic-game .score-img-wrap::before {
-  content: '';
-  position: absolute;
-  inset: 4px;
-  background: radial-gradient(circle at center,
-    rgba(200,140,255,0.35) 0%,
-    rgba(168,85,247,0.15) 40%,
-    transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
-  animation: cosmic-img-pulse 4s ease-in-out infinite;
-}
-
-@keyframes cosmic-img-pulse {
-  0%, 100% { opacity: 0.7; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.08); }
-}
-
-.cosmic-game .score-cat-img {
-  position: relative;
-  z-index: 1;
-  filter:
-    drop-shadow(0 0 14px rgba(200,140,255,0.5))
-    drop-shadow(0 4px 10px rgba(0,0,0,0.3));
-}
-
-/* ─── اسم الفئة تحت الصورة: نيون متوهج ─── */
+/* ─── اسم الفئة: بنفسجي غامق ─── */
 .cosmic-game .score-gameboard .shrink-0.px-3.py-2.text-center.font-black.text-sm.truncate {
-  color: #f3e8ff !important;
-  text-shadow:
-    0 0 10px rgba(200,140,255,0.8),
-    0 0 20px rgba(168,85,247,0.4) !important;
-  background: linear-gradient(180deg,
-    rgba(15,5,30,0.4) 0%,
-    rgba(30,15,55,0.6) 100%) !important;
-  border-top: 1px solid rgba(168,85,247,0.3) !important;
+  color: #6d28d9 !important;
+  background: transparent !important;
+  border-top: none !important;
+  text-shadow: none !important;
+  font-weight: 800 !important;
   letter-spacing: 0.02em;
+}
+
+/* ─── ضبط padding عشان الأزرار تدخل في شكل الدرع ─── */
+.cosmic-game .score-gameboard > div > div > div.flex.flex-1 {
+  padding: 0 4px;
 }
