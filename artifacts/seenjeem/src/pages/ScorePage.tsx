@@ -285,7 +285,7 @@ export default function ScorePage() {
         <p>اللعبة مصممة للوضع الأفقي<br/>الرجاء قلب جهازك للأفقي للحصول على أفضل تجربة</p>
       </div>
 
-    <div className="score-page-wrapper h-screen overflow-hidden bg-gradient-to-br from-[#f0e8ff] via-[#e8e0f0] to-[#f0f0ff] flex flex-col" dir="rtl">
+    <div className="score-page-wrapper cosmic-game h-screen overflow-hidden bg-gradient-to-br from-[#f0e8ff] via-[#e8e0f0] to-[#f0f0ff] flex flex-col" dir="rtl">
       {/* Top Bar */}
       <div className="score-topbar shrink-0 px-3 py-2 md:px-6 md:pt-[24px] md:pb-[24px] shadow-lg border-b border-white/10" style={{ background: "linear-gradient(135deg, #6A00F4, #7B3FF2, #8E63E6, #A07CE0, #B89AE6)" }}>
         <div className="flex items-center justify-between h-full relative">
