@@ -837,7 +837,7 @@ button {
    ════════════════════════════════════════════════════════════════ */
 
 /* ════════════════════════════════════════════════════════════════
-   SHIELD DESIGN v6 — صورة ضخمة + نص أكبر + الصف السفلي مضبوط
+   SHIELD DESIGN v7 — صورة تملأ الدرع + الصف السفلي منزل
    ════════════════════════════════════════════════════════════════ */
 
 .cosmic-game .score-gameboard {
@@ -868,7 +868,7 @@ button {
   backdrop-filter: blur(14px) saturate(1.3) !important;
   -webkit-backdrop-filter: blur(14px) saturate(1.3) !important;
   filter: drop-shadow(0 4px 14px rgba(123,47,190,0.25));
-  padding: 28px 60px 80px !important;
+  padding: 22px 48px 90px !important;
   transition: filter 0.3s ease, transform 0.3s ease;
 }
 
@@ -877,7 +877,7 @@ button {
   transform: translateY(-3px);
 }
 
-/* ─── الصف السفلي: درع مقلوب - زدنا padding أعلى عشان يتجه للأسفل ─── */
+/* ─── الصف السفلي: درع مقلوب ─── */
 .cosmic-game .score-gameboard > div:nth-child(2) > div {
   background-color: transparent !important;
   background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20165%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g2%22%20x1%3D%220%25%22%20y1%3D%22100%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%236A00F4%22%2F%3E%3Cstop%20offset%3D%2225%25%22%20stop-color%3D%22%237B3FF2%22%2F%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%238E63E6%22%2F%3E%3Cstop%20offset%3D%2275%25%22%20stop-color%3D%22%23A07CE0%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23B89AE6%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cpath%20d%3D%22M%2092%207%20Q%20100%203%20108%207%20L%20186%2039%20Q%20194%2045%20194%2055%20L%20194%20147%20Q%20194%20159%20182%20159%20L%2018%20159%20Q%206%20159%206%20147%20L%206%2055%20Q%206%2045%2014%2039%20Z%22%20fill%3D%22rgba(255%2C255%2C255%2C0.35)%22%20stroke%3D%22url(%23g2)%22%20stroke-width%3D%223%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E") !important;
@@ -889,8 +889,8 @@ button {
   backdrop-filter: blur(14px) saturate(1.3) !important;
   -webkit-backdrop-filter: blur(14px) saturate(1.3) !important;
   filter: drop-shadow(0 -4px 14px rgba(123,47,190,0.25));
-  /* زدنا padding-top عشان المحتوى ينزل للأسفل ويبعد عن الجزء المدبب */
-  padding: 90px 60px 20px !important;
+  /* زيادة padding-top عشان المحتوى ينزل أكثر للأسفل */
+  padding: 120px 48px 18px !important;
   transition: filter 0.3s ease, transform 0.3s ease;
 }
 
@@ -902,18 +902,18 @@ button {
 /* iPhone landscape */
 @media (orientation: landscape) and (max-height: 500px) {
   .cosmic-game .score-gameboard > div:nth-child(1) > div {
-    padding: 16px 34px 50px !important;
+    padding: 14px 30px 52px !important;
   }
   .cosmic-game .score-gameboard > div:nth-child(2) > div {
-    padding: 52px 34px 14px !important;
+    padding: 58px 30px 12px !important;
   }
 }
 
 /* ─── عمود الأزرار ─── */
 .cosmic-game .score-btn-col {
-  width: 26% !important;
-  min-width: 26% !important;
-  flex: 0 0 26% !important;
+  width: 22% !important;
+  min-width: 22% !important;
+  flex: 0 0 22% !important;
   gap: 10px !important;
   padding: 4px !important;
   display: flex !important;
@@ -924,9 +924,9 @@ button {
 
 @media (orientation: landscape) and (max-height: 500px) {
   .cosmic-game .score-btn-col {
-    width: 22% !important;
-    min-width: 22% !important;
-    flex: 0 0 22% !important;
+    width: 20% !important;
+    min-width: 20% !important;
+    flex: 0 0 20% !important;
     gap: 5px !important;
   }
 }
@@ -934,16 +934,16 @@ button {
 /* ─── الأزرار ─── */
 .cosmic-game .score-btn {
   width: 100% !important;
-  min-height: 52px !important;
+  min-height: 50px !important;
   border-radius: 14px !important;
-  font-size: 20px !important;
+  font-size: 18px !important;
   font-weight: 900 !important;
 }
 
 @media (orientation: landscape) and (max-height: 500px) {
   .cosmic-game .score-btn {
-    min-height: 30px !important;
-    font-size: 13px !important;
+    min-height: 28px !important;
+    font-size: 12px !important;
   }
 }
 
@@ -980,32 +980,25 @@ button {
   box-shadow: none !important;
 }
 
-/* ─── الصورة: ضخمة جداً ─── */
+/* ─── الصورة: تملأ معظم الدرع ─── */
 .cosmic-game .score-img-wrap {
   flex: 1 !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  padding: 4px !important;
+  padding: 0 !important;
 }
 
 .cosmic-game .score-cat-img {
   width: 100% !important;
   height: 100% !important;
-  max-width: 220px !important;
-  max-height: 220px !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
   object-fit: contain !important;
-  filter: drop-shadow(0 6px 16px rgba(0,0,0,0.18));
+  filter: drop-shadow(0 6px 16px rgba(0,0,0,0.15));
 }
 
-@media (orientation: landscape) and (max-height: 500px) {
-  .cosmic-game .score-cat-img {
-    max-width: 90px !important;
-    max-height: 90px !important;
-  }
-}
-
-/* ─── اسم الفئة: أكبر ─── */
+/* ─── اسم الفئة: كبير ─── */
 .cosmic-game .score-gameboard .shrink-0.px-3.py-2.text-center.font-black.text-sm.truncate {
   color: #6d28d9 !important;
   background: transparent !important;
@@ -1019,7 +1012,7 @@ button {
 
 @media (orientation: landscape) and (max-height: 500px) {
   .cosmic-game .score-gameboard .shrink-0.px-3.py-2.text-center.font-black.text-sm.truncate {
-    font-size: 16px !important;
+    font-size: 15px !important;
     padding: 4px 6px !important;
   }
 }
