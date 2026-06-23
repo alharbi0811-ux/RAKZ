@@ -421,7 +421,6 @@ export default function ScorePage() {
         </div>
 
         {/* Row 2 */}
-        <div className="flex-1 min-h-0 grid grid-cols-3 gap-1.5 md:gap-4">        {/* Row 2 - Team 2 Categories */}
         <div className="flex-1 min-h-0 grid grid-cols-3 gap-1.5 md:gap-4">
           {gameData.team2Categories.map((cat, catIdx) => (
             <CategoryCard
