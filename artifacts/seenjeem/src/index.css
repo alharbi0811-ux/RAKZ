@@ -982,12 +982,11 @@ button {
 
 /* ─── الصورة: تملأ معظم الدرع ─── */
 .cosmic-game .score-img-wrap {
-  flex: 3 !important;
+  flex: 1 !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   padding: 0 !important;
-  min-height: 180px !important;
 }
 
 .cosmic-game .score-cat-img {
