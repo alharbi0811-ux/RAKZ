@@ -321,12 +321,11 @@ export default function ScorePage() {
             />
           ))}
         </div>
-
-        {/* Diamond Score Zone - بين الصفين */}
-        <div className="shrink-0 flex items-center justify-between px-4 py-1" style={{ zIndex: 10, position: "relative", margin: "-4px 0" }}>
+        {/* ─── Diamond Score Zone ─── */}
+        <div className="shrink-0 flex items-center justify-between px-8" style={{margin: "4px 0", position: "relative", zIndex: 10}}>
           {/* ماسة الفريق الأول */}
-          <div className="relative" style={{ filter: "drop-shadow(0 4px 12px rgba(123,47,190,0.3))" }}>
-            <svg width="200" height="110" viewBox="0 0 200 110">
+          <div style={{position: "relative", filter: "drop-shadow(0 4px 12px rgba(123,47,190,0.3))"}}>
+            <svg width="190" height="105" viewBox="0 0 190 105">
               <defs>
                 <linearGradient id="dg1" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stopColor="#6A00F4"/>
@@ -334,14 +333,14 @@ export default function ScorePage() {
                   <stop offset="100%" stopColor="#B89AE6"/>
                 </linearGradient>
               </defs>
-              <polygon points="100,4 196,55 100,106 4,55" fill="white" stroke="url(#dg1)" strokeWidth="2.5"/>
+              <polygon points="95,3 187,52 95,102 3,52" fill="white" stroke="url(#dg1)" strokeWidth="2.5"/>
             </svg>
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-0.5">
-              <span className="text-[10px] font-black" style={{ color: "#6d28d9" }}>{gameData.team1Name}</span>
-              <span className="text-xl font-black" style={{ color: "#4c1d95" }}>{team1Score}</span>
-              <div className="flex items-center gap-1">
-                <button onClick={() => setTeam1Score((s) => s - 200)} className="w-5 h-5 rounded-full flex items-center justify-center" style={{ background: "#f3e8ff", border: "1px solid #c4b5fd" }}>
-                  <Minus size={9} color="#7c3aed" strokeWidth={3}/>
+            <div style={{position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "2px"}}>
+              <span style={{fontSize: "10px", fontWeight: 900, color: "#6d28d9"}}>{gameData.team1Name}</span>
+              <span style={{fontSize: "22px", fontWeight: 900, color: "#4c1d95", lineHeight: 1}}>{team1Score}</span>
+              <div style={{display: "flex", alignItems: "center", gap: "4px"}}>
+                <button onClick={() => setTeam1Score((s) => s - 200)} style={{width: "18px", height: "18px", borderRadius: "50%", background: "#f3e8ff", border: "1px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
+                  <Minus size={8} color="#7c3aed" strokeWidth={3}/>
                 </button>
                 {((gameData.team1Tools?.length > 0) ? gameData.team1Tools : ["double","pit","rest"]).map((toolId) => {
                   const tool = HELP_TOOLS_MAP[toolId];
@@ -350,32 +349,30 @@ export default function ScorePage() {
                   const isActive = toolId === "pit" && currentTeam === 1 && !used;
                   return (
                     <motion.button key={toolId}
-                      whileHover={isActive ? { scale: 1.1 } : {}}
-                      whileTap={isActive ? { scale: 0.9 } : {}}
+                      whileHover={isActive ? {scale: 1.1} : {}}
+                      whileTap={isActive ? {scale: 0.9} : {}}
                       onClick={() => isActive && handlePitToggle()}
                       disabled={!isActive}
                       title={tool.name}
-                      className="w-5 h-5 rounded-full flex items-center justify-center shrink-0 transition-all"
-                      style={{ background: isActive && pitActive ? "#facc15" : isActive ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.15)", border: "1px solid rgba(196,181,253,0.5)" }}
+                      style={{width: "20px", height: "20px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid rgba(196,181,253,0.6)", background: isActive && pitActive ? "#facc15" : isActive ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.2)", cursor: isActive ? "pointer" : "not-allowed"}}
                     >
-                      <img src={tool.icon} alt={tool.name} className="w-3 h-3 object-contain"
-                        style={{ filter: isActive ? "brightness(0) invert(1)" : "brightness(0) invert(1) opacity(0.35)" }}/>
+                      <img src={tool.icon} alt={tool.name} style={{width: "11px", height: "11px", objectFit: "contain", filter: isActive ? "brightness(0) invert(1)" : "brightness(0) invert(1) opacity(0.35)"}}/>
                     </motion.button>
                   );
                 })}
-                <button onClick={() => setTeam1Score((s) => s + 200)} className="w-5 h-5 rounded-full flex items-center justify-center" style={{ background: "#f3e8ff", border: "1px solid #c4b5fd" }}>
-                  <Plus size={9} color="#7c3aed" strokeWidth={3}/>
+                <button onClick={() => setTeam1Score((s) => s + 200)} style={{width: "18px", height: "18px", borderRadius: "50%", background: "#f3e8ff", border: "1px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
+                  <Plus size={8} color="#7c3aed" strokeWidth={3}/>
                 </button>
               </div>
             </div>
           </div>
 
           {/* خط وسط */}
-          <div className="flex-1 mx-4 h-px" style={{ background: "linear-gradient(90deg,#c4b5fd,#8b5cf6,#c4b5fd)" }}/>
+          <div style={{flex: 1, height: "1px", margin: "0 12px", background: "linear-gradient(90deg,transparent,#c4b5fd,#8b5cf6,#c4b5fd,transparent)"}}/>
 
           {/* ماسة الفريق الثاني */}
-          <div className="relative" style={{ filter: "drop-shadow(0 4px 12px rgba(123,47,190,0.3))" }}>
-            <svg width="200" height="110" viewBox="0 0 200 110">
+          <div style={{position: "relative", filter: "drop-shadow(0 4px 12px rgba(123,47,190,0.3))"}}>
+            <svg width="190" height="105" viewBox="0 0 190 105">
               <defs>
                 <linearGradient id="dg2" x1="100%" y1="0%" x2="0%" y2="100%">
                   <stop offset="0%" stopColor="#B89AE6"/>
@@ -383,14 +380,14 @@ export default function ScorePage() {
                   <stop offset="100%" stopColor="#6A00F4"/>
                 </linearGradient>
               </defs>
-              <polygon points="100,4 196,55 100,106 4,55" fill="white" stroke="url(#dg2)" strokeWidth="2.5"/>
+              <polygon points="95,3 187,52 95,102 3,52" fill="white" stroke="url(#dg2)" strokeWidth="2.5"/>
             </svg>
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-0.5">
-              <span className="text-[10px] font-black" style={{ color: "#6d28d9" }}>{gameData.team2Name}</span>
-              <span className="text-xl font-black" style={{ color: "#4c1d95" }}>{team2Score}</span>
-              <div className="flex items-center gap-1">
-                <button onClick={() => setTeam2Score((s) => s - 200)} className="w-5 h-5 rounded-full flex items-center justify-center" style={{ background: "#f3e8ff", border: "1px solid #c4b5fd" }}>
-                  <Minus size={9} color="#7c3aed" strokeWidth={3}/>
+            <div style={{position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "2px"}}>
+              <span style={{fontSize: "10px", fontWeight: 900, color: "#6d28d9"}}>{gameData.team2Name}</span>
+              <span style={{fontSize: "22px", fontWeight: 900, color: "#4c1d95", lineHeight: 1}}>{team2Score}</span>
+              <div style={{display: "flex", alignItems: "center", gap: "4px"}}>
+                <button onClick={() => setTeam2Score((s) => s - 200)} style={{width: "18px", height: "18px", borderRadius: "50%", background: "#f3e8ff", border: "1px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
+                  <Minus size={8} color="#7c3aed" strokeWidth={3}/>
                 </button>
                 {((gameData.team2Tools?.length > 0) ? gameData.team2Tools : ["double","pit","rest"]).map((toolId) => {
                   const tool = HELP_TOOLS_MAP[toolId];
@@ -399,28 +396,25 @@ export default function ScorePage() {
                   const isActive = toolId === "pit" && currentTeam === 2 && !used;
                   return (
                     <motion.button key={toolId}
-                      whileHover={isActive ? { scale: 1.1 } : {}}
-                      whileTap={isActive ? { scale: 0.9 } : {}}
+                      whileHover={isActive ? {scale: 1.1} : {}}
+                      whileTap={isActive ? {scale: 0.9} : {}}
                       onClick={() => isActive && handlePitToggle()}
                       disabled={!isActive}
                       title={tool.name}
-                      className="w-5 h-5 rounded-full flex items-center justify-center shrink-0 transition-all"
-                      style={{ background: isActive && pitActive ? "#facc15" : isActive ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.15)", border: "1px solid rgba(196,181,253,0.5)" }}
+                      style={{width: "20px", height: "20px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid rgba(196,181,253,0.6)", background: isActive && pitActive ? "#facc15" : isActive ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.2)", cursor: isActive ? "pointer" : "not-allowed"}}
                     >
-                      <img src={tool.icon} alt={tool.name} className="w-3 h-3 object-contain"
-                        style={{ filter: isActive ? "brightness(0) invert(1)" : "brightness(0) invert(1) opacity(0.35)" }}/>
+                      <img src={tool.icon} alt={tool.name} style={{width: "11px", height: "11px", objectFit: "contain", filter: isActive ? "brightness(0) invert(1)" : "brightness(0) invert(1) opacity(0.35)"}}/>
                     </motion.button>
                   );
                 })}
-                <button onClick={() => setTeam2Score((s) => s + 200)} className="w-5 h-5 rounded-full flex items-center justify-center" style={{ background: "#f3e8ff", border: "1px solid #c4b5fd" }}>
-                  <Plus size={9} color="#7c3aed" strokeWidth={3}/>
+                <button onClick={() => setTeam2Score((s) => s + 200)} style={{width: "18px", height: "18px", borderRadius: "50%", background: "#f3e8ff", border: "1px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
+                  <Plus size={8} color="#7c3aed" strokeWidth={3}/>
                 </button>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Row 2 */}
         <div className="flex-1 min-h-0 grid grid-cols-3 gap-1.5 md:gap-4">
           {gameData.team2Categories.map((cat, catIdx) => (
             <CategoryCard
@@ -434,7 +428,7 @@ export default function ScorePage() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="score-bottombar shrink-0 px-2 md:px-6 border-t border-white/10 py-2 md:py-4 flex items-center justify-between gap-1 md:gap-4 relative hidden" style={{ background: "linear-gradient(135deg, #6A00F4, #7B3FF2, #8E63E6, #A07CE0, #B89AE6)" }}>
+      <div className="score-bottombar shrink-0 hidden px-2 md:px-6 border-t border-white/10 py-2 md:py-4 flex items-center justify-between gap-1 md:gap-4 relative" style={{ background: "linear-gradient(135deg, #6A00F4, #7B3FF2, #8E63E6, #A07CE0, #B89AE6)" }}>
         {/* Team 1 */}
         <div className="flex items-center gap-1 md:gap-2 flex-1">
           <div className="hidden md:flex h-10 items-center bg-white/20 text-white px-4 rounded-full font-black border border-white/20 text-[14px] shrink-0 whitespace-nowrap">
@@ -591,7 +585,7 @@ function CategoryCard({
   const playerBlocked = isLocked && !isAdmin;
 
   const btnClass = (played: boolean, isLoading: boolean) => `
-    score-btn rounded-xl font-black text-sm transition-all relative
+    score-btn w-full flex-1 rounded-xl font-black text-sm md:text-2xl transition-all relative
     ${played ? "bg-gray-300/40 text-gray-400 cursor-not-allowed"
       : isLoading ? "bg-[#7B2FBE] text-white cursor-wait"
       : playerBlocked ? "bg-gray-200/40 text-gray-400 cursor-not-allowed"
@@ -602,7 +596,7 @@ function CategoryCard({
   const lockMsg = catStatus.lockMessage || statusLabel;
 
   return (
-    <div className="flex flex-col bg-white/40 backdrop-blur-md rounded-2xl overflow-hidden shadow-lg border border-white/50 min-h-0 relative" style={{contain: "layout"}}>
+    <div className="flex flex-col bg-white/40 backdrop-blur-md rounded-2xl overflow-hidden shadow-lg border border-white/50 min-h-0 relative">
       {/* Admin badge for locked categories */}
       {isAdmin && isLocked && (
         <div className="absolute top-2 left-2 z-20 flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold"
@@ -622,7 +616,7 @@ function CategoryCard({
           </div>
         )}
 
-        <div className="score-btn-col flex flex-col justify-center items-center gap-2 p-1 shrink-0 w-[18%]">
+        <div className="score-btn-col flex flex-col justify-center gap-1 md:gap-2 p-1 md:p-3 flex-1">
           {POINTS.map((points) => {
             const played = playedCells.has(`${catIdx}-${points}-l`);
             const isLoading = loadingCell === `${catIdx}-${points}-l`;
@@ -634,10 +628,10 @@ function CategoryCard({
             );
           })}
         </div>
-        <div className="score-img-wrap relative self-stretch flex items-center justify-center overflow-hidden" style={{flex: "4", padding: "4px"}}>
+        <div className="score-img-wrap w-[40%] min-w-[50px] md:min-w-[120px] relative self-stretch flex items-center justify-center overflow-hidden">
           <img src={category.img} alt={category.name} className="score-cat-img w-full h-full object-contain" />
         </div>
-        <div className="score-btn-col flex flex-col justify-center items-center gap-2 p-1 shrink-0 w-[18%]">
+        <div className="score-btn-col flex flex-col justify-center gap-1 md:gap-2 p-1 md:p-3 flex-1">
           {POINTS.map((points) => {
             const played = playedCells.has(`${catIdx}-${points}-r`);
             const isLoading = loadingCell === `${catIdx}-${points}-r`;
