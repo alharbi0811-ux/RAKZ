@@ -500,3 +500,61 @@
   box-shadow: none !important;
   filter: drop-shadow(0 -4px 10px rgba(123,47,190,0.15));
 }
+
+
+/* ─── Buttons: 3 purple gradients ─── */
+.score-gameboard .score-btn-col > button:nth-of-type(1):not(:disabled) {
+  background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%) !important;
+  border: 1px solid rgba(200,140,255,0.6) !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(123,63,242,0.35), inset 0 1px 0 rgba(255,255,255,0.25) !important;
+  border-radius: 12px !important;
+}
+
+.score-gameboard .score-btn-col > button:nth-of-type(2):not(:disabled) {
+  background: linear-gradient(135deg, #8b5cf6 0%, #c084fc 100%) !important;
+  border: 1px solid rgba(220,180,255,0.7) !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 10px rgba(168,85,247,0.4), inset 0 1px 0 rgba(255,255,255,0.3) !important;
+  border-radius: 12px !important;
+}
+
+.score-gameboard .score-btn-col > button:nth-of-type(3):not(:disabled) {
+  background: linear-gradient(135deg, #a855f7 0%, #d8b4fe 100%) !important;
+  border: 1px solid rgba(230,200,255,0.8) !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 12px rgba(200,140,255,0.5), inset 0 1px 0 rgba(255,255,255,0.35) !important;
+  border-radius: 12px !important;
+}
+
+.score-gameboard .score-btn-col > button:not(:disabled):hover {
+  filter: brightness(1.15);
+  transform: scale(1.05);
+}
+
+/* ─── Padding to keep contents inside shield ─── */
+.score-gameboard > div.grid:first-of-type > div {
+  padding: 14px 30px 40px !important;
+}
+
+.score-gameboard > div.grid:last-of-type > div {
+  padding: 40px 30px 14px !important;
+}
+
+/* ─── Image: contain inside shield ─── */
+.score-gameboard .score-img-wrap {
+  overflow: hidden !important;
+  padding: 4px !important;
+}
+
+.score-gameboard .score-cat-img {
+  max-width: 100% !important;
+  max-height: 100% !important;
+  object-fit: contain !important;
+}
+
+/* ─── Category name color (purple) ─── */
+.score-gameboard .shrink-0.px-3.py-2.text-center.font-black.text-sm.truncate {
+  color: #6d28d9 !important;
+  font-weight: 800 !important;
+}
