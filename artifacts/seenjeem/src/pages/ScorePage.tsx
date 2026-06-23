@@ -311,7 +311,6 @@ export default function ScorePage() {
 
       {/* Game Board */}
       <div className="score-gameboard flex-1 min-h-0 p-2 md:p-4 flex flex-col gap-2 md:gap-4">
-        {/* Row 1 - Team 1 Categories */}
         <div className="flex-1 min-h-0 grid grid-cols-3 gap-1.5 md:gap-4">
           {gameData.team1Categories.map((cat, catIdx) => (
             <CategoryCard
@@ -323,11 +322,11 @@ export default function ScorePage() {
           ))}
         </div>
 
-        {/* Diamond Score Zone */}
-        <div className="shrink-0 flex items-center justify-between gap-2 px-2" style={{ zIndex: 10, position: "relative" }}>
-          {/* Team 1 Diamond */}
+        {/* Diamond Score Zone - بين الصفين */}
+        <div className="shrink-0 flex items-center justify-between px-4 py-1" style={{ zIndex: 10, position: "relative", margin: "-4px 0" }}>
+          {/* ماسة الفريق الأول */}
           <div className="relative" style={{ filter: "drop-shadow(0 4px 12px rgba(123,47,190,0.3))" }}>
-            <svg width="220" height="120" viewBox="0 0 220 120">
+            <svg width="200" height="110" viewBox="0 0 200 110">
               <defs>
                 <linearGradient id="dg1" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stopColor="#6A00F4"/>
@@ -335,14 +334,14 @@ export default function ScorePage() {
                   <stop offset="100%" stopColor="#B89AE6"/>
                 </linearGradient>
               </defs>
-              <polygon points="110,4 216,60 110,116 4,60" fill="white" stroke="url(#dg1)" strokeWidth="2.5"/>
+              <polygon points="100,4 196,55 100,106 4,55" fill="white" stroke="url(#dg1)" strokeWidth="2.5"/>
             </svg>
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-1">
-              <span className="text-[11px] font-black" style={{ color: "#6d28d9" }}>{gameData.team1Name}</span>
-              <span className="text-2xl font-black" style={{ color: "#4c1d95" }}>{team1Score}</span>
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-0.5">
+              <span className="text-[10px] font-black" style={{ color: "#6d28d9" }}>{gameData.team1Name}</span>
+              <span className="text-xl font-black" style={{ color: "#4c1d95" }}>{team1Score}</span>
               <div className="flex items-center gap-1">
                 <button onClick={() => setTeam1Score((s) => s - 200)} className="w-5 h-5 rounded-full flex items-center justify-center" style={{ background: "#f3e8ff", border: "1px solid #c4b5fd" }}>
-                  <Minus size={10} color="#7c3aed" strokeWidth={3}/>
+                  <Minus size={9} color="#7c3aed" strokeWidth={3}/>
                 </button>
                 {((gameData.team1Tools?.length > 0) ? gameData.team1Tools : ["double","pit","rest"]).map((toolId) => {
                   const tool = HELP_TOOLS_MAP[toolId];
@@ -356,7 +355,7 @@ export default function ScorePage() {
                       onClick={() => isActive && handlePitToggle()}
                       disabled={!isActive}
                       title={tool.name}
-                      className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 transition-all"
+                      className="w-5 h-5 rounded-full flex items-center justify-center shrink-0 transition-all"
                       style={{ background: isActive && pitActive ? "#facc15" : isActive ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.15)", border: "1px solid rgba(196,181,253,0.5)" }}
                     >
                       <img src={tool.icon} alt={tool.name} className="w-3 h-3 object-contain"
@@ -365,18 +364,18 @@ export default function ScorePage() {
                   );
                 })}
                 <button onClick={() => setTeam1Score((s) => s + 200)} className="w-5 h-5 rounded-full flex items-center justify-center" style={{ background: "#f3e8ff", border: "1px solid #c4b5fd" }}>
-                  <Plus size={10} color="#7c3aed" strokeWidth={3}/>
+                  <Plus size={9} color="#7c3aed" strokeWidth={3}/>
                 </button>
               </div>
             </div>
           </div>
 
-          {/* Center divider */}
-          <div className="flex-1 h-0.5" style={{ background: "linear-gradient(90deg,#c4b5fd,#8b5cf6,#c4b5fd)" }}/>
+          {/* خط وسط */}
+          <div className="flex-1 mx-4 h-px" style={{ background: "linear-gradient(90deg,#c4b5fd,#8b5cf6,#c4b5fd)" }}/>
 
-          {/* Team 2 Diamond */}
+          {/* ماسة الفريق الثاني */}
           <div className="relative" style={{ filter: "drop-shadow(0 4px 12px rgba(123,47,190,0.3))" }}>
-            <svg width="220" height="120" viewBox="0 0 220 120">
+            <svg width="200" height="110" viewBox="0 0 200 110">
               <defs>
                 <linearGradient id="dg2" x1="100%" y1="0%" x2="0%" y2="100%">
                   <stop offset="0%" stopColor="#B89AE6"/>
@@ -384,14 +383,14 @@ export default function ScorePage() {
                   <stop offset="100%" stopColor="#6A00F4"/>
                 </linearGradient>
               </defs>
-              <polygon points="110,4 216,60 110,116 4,60" fill="white" stroke="url(#dg2)" strokeWidth="2.5"/>
+              <polygon points="100,4 196,55 100,106 4,55" fill="white" stroke="url(#dg2)" strokeWidth="2.5"/>
             </svg>
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-1">
-              <span className="text-[11px] font-black" style={{ color: "#6d28d9" }}>{gameData.team2Name}</span>
-              <span className="text-2xl font-black" style={{ color: "#4c1d95" }}>{team2Score}</span>
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-0.5">
+              <span className="text-[10px] font-black" style={{ color: "#6d28d9" }}>{gameData.team2Name}</span>
+              <span className="text-xl font-black" style={{ color: "#4c1d95" }}>{team2Score}</span>
               <div className="flex items-center gap-1">
                 <button onClick={() => setTeam2Score((s) => s - 200)} className="w-5 h-5 rounded-full flex items-center justify-center" style={{ background: "#f3e8ff", border: "1px solid #c4b5fd" }}>
-                  <Minus size={10} color="#7c3aed" strokeWidth={3}/>
+                  <Minus size={9} color="#7c3aed" strokeWidth={3}/>
                 </button>
                 {((gameData.team2Tools?.length > 0) ? gameData.team2Tools : ["double","pit","rest"]).map((toolId) => {
                   const tool = HELP_TOOLS_MAP[toolId];
@@ -405,7 +404,7 @@ export default function ScorePage() {
                       onClick={() => isActive && handlePitToggle()}
                       disabled={!isActive}
                       title={tool.name}
-                      className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 transition-all"
+                      className="w-5 h-5 rounded-full flex items-center justify-center shrink-0 transition-all"
                       style={{ background: isActive && pitActive ? "#facc15" : isActive ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.15)", border: "1px solid rgba(196,181,253,0.5)" }}
                     >
                       <img src={tool.icon} alt={tool.name} className="w-3 h-3 object-contain"
@@ -414,14 +413,15 @@ export default function ScorePage() {
                   );
                 })}
                 <button onClick={() => setTeam2Score((s) => s + 200)} className="w-5 h-5 rounded-full flex items-center justify-center" style={{ background: "#f3e8ff", border: "1px solid #c4b5fd" }}>
-                  <Plus size={10} color="#7c3aed" strokeWidth={3}/>
+                  <Plus size={9} color="#7c3aed" strokeWidth={3}/>
                 </button>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Row 2 - Team 2 Categories */}
+        {/* Row 2 */}
+        <div className="flex-1 min-h-0 grid grid-cols-3 gap-1.5 md:gap-4">        {/* Row 2 - Team 2 Categories */}
         <div className="flex-1 min-h-0 grid grid-cols-3 gap-1.5 md:gap-4">
           {gameData.team2Categories.map((cat, catIdx) => (
             <CategoryCard
