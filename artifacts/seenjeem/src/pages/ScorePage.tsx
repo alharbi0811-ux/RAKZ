@@ -321,95 +321,99 @@ export default function ScorePage() {
             />
           ))}
         </div>
-        {/* ─── Diamond Score Zone ─── */}
-        <div className="shrink-0 flex items-center justify-between px-8" style={{margin: "4px 0", position: "relative", zIndex: 10}}>
-          {/* ماسة الفريق الأول */}
-          <div style={{position: "relative", filter: "drop-shadow(0 4px 12px rgba(123,47,190,0.3))"}}>
-            <svg width="190" height="105" viewBox="0 0 190 105">
-              <defs>
-                <linearGradient id="dg1" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#6A00F4"/>
-                  <stop offset="50%" stopColor="#8E63E6"/>
-                  <stop offset="100%" stopColor="#B89AE6"/>
-                </linearGradient>
-              </defs>
-              <polygon points="95,3 187,52 95,102 3,52" fill="white" stroke="url(#dg1)" strokeWidth="2.5"/>
-            </svg>
-            <div style={{position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "2px"}}>
-              <span style={{fontSize: "10px", fontWeight: 900, color: "#6d28d9"}}>{gameData.team1Name}</span>
-              <span style={{fontSize: "22px", fontWeight: 900, color: "#4c1d95", lineHeight: 1}}>{team1Score}</span>
-              <div style={{display: "flex", alignItems: "center", gap: "4px"}}>
-                <button onClick={() => setTeam1Score((s) => s - 200)} style={{width: "18px", height: "18px", borderRadius: "50%", background: "#f3e8ff", border: "1px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
-                  <Minus size={8} color="#7c3aed" strokeWidth={3}/>
-                </button>
-                {((gameData.team1Tools?.length > 0) ? gameData.team1Tools : ["double","pit","rest"]).map((toolId) => {
-                  const tool = HELP_TOOLS_MAP[toolId];
-                  if (!tool) return null;
-                  const used = usedTools.team1.includes(toolId);
-                  const isActive = toolId === "pit" && currentTeam === 1 && !used;
-                  return (
-                    <motion.button key={toolId}
-                      whileHover={isActive ? {scale: 1.1} : {}}
-                      whileTap={isActive ? {scale: 0.9} : {}}
-                      onClick={() => isActive && handlePitToggle()}
-                      disabled={!isActive}
-                      title={tool.name}
-                      style={{width: "20px", height: "20px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid rgba(196,181,253,0.6)", background: isActive && pitActive ? "#facc15" : isActive ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.2)", cursor: isActive ? "pointer" : "not-allowed"}}
-                    >
-                      <img src={tool.icon} alt={tool.name} style={{width: "11px", height: "11px", objectFit: "contain", filter: isActive ? "brightness(0) invert(1)" : "brightness(0) invert(1) opacity(0.35)"}}/>
-                    </motion.button>
-                  );
-                })}
-                <button onClick={() => setTeam1Score((s) => s + 200)} style={{width: "18px", height: "18px", borderRadius: "50%", background: "#f3e8ff", border: "1px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
-                  <Plus size={8} color="#7c3aed" strokeWidth={3}/>
-                </button>
+        {/* ─── Diamond Score Zone — في المنتصف بين الدروع ─── */}
+        <div style={{position: "relative", flexShrink: 0, height: "50px", margin: "-8px 0", zIndex: 10}}>
+          {/* خط الوسط المتوهج */}
+          <div style={{position: "absolute", top: "50%", left: "5%", right: "5%", height: "1.5px", background: "linear-gradient(90deg,transparent,#c4b5fd,#8b5cf6,#c4b5fd,transparent)", transform: "translateY(-50%)"}}/>
+
+          {/* ماسة الفريق الأول (يمين - بين العمودين 1 و 2) */}
+          <div style={{position: "absolute", top: "50%", right: "16.67%", transform: "translate(50%, -50%)", zIndex: 11, filter: "drop-shadow(0 4px 12px rgba(123,47,190,0.35))"}}>
+            <div style={{position: "relative", width: "180px", height: "95px"}}>
+              <svg width="180" height="95" viewBox="0 0 180 95" style={{position: "absolute", inset: 0}}>
+                <defs>
+                  <linearGradient id="dg1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#6A00F4"/>
+                    <stop offset="50%" stopColor="#8E63E6"/>
+                    <stop offset="100%" stopColor="#B89AE6"/>
+                  </linearGradient>
+                </defs>
+                <polygon points="90,3 177,47 90,92 3,47" fill="white" stroke="url(#dg1)" strokeWidth="2.5"/>
+              </svg>
+              <div style={{position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "2px"}}>
+                <span style={{fontSize: "10px", fontWeight: 900, color: "#6d28d9"}}>{gameData.team1Name}</span>
+                <span style={{fontSize: "20px", fontWeight: 900, color: "#4c1d95", lineHeight: 1}}>{team1Score}</span>
+                <div style={{display: "flex", alignItems: "center", gap: "3px"}}>
+                  <button onClick={() => setTeam1Score((s) => s - 200)} style={{width: "18px", height: "18px", borderRadius: "50%", background: "#f3e8ff", border: "1px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
+                    <Minus size={8} color="#7c3aed" strokeWidth={3}/>
+                  </button>
+                  {((gameData.team1Tools?.length > 0) ? gameData.team1Tools : ["double","pit","rest"]).map((toolId) => {
+                    const tool = HELP_TOOLS_MAP[toolId];
+                    if (!tool) return null;
+                    const used = usedTools.team1.includes(toolId);
+                    const isActive = toolId === "pit" && currentTeam === 1 && !used;
+                    return (
+                      <motion.button key={toolId}
+                        whileHover={isActive ? {scale: 1.1} : {}}
+                        whileTap={isActive ? {scale: 0.9} : {}}
+                        onClick={() => isActive && handlePitToggle()}
+                        disabled={!isActive}
+                        title={tool.name}
+                        style={{width: "18px", height: "18px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid rgba(196,181,253,0.6)", background: isActive && pitActive ? "#facc15" : isActive ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.2)", cursor: isActive ? "pointer" : "not-allowed"}}
+                      >
+                        <img src={tool.icon} alt={tool.name} style={{width: "10px", height: "10px", objectFit: "contain", filter: isActive ? "brightness(0) invert(1)" : "brightness(0) invert(1) opacity(0.35)"}}/>
+                      </motion.button>
+                    );
+                  })}
+                  <button onClick={() => setTeam1Score((s) => s + 200)} style={{width: "18px", height: "18px", borderRadius: "50%", background: "#f3e8ff", border: "1px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
+                    <Plus size={8} color="#7c3aed" strokeWidth={3}/>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* خط وسط */}
-          <div style={{flex: 1, height: "1px", margin: "0 12px", background: "linear-gradient(90deg,transparent,#c4b5fd,#8b5cf6,#c4b5fd,transparent)"}}/>
-
-          {/* ماسة الفريق الثاني */}
-          <div style={{position: "relative", filter: "drop-shadow(0 4px 12px rgba(123,47,190,0.3))"}}>
-            <svg width="190" height="105" viewBox="0 0 190 105">
-              <defs>
-                <linearGradient id="dg2" x1="100%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#B89AE6"/>
-                  <stop offset="50%" stopColor="#8E63E6"/>
-                  <stop offset="100%" stopColor="#6A00F4"/>
-                </linearGradient>
-              </defs>
-              <polygon points="95,3 187,52 95,102 3,52" fill="white" stroke="url(#dg2)" strokeWidth="2.5"/>
-            </svg>
-            <div style={{position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "2px"}}>
-              <span style={{fontSize: "10px", fontWeight: 900, color: "#6d28d9"}}>{gameData.team2Name}</span>
-              <span style={{fontSize: "22px", fontWeight: 900, color: "#4c1d95", lineHeight: 1}}>{team2Score}</span>
-              <div style={{display: "flex", alignItems: "center", gap: "4px"}}>
-                <button onClick={() => setTeam2Score((s) => s - 200)} style={{width: "18px", height: "18px", borderRadius: "50%", background: "#f3e8ff", border: "1px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
-                  <Minus size={8} color="#7c3aed" strokeWidth={3}/>
-                </button>
-                {((gameData.team2Tools?.length > 0) ? gameData.team2Tools : ["double","pit","rest"]).map((toolId) => {
-                  const tool = HELP_TOOLS_MAP[toolId];
-                  if (!tool) return null;
-                  const used = usedTools.team2.includes(toolId);
-                  const isActive = toolId === "pit" && currentTeam === 2 && !used;
-                  return (
-                    <motion.button key={toolId}
-                      whileHover={isActive ? {scale: 1.1} : {}}
-                      whileTap={isActive ? {scale: 0.9} : {}}
-                      onClick={() => isActive && handlePitToggle()}
-                      disabled={!isActive}
-                      title={tool.name}
-                      style={{width: "20px", height: "20px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid rgba(196,181,253,0.6)", background: isActive && pitActive ? "#facc15" : isActive ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.2)", cursor: isActive ? "pointer" : "not-allowed"}}
-                    >
-                      <img src={tool.icon} alt={tool.name} style={{width: "11px", height: "11px", objectFit: "contain", filter: isActive ? "brightness(0) invert(1)" : "brightness(0) invert(1) opacity(0.35)"}}/>
-                    </motion.button>
-                  );
-                })}
-                <button onClick={() => setTeam2Score((s) => s + 200)} style={{width: "18px", height: "18px", borderRadius: "50%", background: "#f3e8ff", border: "1px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
-                  <Plus size={8} color="#7c3aed" strokeWidth={3}/>
-                </button>
+          {/* ماسة الفريق الثاني (يسار - بين العمودين 2 و 3) */}
+          <div style={{position: "absolute", top: "50%", left: "16.67%", transform: "translate(-50%, -50%)", zIndex: 11, filter: "drop-shadow(0 4px 12px rgba(123,47,190,0.35))"}}>
+            <div style={{position: "relative", width: "180px", height: "95px"}}>
+              <svg width="180" height="95" viewBox="0 0 180 95" style={{position: "absolute", inset: 0}}>
+                <defs>
+                  <linearGradient id="dg2" x1="100%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stopColor="#B89AE6"/>
+                    <stop offset="50%" stopColor="#8E63E6"/>
+                    <stop offset="100%" stopColor="#6A00F4"/>
+                  </linearGradient>
+                </defs>
+                <polygon points="90,3 177,47 90,92 3,47" fill="white" stroke="url(#dg2)" strokeWidth="2.5"/>
+              </svg>
+              <div style={{position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "2px"}}>
+                <span style={{fontSize: "10px", fontWeight: 900, color: "#6d28d9"}}>{gameData.team2Name}</span>
+                <span style={{fontSize: "20px", fontWeight: 900, color: "#4c1d95", lineHeight: 1}}>{team2Score}</span>
+                <div style={{display: "flex", alignItems: "center", gap: "3px"}}>
+                  <button onClick={() => setTeam2Score((s) => s - 200)} style={{width: "18px", height: "18px", borderRadius: "50%", background: "#f3e8ff", border: "1px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
+                    <Minus size={8} color="#7c3aed" strokeWidth={3}/>
+                  </button>
+                  {((gameData.team2Tools?.length > 0) ? gameData.team2Tools : ["double","pit","rest"]).map((toolId) => {
+                    const tool = HELP_TOOLS_MAP[toolId];
+                    if (!tool) return null;
+                    const used = usedTools.team2.includes(toolId);
+                    const isActive = toolId === "pit" && currentTeam === 2 && !used;
+                    return (
+                      <motion.button key={toolId}
+                        whileHover={isActive ? {scale: 1.1} : {}}
+                        whileTap={isActive ? {scale: 0.9} : {}}
+                        onClick={() => isActive && handlePitToggle()}
+                        disabled={!isActive}
+                        title={tool.name}
+                        style={{width: "18px", height: "18px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid rgba(196,181,253,0.6)", background: isActive && pitActive ? "#facc15" : isActive ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.2)", cursor: isActive ? "pointer" : "not-allowed"}}
+                      >
+                        <img src={tool.icon} alt={tool.name} style={{width: "10px", height: "10px", objectFit: "contain", filter: isActive ? "brightness(0) invert(1)" : "brightness(0) invert(1) opacity(0.35)"}}/>
+                      </motion.button>
+                    );
+                  })}
+                  <button onClick={() => setTeam2Score((s) => s + 200)} style={{width: "18px", height: "18px", borderRadius: "50%", background: "#f3e8ff", border: "1px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
+                    <Plus size={8} color="#7c3aed" strokeWidth={3}/>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
