@@ -595,17 +595,17 @@
 .score-gameboard .score-cat-img {
   width: 100% !important;
   height: 100% !important;
-  max-width: 260px !important;
-  max-height: 260px !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
   object-fit: contain !important;
 }
 
 /* ─── Category name: bigger ─── */
 .score-gameboard .shrink-0.px-3.py-2.text-center.font-black.text-sm.truncate {
-  font-size: 22px !important;
+  font-size: 28px !important;
   font-weight: 900 !important;
   color: #6d28d9 !important;
-  padding: 8px 12px !important;
+  padding: 10px 12px !important;
 }
 
 /* ─── Remove rotate prompt CSS ─── */
@@ -629,11 +629,14 @@
 
 /* الصف العلوي: padding أقل في الجانبين عشان الأزرار تدخل */
 .score-gameboard > div.grid:first-of-type > div {
-  padding-left: 48px !important;
-  padding-right: 48px !important;
+  padding: 40px 52px 80px !important;
 }
 
 .score-gameboard > div.grid:last-of-type > div {
-  padding-left: 48px !important;
-  padding-right: 48px !important;
+  padding: 80px 52px 20px !important;
+}
+
+/* ─── Top row category name: move up ─── */
+.score-gameboard > div.grid:first-of-type .shrink-0.px-3.py-2.text-center.font-black.text-sm.truncate {
+  margin-top: -8px !important;
 }
