@@ -306,14 +306,14 @@ export default function ScorePage() {
           ))}
         </div>
         {/* ─── Diamond Score Zone — في المنتصف بين الدروع ─── */}
-        <div style={{position: "relative", flexShrink: 0, height: "50px", margin: "-8px 0", zIndex: 10}}>
+        <div style={{position: "relative", flexShrink: 0, height: "120px", margin: "-30px 0", zIndex: 50}}>
           {/* خط الوسط المتوهج */}
           <div style={{position: "absolute", top: "50%", left: "5%", right: "5%", height: "1.5px", background: "linear-gradient(90deg,transparent,#c4b5fd,#8b5cf6,#c4b5fd,transparent)", transform: "translateY(-50%)"}}/>
 
           {/* ماسة الفريق الأول (يمين - بين العمودين 1 و 2) */}
           <div style={{position: "absolute", top: "50%", right: "33.33%", transform: "translate(50%, -50%)", zIndex: 11, filter: "drop-shadow(0 4px 12px rgba(123,47,190,0.35))"}}>
             <div style={{position: "relative", width: "180px", height: "95px"}}>
-              <svg width="380" height="200" viewBox="0 0 380 200" style={{position: "absolute", inset: 0}}>
+              <svg width="480" height="250" viewBox="0 0 380 200" style={{position: "absolute", inset: 0}}>
                 <defs>
                   <linearGradient id="dg1" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stopColor="#6A00F4"/>
@@ -359,7 +359,7 @@ export default function ScorePage() {
           {/* ماسة الفريق الثاني (يسار - بين العمودين 2 و 3) */}
           <div style={{position: "absolute", top: "50%", left: "33.33%", transform: "translate(-50%, -50%)", zIndex: 11, filter: "drop-shadow(0 4px 12px rgba(123,47,190,0.35))"}}>
             <div style={{position: "relative", width: "180px", height: "95px"}}>
-              <svg width="380" height="200" viewBox="0 0 380 200" style={{position: "absolute", inset: 0}}>
+              <svg width="480" height="250" viewBox="0 0 380 200" style={{position: "absolute", inset: 0}}>
                 <defs>
                   <linearGradient id="dg2" x1="100%" y1="0%" x2="0%" y2="100%">
                     <stop offset="0%" stopColor="#B89AE6"/>
