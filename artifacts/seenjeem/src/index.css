@@ -640,3 +640,22 @@
 .score-gameboard > div.grid:first-of-type .shrink-0.px-3.py-2.text-center.font-black.text-sm.truncate {
   margin-top: -8px !important;
 }
+
+/* ─── Rounded image corners ─── */
+.score-gameboard .score-cat-img {
+  border-radius: 16px !important;
+}
+
+/* ─── Buttons closer to image with small gap ─── */
+.score-gameboard .score-btn-col {
+  gap: 8px !important;
+}
+
+/* ─── Top row: reduce side padding to bring buttons closer to image ─── */
+.score-gameboard > div.grid:first-of-type > div .score-btn-col {
+  padding: 0 2px !important;
+}
+
+.score-gameboard > div.grid:last-of-type > div .score-btn-col {
+  padding: 0 2px !important;
+}
