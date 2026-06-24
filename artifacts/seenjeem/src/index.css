@@ -559,16 +559,32 @@
   font-weight: 800 !important;
 }
 
-/* ─── Smaller buttons to fit inside shield ─── */
-.score-gameboard .score-btn {
-  font-size: 13px !important;
-  min-height: 36px !important;
-  border-radius: 10px !important;
+/* ─── Buttons: fixed compact size ─── */
+.score-gameboard .score-btn-col {
+  gap: 6px !important;
+  padding: 2px 4px !important;
 }
 
-/* ─── Smaller image ─── */
+.score-gameboard .score-btn-col > button {
+  width: 100% !important;
+  height: 44px !important;
+  min-height: 44px !important;
+  max-height: 44px !important;
+  font-size: 16px !important;
+  font-weight: 900 !important;
+  border-radius: 12px !important;
+  flex: none !important;
+}
+
+/* ─── Image: bigger ─── */
+.score-gameboard .score-img-wrap {
+  min-width: 0 !important;
+}
+
 .score-gameboard .score-cat-img {
-  max-width: 120px !important;
-  max-height: 120px !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 160px !important;
+  max-height: 160px !important;
   object-fit: contain !important;
 }
