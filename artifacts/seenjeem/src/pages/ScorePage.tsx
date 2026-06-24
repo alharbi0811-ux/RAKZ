@@ -572,7 +572,7 @@ function CategoryCard({
   const playerBlocked = isLocked && !isAdmin;
 
   const btnClass = (played: boolean, isLoading: boolean) => `
-    score-btn w-full flex-1 rounded-xl font-black text-sm md:text-2xl transition-all relative
+    score-btn w-full rounded-xl font-black text-xl transition-all relative
     ${played ? "bg-gray-300/40 text-gray-400 cursor-not-allowed"
       : isLoading ? "bg-[#7B2FBE] text-white cursor-wait"
       : playerBlocked ? "bg-gray-200/40 text-gray-400 cursor-not-allowed"
@@ -603,7 +603,7 @@ function CategoryCard({
           </div>
         )}
 
-        <div className="score-btn-col flex flex-col justify-center gap-1 md:gap-2 p-1 md:p-3 flex-1">
+        <div className="score-btn-col flex flex-col justify-center gap-3 p-2 shrink-0 w-[28%]">
           {POINTS.map((points) => {
             const played = playedCells.has(`${catIdx}-${points}-l`);
             const isLoading = loadingCell === `${catIdx}-${points}-l`;
@@ -618,7 +618,7 @@ function CategoryCard({
         <div className="score-img-wrap w-[40%] min-w-[50px] md:min-w-[120px] relative self-stretch flex items-center justify-center overflow-hidden">
           <img src={category.img} alt={category.name} className="score-cat-img w-full h-full object-contain" />
         </div>
-        <div className="score-btn-col flex flex-col justify-center gap-1 md:gap-2 p-1 md:p-3 flex-1">
+        <div className="score-btn-col flex flex-col justify-center gap-3 p-2 shrink-0 w-[28%]">
           {POINTS.map((points) => {
             const played = playedCells.has(`${catIdx}-${points}-r`);
             const isLoading = loadingCell === `${catIdx}-${points}-r`;
