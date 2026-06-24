@@ -659,3 +659,26 @@
 .score-gameboard > div.grid:last-of-type > div .score-btn-col {
   padding: 0 2px !important;
 }
+
+/* ─── Bigger buttons with more rounded corners ─── */
+.score-gameboard .score-btn-col > button {
+  height: 72px !important;
+  min-height: 72px !important;
+  max-height: 72px !important;
+  font-size: 24px !important;
+  font-weight: 900 !important;
+  border-radius: 18px !important;
+}
+
+/* ─── Image: gradient border + rounded ─── */
+.score-gameboard .score-img-wrap {
+  padding: 3px !important;
+  background: linear-gradient(135deg, #6A00F4, #7B3FF2, #8E63E6, #A07CE0, #B89AE6) !important;
+  border-radius: 20px !important;
+}
+
+.score-gameboard .score-cat-img {
+  border-radius: 18px !important;
+  background: white;
+  display: block !important;
+}
