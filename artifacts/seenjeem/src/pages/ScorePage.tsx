@@ -348,9 +348,7 @@ export default function ScorePage() {
                       </motion.button>
                     );
                   })}
-                  <button onClick={() => setTeam1Score((s) => s + 200)} style={{width: "52px", height: "52px", borderRadius: "50%", background: "#f3e8ff", border: "2px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
-                    <Plus size={26} color="#7c3aed" strokeWidth={3}/>
-                  </button>
+
                 </div>
               </div>
             </div>
@@ -394,9 +392,7 @@ export default function ScorePage() {
                       </motion.button>
                     );
                   })}
-                  <button onClick={() => setTeam2Score((s) => s + 200)} style={{width: "52px", height: "52px", borderRadius: "50%", background: "#f3e8ff", border: "2px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
-                    <Plus size={26} color="#7c3aed" strokeWidth={3}/>
-                  </button>
+
                 </div>
               </div>
             </div>
