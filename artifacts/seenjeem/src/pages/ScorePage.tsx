@@ -603,7 +603,7 @@ function CategoryCard({
           </div>
         )}
 
-        <div className="score-btn-col flex flex-col justify-center gap-2 shrink-0" style={{width: "90px", padding: "0 4px"}}>
+        <div className="score-btn-col flex flex-col justify-center gap-2 shrink-0" style={{width: "110px", padding: "0 4px"}}>
           {POINTS.map((points) => {
             const played = playedCells.has(`${catIdx}-${points}-l`);
             const isLoading = loadingCell === `${catIdx}-${points}-l`;
@@ -618,7 +618,7 @@ function CategoryCard({
         <div className="score-img-wrap w-[40%] min-w-[50px] md:min-w-[120px] relative self-stretch flex items-center justify-center overflow-hidden">
           <img src={category.img} alt={category.name} className="score-cat-img w-full h-full object-contain" />
         </div>
-        <div className="score-btn-col flex flex-col justify-center gap-2 shrink-0" style={{width: "90px", padding: "0 4px"}}>
+        <div className="score-btn-col flex flex-col justify-center gap-2 shrink-0" style={{width: "110px", padding: "0 4px"}}>
           {POINTS.map((points) => {
             const played = playedCells.has(`${catIdx}-${points}-r`);
             const isLoading = loadingCell === `${catIdx}-${points}-r`;
