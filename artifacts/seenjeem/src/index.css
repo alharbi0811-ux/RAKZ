@@ -595,8 +595,8 @@
 .score-gameboard .score-cat-img {
   width: 100% !important;
   height: 100% !important;
-  max-width: 200px !important;
-  max-height: 200px !important;
+  max-width: 260px !important;
+  max-height: 260px !important;
   object-fit: contain !important;
 }
 
