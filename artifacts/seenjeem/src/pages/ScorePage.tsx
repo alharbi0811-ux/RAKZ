@@ -617,9 +617,10 @@ function CategoryCard({
         </div>
         <div className="score-img-wrap w-[40%] min-w-[50px] md:min-w-[120px] relative self-stretch flex items-center justify-center">
           <div style={{
-            padding: "3px",
-            borderRadius: "18px",
+            padding: "6px",
+            borderRadius: "20px",
             background: "linear-gradient(135deg, #6A00F4, #7B3FF2, #8E63E6, #A07CE0, #B89AE6)",
+            boxShadow: "0 4px 12px rgba(123,47,190,0.3)",
             width: "210px",
             height: "210px",
             flexShrink: 0,
@@ -627,7 +628,7 @@ function CategoryCard({
             alignItems: "center",
             justifyContent: "center"
           }}>
-            <img src={category.img} alt={category.name} className="score-cat-img" style={{width: "100%", height: "100%", objectFit: "contain", borderRadius: "16px", background: "white", display: "block"}} />
+            <img src={category.img} alt={category.name} className="score-cat-img" style={{width: "100%", height: "100%", objectFit: "contain", borderRadius: "14px", background: "white", display: "block"}} />
           </div>
         </div>
         <div className="score-btn-col flex flex-col justify-center gap-2 shrink-0" style={{width: "110px", padding: "0 4px"}}>
