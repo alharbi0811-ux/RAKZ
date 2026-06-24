@@ -312,8 +312,8 @@ export default function ScorePage() {
 
           {/* ماسة الفريق الأول (يمين - بين العمودين 1 و 2) */}
           <div style={{position: "absolute", top: "50%", right: "33.33%", transform: "translate(50%, -50%)", zIndex: 11, filter: "drop-shadow(0 4px 12px rgba(123,47,190,0.35))"}}>
-            <div style={{position: "relative", width: "480px", height: "250px"}}>
-              <svg width="480" height="250" viewBox="0 0 380 200" style={{position: "absolute", inset: 0}}>
+            <div style={{position: "relative", width: "560px", height: "290px"}}>
+              <svg width="560" height="290" viewBox="0 0 380 200" style={{position: "absolute", inset: 0}}>
                 <defs>
                   <linearGradient id="dg1" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stopColor="#6A00F4"/>
@@ -327,8 +327,8 @@ export default function ScorePage() {
                 <span style={{fontSize: "18px", fontWeight: 900, color: "#6d28d9"}}>{gameData.team1Name}</span>
                 <span style={{fontSize: "42px", fontWeight: 900, color: "#4c1d95", lineHeight: 1}}>{team1Score}</span>
                 <div style={{display: "flex", alignItems: "center", gap: "3px"}}>
-                  <button onClick={() => setTeam1Score((s) => s - 200)} style={{width: "18px", height: "18px", borderRadius: "50%", background: "#f3e8ff", border: "1px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
-                    <Minus size={8} color="#7c3aed" strokeWidth={3}/>
+                  <button onClick={() => setTeam1Score((s) => s - 200)} style={{width: "32px", height: "32px", borderRadius: "50%", background: "#f3e8ff", border: "2px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
+                    <Minus size={16} color="#7c3aed" strokeWidth={3}/>
                   </button>
                   {((gameData.team1Tools?.length > 0) ? gameData.team1Tools : ["double","pit","rest"]).map((toolId) => {
                     const tool = HELP_TOOLS_MAP[toolId];
@@ -342,14 +342,14 @@ export default function ScorePage() {
                         onClick={() => isActive && handlePitToggle()}
                         disabled={!isActive}
                         title={tool.name}
-                        style={{width: "18px", height: "18px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid rgba(196,181,253,0.6)", background: isActive && pitActive ? "#facc15" : isActive ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.2)", cursor: isActive ? "pointer" : "not-allowed"}}
+                        style={{width: "32px", height: "32px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", border: "2px solid rgba(196,181,253,0.6)", background: isActive && pitActive ? "#facc15" : isActive ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.2)", cursor: isActive ? "pointer" : "not-allowed"}}
                       >
-                        <img src={tool.icon} alt={tool.name} style={{width: "10px", height: "10px", objectFit: "contain", filter: isActive ? "brightness(0) invert(1)" : "brightness(0) invert(1) opacity(0.35)"}}/>
+                        <img src={tool.icon} alt={tool.name} style={{width: "18px", height: "18px", objectFit: "contain", opacity: isActive ? 1 : 0.6}}/>
                       </motion.button>
                     );
                   })}
-                  <button onClick={() => setTeam1Score((s) => s + 200)} style={{width: "18px", height: "18px", borderRadius: "50%", background: "#f3e8ff", border: "1px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
-                    <Plus size={8} color="#7c3aed" strokeWidth={3}/>
+                  <button onClick={() => setTeam1Score((s) => s + 200)} style={{width: "32px", height: "32px", borderRadius: "50%", background: "#f3e8ff", border: "2px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
+                    <Plus size={16} color="#7c3aed" strokeWidth={3}/>
                   </button>
                 </div>
               </div>
@@ -358,8 +358,8 @@ export default function ScorePage() {
 
           {/* ماسة الفريق الثاني (يسار - بين العمودين 2 و 3) */}
           <div style={{position: "absolute", top: "50%", left: "33.33%", transform: "translate(-50%, -50%)", zIndex: 11, filter: "drop-shadow(0 4px 12px rgba(123,47,190,0.35))"}}>
-            <div style={{position: "relative", width: "480px", height: "250px"}}>
-              <svg width="480" height="250" viewBox="0 0 380 200" style={{position: "absolute", inset: 0}}>
+            <div style={{position: "relative", width: "560px", height: "290px"}}>
+              <svg width="560" height="290" viewBox="0 0 380 200" style={{position: "absolute", inset: 0}}>
                 <defs>
                   <linearGradient id="dg2" x1="100%" y1="0%" x2="0%" y2="100%">
                     <stop offset="0%" stopColor="#B89AE6"/>
@@ -373,8 +373,8 @@ export default function ScorePage() {
                 <span style={{fontSize: "18px", fontWeight: 900, color: "#6d28d9"}}>{gameData.team2Name}</span>
                 <span style={{fontSize: "42px", fontWeight: 900, color: "#4c1d95", lineHeight: 1}}>{team2Score}</span>
                 <div style={{display: "flex", alignItems: "center", gap: "3px"}}>
-                  <button onClick={() => setTeam2Score((s) => s - 200)} style={{width: "18px", height: "18px", borderRadius: "50%", background: "#f3e8ff", border: "1px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
-                    <Minus size={8} color="#7c3aed" strokeWidth={3}/>
+                  <button onClick={() => setTeam2Score((s) => s - 200)} style={{width: "32px", height: "32px", borderRadius: "50%", background: "#f3e8ff", border: "2px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
+                    <Minus size={16} color="#7c3aed" strokeWidth={3}/>
                   </button>
                   {((gameData.team2Tools?.length > 0) ? gameData.team2Tools : ["double","pit","rest"]).map((toolId) => {
                     const tool = HELP_TOOLS_MAP[toolId];
@@ -388,14 +388,14 @@ export default function ScorePage() {
                         onClick={() => isActive && handlePitToggle()}
                         disabled={!isActive}
                         title={tool.name}
-                        style={{width: "18px", height: "18px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid rgba(196,181,253,0.6)", background: isActive && pitActive ? "#facc15" : isActive ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.2)", cursor: isActive ? "pointer" : "not-allowed"}}
+                        style={{width: "32px", height: "32px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", border: "2px solid rgba(196,181,253,0.6)", background: isActive && pitActive ? "#facc15" : isActive ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.2)", cursor: isActive ? "pointer" : "not-allowed"}}
                       >
-                        <img src={tool.icon} alt={tool.name} style={{width: "10px", height: "10px", objectFit: "contain", filter: isActive ? "brightness(0) invert(1)" : "brightness(0) invert(1) opacity(0.35)"}}/>
+                        <img src={tool.icon} alt={tool.name} style={{width: "18px", height: "18px", objectFit: "contain", opacity: isActive ? 1 : 0.6}}/>
                       </motion.button>
                     );
                   })}
-                  <button onClick={() => setTeam2Score((s) => s + 200)} style={{width: "18px", height: "18px", borderRadius: "50%", background: "#f3e8ff", border: "1px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
-                    <Plus size={8} color="#7c3aed" strokeWidth={3}/>
+                  <button onClick={() => setTeam2Score((s) => s + 200)} style={{width: "32px", height: "32px", borderRadius: "50%", background: "#f3e8ff", border: "2px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
+                    <Plus size={16} color="#7c3aed" strokeWidth={3}/>
                   </button>
                 </div>
               </div>
