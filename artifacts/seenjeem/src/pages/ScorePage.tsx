@@ -324,12 +324,17 @@ export default function ScorePage() {
                 <polygon points="190,8 372,100 190,192 8,100" fill="white" stroke="url(#dg1)" strokeWidth="6" strokeLinejoin="round"/>
               </svg>
               <div style={{position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "2px"}}>
-                <span style={{fontSize: "18px", fontWeight: 900, color: "#6d28d9"}}>{gameData.team1Name}</span>
                 <span style={{fontSize: "42px", fontWeight: 900, color: "#4c1d95", lineHeight: 1}}>{team1Score}</span>
-                <div style={{display: "flex", alignItems: "center", gap: "3px"}}>
-                  <button onClick={() => setTeam1Score((s) => s - 200)} style={{width: "52px", height: "52px", borderRadius: "50%", background: "#f3e8ff", border: "2px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
-                    <Minus size={26} color="#7c3aed" strokeWidth={3}/>
+                <div style={{display: "flex", alignItems: "center", gap: "14px", direction: "ltr"}}>
+                  <button onClick={() => setTeam1Score((s) => s - 200)} style={{width: "44px", height: "44px", borderRadius: "50%", background: "#f3e8ff", border: "2px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
+                    <Minus size={22} color="#7c3aed" strokeWidth={3}/>
                   </button>
+                  <span style={{fontSize: "20px", fontWeight: 900, color: "#6d28d9", direction: "rtl"}}>{gameData.team1Name}</span>
+                  <button onClick={() => setTeam1Score((s) => s + 200)} style={{width: "44px", height: "44px", borderRadius: "50%", background: "#f3e8ff", border: "2px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
+                    <Plus size={22} color="#7c3aed" strokeWidth={3}/>
+                  </button>
+                </div>
+                <div style={{display: "flex", alignItems: "center", gap: "10px"}}>
                   {((gameData.team1Tools?.length > 0) ? gameData.team1Tools : ["double","pit","rest"]).map((toolId) => {
                     const tool = HELP_TOOLS_MAP[toolId];
                     if (!tool) return null;
@@ -368,12 +373,17 @@ export default function ScorePage() {
                 <polygon points="190,8 372,100 190,192 8,100" fill="white" stroke="url(#dg2)" strokeWidth="6" strokeLinejoin="round"/>
               </svg>
               <div style={{position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "2px"}}>
-                <span style={{fontSize: "18px", fontWeight: 900, color: "#6d28d9"}}>{gameData.team2Name}</span>
                 <span style={{fontSize: "42px", fontWeight: 900, color: "#4c1d95", lineHeight: 1}}>{team2Score}</span>
-                <div style={{display: "flex", alignItems: "center", gap: "3px"}}>
-                  <button onClick={() => setTeam2Score((s) => s - 200)} style={{width: "52px", height: "52px", borderRadius: "50%", background: "#f3e8ff", border: "2px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
-                    <Minus size={26} color="#7c3aed" strokeWidth={3}/>
+                <div style={{display: "flex", alignItems: "center", gap: "14px", direction: "ltr"}}>
+                  <button onClick={() => setTeam2Score((s) => s - 200)} style={{width: "44px", height: "44px", borderRadius: "50%", background: "#f3e8ff", border: "2px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
+                    <Minus size={22} color="#7c3aed" strokeWidth={3}/>
                   </button>
+                  <span style={{fontSize: "20px", fontWeight: 900, color: "#6d28d9", direction: "rtl"}}>{gameData.team2Name}</span>
+                  <button onClick={() => setTeam2Score((s) => s + 200)} style={{width: "44px", height: "44px", borderRadius: "50%", background: "#f3e8ff", border: "2px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
+                    <Plus size={22} color="#7c3aed" strokeWidth={3}/>
+                  </button>
+                </div>
+                <div style={{display: "flex", alignItems: "center", gap: "10px"}}>
                   {((gameData.team2Tools?.length > 0) ? gameData.team2Tools : ["double","pit","rest"]).map((toolId) => {
                     const tool = HELP_TOOLS_MAP[toolId];
                     if (!tool) return null;
