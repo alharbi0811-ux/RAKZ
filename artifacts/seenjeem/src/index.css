@@ -668,3 +668,9 @@
 }
 
 
+
+/* ─── Remove img-wrap background that hides gradient border ─── */
+.score-gameboard .score-img-wrap {
+  background: transparent !important;
+  padding: 0 !important;
+}
