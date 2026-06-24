@@ -637,3 +637,14 @@
   padding-left: 48px !important;
   padding-right: 48px !important;
 }
+
+/* ─── NUCLEAR FIX: clip content to shield shape ─── */
+.score-gameboard > div.grid:first-of-type > div {
+  clip-path: polygon(6% 0%, 94% 0%, 100% 78%, 50% 100%, 0% 78%) !important;
+  padding: 24px 52px 70px !important;
+}
+
+.score-gameboard > div.grid:last-of-type > div {
+  clip-path: polygon(50% 0%, 100% 22%, 94% 100%, 6% 100%, 0% 22%) !important;
+  padding: 70px 52px 24px !important;
+}
