@@ -312,7 +312,7 @@ export default function ScorePage() {
 
           {/* ماسة الفريق الأول (يمين - بين العمودين 1 و 2) */}
           <div style={{position: "absolute", top: "50%", right: "33.33%", transform: "translate(50%, -50%)", zIndex: 11, filter: "drop-shadow(0 4px 12px rgba(123,47,190,0.35))"}}>
-            <div style={{position: "relative", width: "180px", height: "95px"}}>
+            <div style={{position: "relative", width: "480px", height: "250px"}}>
               <svg width="480" height="250" viewBox="0 0 380 200" style={{position: "absolute", inset: 0}}>
                 <defs>
                   <linearGradient id="dg1" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -358,7 +358,7 @@ export default function ScorePage() {
 
           {/* ماسة الفريق الثاني (يسار - بين العمودين 2 و 3) */}
           <div style={{position: "absolute", top: "50%", left: "33.33%", transform: "translate(-50%, -50%)", zIndex: 11, filter: "drop-shadow(0 4px 12px rgba(123,47,190,0.35))"}}>
-            <div style={{position: "relative", width: "180px", height: "95px"}}>
+            <div style={{position: "relative", width: "480px", height: "250px"}}>
               <svg width="480" height="250" viewBox="0 0 380 200" style={{position: "absolute", inset: 0}}>
                 <defs>
                   <linearGradient id="dg2" x1="100%" y1="0%" x2="0%" y2="100%">
