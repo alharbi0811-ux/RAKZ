@@ -573,10 +573,10 @@
 
 .score-gameboard .score-btn-col > button {
   width: 100% !important;
-  height: 56px !important;
-  min-height: 56px !important;
-  max-height: 56px !important;
-  font-size: 20px !important;
+  height: 64px !important;
+  min-height: 64px !important;
+  max-height: 64px !important;
+  font-size: 22px !important;
   font-weight: 900 !important;
   border-radius: 10px !important;
   flex: none !important;
