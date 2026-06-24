@@ -612,3 +612,28 @@
 .rotate-device-prompt {
   display: none !important;
 }
+/* ─── CRITICAL: clip content inside shield shape ─── */
+.score-gameboard > div.grid:first-of-type > div,
+.score-gameboard > div.grid:last-of-type > div {
+  overflow: hidden !important;
+  position: relative !important;
+}
+
+/* الـ inner flex row: ما تتجاوز حجم الدرع */
+.score-gameboard > div.grid:first-of-type > div > div.flex,
+.score-gameboard > div.grid:last-of-type > div > div.flex {
+  width: 100% !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+
+/* الصف العلوي: padding أقل في الجانبين عشان الأزرار تدخل */
+.score-gameboard > div.grid:first-of-type > div {
+  padding-left: 28px !important;
+  padding-right: 28px !important;
+}
+
+.score-gameboard > div.grid:last-of-type > div {
+  padding-left: 28px !important;
+  padding-right: 28px !important;
+}
