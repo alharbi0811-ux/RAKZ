@@ -269,22 +269,6 @@ export default function ScorePage() {
   const currentTeamName = currentTeam === 1 ? gameData.team1Name : gameData.team2Name;
 
   return (
-    <>
-      {/* Rotate to landscape prompt - only on portrait mobile */}
-      <div className="rotate-device-prompt">
-        <div className="rotate-icon-wrap">
-          <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M16.48 2.52c3.27 1.55 5.61 4.72 5.97 8.48"/>
-            <path d="M19 8 L17 4 L21 4"/>
-            <path d="M7.52 21.48C4.25 19.94 1.91 16.76 1.55 13"/>
-            <path d="M5 16 L7 20 L3 20"/>
-            <rect width="10" height="14" x="7" y="5" rx="2"/>
-          </svg>
-        </div>
-        <h2>اقلب جهازك</h2>
-        <p>اللعبة مصممة للوضع الأفقي<br/>الرجاء قلب جهازك للأفقي للحصول على أفضل تجربة</p>
-      </div>
-
     <div className="score-page-wrapper h-screen overflow-hidden bg-gradient-to-br from-[#f0e8ff] via-[#e8e0f0] to-[#f0f0ff] flex flex-col" dir="rtl">
       {/* Top Bar */}
       <div className="score-topbar shrink-0 px-3 py-2 md:px-6 md:pt-[24px] md:pb-[24px] shadow-lg border-b border-white/10" style={{ background: "linear-gradient(135deg, #6A00F4, #7B3FF2, #8E63E6, #A07CE0, #B89AE6)" }}>
@@ -572,7 +556,6 @@ export default function ScorePage() {
         )}
       </AnimatePresence>
     </div>
-    </>
   );
 }
 
