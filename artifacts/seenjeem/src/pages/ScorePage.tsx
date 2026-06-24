@@ -616,7 +616,18 @@ function CategoryCard({
           })}
         </div>
         <div className="score-img-wrap w-[40%] min-w-[50px] md:min-w-[120px] relative self-stretch flex items-center justify-center overflow-hidden">
-          <img src={category.img} alt={category.name} className="score-cat-img w-full h-full object-contain" />
+          <div style={{
+            padding: "3px",
+            borderRadius: "18px",
+            background: "linear-gradient(135deg, #6A00F4, #7B3FF2, #8E63E6, #A07CE0, #B89AE6)",
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            maxWidth: "100%",
+            maxHeight: "100%"
+          }}>
+            <img src={category.img} alt={category.name} className="score-cat-img w-full h-full object-contain" style={{borderRadius: "16px", background: "white", display: "block"}} />
+          </div>
         </div>
         <div className="score-btn-col flex flex-col justify-center gap-2 shrink-0" style={{width: "110px", padding: "0 4px"}}>
           {POINTS.map((points) => {
