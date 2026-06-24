@@ -313,7 +313,7 @@ export default function ScorePage() {
           {/* ماسة الفريق الأول (يمين - بين العمودين 1 و 2) */}
           <div style={{position: "absolute", top: "50%", right: "33.33%", transform: "translate(50%, -50%)", zIndex: 11, filter: "drop-shadow(0 4px 12px rgba(123,47,190,0.35))"}}>
             <div style={{position: "relative", width: "180px", height: "95px"}}>
-              <svg width="180" height="95" viewBox="0 0 180 95" style={{position: "absolute", inset: 0}}>
+              <svg width="240" height="125" viewBox="0 0 240 125" style={{position: "absolute", inset: 0}}>
                 <defs>
                   <linearGradient id="dg1" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stopColor="#6A00F4"/>
@@ -321,11 +321,11 @@ export default function ScorePage() {
                     <stop offset="100%" stopColor="#B89AE6"/>
                   </linearGradient>
                 </defs>
-                <polygon points="90,3 177,47 90,92 3,47" fill="white" stroke="url(#dg1)" strokeWidth="2.5"/>
+                <polygon points="120,4 236,62 120,121 4,62" fill="white" stroke="url(#dg1)" strokeWidth="2.5"/>
               </svg>
               <div style={{position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "2px"}}>
-                <span style={{fontSize: "10px", fontWeight: 900, color: "#6d28d9"}}>{gameData.team1Name}</span>
-                <span style={{fontSize: "20px", fontWeight: 900, color: "#4c1d95", lineHeight: 1}}>{team1Score}</span>
+                <span style={{fontSize: "13px", fontWeight: 900, color: "#6d28d9"}}>{gameData.team1Name}</span>
+                <span style={{fontSize: "26px", fontWeight: 900, color: "#4c1d95", lineHeight: 1}}>{team1Score}</span>
                 <div style={{display: "flex", alignItems: "center", gap: "3px"}}>
                   <button onClick={() => setTeam1Score((s) => s - 200)} style={{width: "18px", height: "18px", borderRadius: "50%", background: "#f3e8ff", border: "1px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
                     <Minus size={8} color="#7c3aed" strokeWidth={3}/>
@@ -359,7 +359,7 @@ export default function ScorePage() {
           {/* ماسة الفريق الثاني (يسار - بين العمودين 2 و 3) */}
           <div style={{position: "absolute", top: "50%", left: "33.33%", transform: "translate(-50%, -50%)", zIndex: 11, filter: "drop-shadow(0 4px 12px rgba(123,47,190,0.35))"}}>
             <div style={{position: "relative", width: "180px", height: "95px"}}>
-              <svg width="180" height="95" viewBox="0 0 180 95" style={{position: "absolute", inset: 0}}>
+              <svg width="240" height="125" viewBox="0 0 240 125" style={{position: "absolute", inset: 0}}>
                 <defs>
                   <linearGradient id="dg2" x1="100%" y1="0%" x2="0%" y2="100%">
                     <stop offset="0%" stopColor="#B89AE6"/>
@@ -367,11 +367,11 @@ export default function ScorePage() {
                     <stop offset="100%" stopColor="#6A00F4"/>
                   </linearGradient>
                 </defs>
-                <polygon points="90,3 177,47 90,92 3,47" fill="white" stroke="url(#dg2)" strokeWidth="2.5"/>
+                <polygon points="120,4 236,62 120,121 4,62" fill="white" stroke="url(#dg2)" strokeWidth="2.5"/>
               </svg>
               <div style={{position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "2px"}}>
-                <span style={{fontSize: "10px", fontWeight: 900, color: "#6d28d9"}}>{gameData.team2Name}</span>
-                <span style={{fontSize: "20px", fontWeight: 900, color: "#4c1d95", lineHeight: 1}}>{team2Score}</span>
+                <span style={{fontSize: "13px", fontWeight: 900, color: "#6d28d9"}}>{gameData.team2Name}</span>
+                <span style={{fontSize: "26px", fontWeight: 900, color: "#4c1d95", lineHeight: 1}}>{team2Score}</span>
                 <div style={{display: "flex", alignItems: "center", gap: "3px"}}>
                   <button onClick={() => setTeam2Score((s) => s - 200)} style={{width: "18px", height: "18px", borderRadius: "50%", background: "#f3e8ff", border: "1px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
                     <Minus size={8} color="#7c3aed" strokeWidth={3}/>
