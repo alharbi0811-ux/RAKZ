@@ -327,7 +327,7 @@ export default function ScorePage() {
           <div style={{position: "absolute", top: "50%", left: "5%", right: "5%", height: "1.5px", background: "linear-gradient(90deg,transparent,#c4b5fd,#8b5cf6,#c4b5fd,transparent)", transform: "translateY(-50%)"}}/>
 
           {/* ماسة الفريق الأول (يمين - بين العمودين 1 و 2) */}
-          <div style={{position: "absolute", top: "50%", right: "16.67%", transform: "translate(50%, -50%)", zIndex: 11, filter: "drop-shadow(0 4px 12px rgba(123,47,190,0.35))"}}>
+          <div style={{position: "absolute", top: "50%", right: "33.33%", transform: "translate(50%, -50%)", zIndex: 11, filter: "drop-shadow(0 4px 12px rgba(123,47,190,0.35))"}}>
             <div style={{position: "relative", width: "180px", height: "95px"}}>
               <svg width="180" height="95" viewBox="0 0 180 95" style={{position: "absolute", inset: 0}}>
                 <defs>
@@ -373,7 +373,7 @@ export default function ScorePage() {
           </div>
 
           {/* ماسة الفريق الثاني (يسار - بين العمودين 2 و 3) */}
-          <div style={{position: "absolute", top: "50%", left: "16.67%", transform: "translate(-50%, -50%)", zIndex: 11, filter: "drop-shadow(0 4px 12px rgba(123,47,190,0.35))"}}>
+          <div style={{position: "absolute", top: "50%", left: "33.33%", transform: "translate(-50%, -50%)", zIndex: 11, filter: "drop-shadow(0 4px 12px rgba(123,47,190,0.35))"}}>
             <div style={{position: "relative", width: "180px", height: "95px"}}>
               <svg width="180" height="95" viewBox="0 0 180 95" style={{position: "absolute", inset: 0}}>
                 <defs>
