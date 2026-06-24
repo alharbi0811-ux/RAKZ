@@ -321,7 +321,7 @@ export default function ScorePage() {
                     <stop offset="100%" stopColor="#B89AE6"/>
                   </linearGradient>
                 </defs>
-                <path d="M 190 8 Q 195 5 198 10 L 372 95 Q 376 100 372 105 L 198 190 Q 195 195 190 192 L 8 105 Q 4 100 8 95 Z" fill="white" stroke="url(#dg1)" strokeWidth="3" strokeLinejoin="round"/>
+                <polygon points="190,8 372,100 190,192 8,100" fill="white" stroke="url(#dg1)" strokeWidth="6" strokeLinejoin="round"/>
               </svg>
               <div style={{position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "2px"}}>
                 <span style={{fontSize: "18px", fontWeight: 900, color: "#6d28d9"}}>{gameData.team1Name}</span>
@@ -367,7 +367,7 @@ export default function ScorePage() {
                     <stop offset="100%" stopColor="#6A00F4"/>
                   </linearGradient>
                 </defs>
-                <path d="M 190 8 Q 195 5 198 10 L 372 95 Q 376 100 372 105 L 198 190 Q 195 195 190 192 L 8 105 Q 4 100 8 95 Z" fill="white" stroke="url(#dg2)" strokeWidth="3" strokeLinejoin="round"/>
+                <polygon points="190,8 372,100 190,192 8,100" fill="white" stroke="url(#dg2)" strokeWidth="6" strokeLinejoin="round"/>
               </svg>
               <div style={{position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "2px"}}>
                 <span style={{fontSize: "18px", fontWeight: 900, color: "#6d28d9"}}>{gameData.team2Name}</span>
