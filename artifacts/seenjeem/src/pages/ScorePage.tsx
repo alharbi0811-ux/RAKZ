@@ -620,13 +620,14 @@ function CategoryCard({
             padding: "3px",
             borderRadius: "18px",
             background: "linear-gradient(135deg, #6A00F4, #7B3FF2, #8E63E6, #A07CE0, #B89AE6)",
-            display: "inline-flex",
+            width: "140px",
+            height: "140px",
+            flexShrink: 0,
+            display: "flex",
             alignItems: "center",
-            justifyContent: "center",
-            maxWidth: "100%",
-            maxHeight: "100%"
+            justifyContent: "center"
           }}>
-            <img src={category.img} alt={category.name} className="score-cat-img w-full h-full object-contain" style={{borderRadius: "16px", background: "white", display: "block"}} />
+            <img src={category.img} alt={category.name} className="score-cat-img" style={{width: "100%", height: "100%", objectFit: "contain", borderRadius: "16px", background: "white", display: "block"}} />
           </div>
         </div>
         <div className="score-btn-col flex flex-col justify-center gap-2 shrink-0" style={{width: "110px", padding: "0 4px"}}>
