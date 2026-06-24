@@ -534,11 +534,11 @@
 
 /* ─── Padding to keep contents inside shield ─── */
 .score-gameboard > div.grid:first-of-type > div {
-  padding: 14px 30px 40px !important;
+  padding: 8px 20px 28px !important;
 }
 
 .score-gameboard > div.grid:last-of-type > div {
-  padding: 40px 30px 14px !important;
+  padding: 28px 20px 8px !important;
 }
 
 /* ─── Image: contain inside shield ─── */
@@ -557,4 +557,18 @@
 .score-gameboard .shrink-0.px-3.py-2.text-center.font-black.text-sm.truncate {
   color: #6d28d9 !important;
   font-weight: 800 !important;
+}
+
+/* ─── Smaller buttons to fit inside shield ─── */
+.score-gameboard .score-btn {
+  font-size: 13px !important;
+  min-height: 36px !important;
+  border-radius: 10px !important;
+}
+
+/* ─── Smaller image ─── */
+.score-gameboard .score-cat-img {
+  max-width: 120px !important;
+  max-height: 120px !important;
+  object-fit: contain !important;
 }
