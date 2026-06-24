@@ -617,9 +617,9 @@ function CategoryCard({
         </div>
         <div className="score-img-wrap w-[40%] min-w-[50px] md:min-w-[120px] relative self-stretch flex items-center justify-center">
           <div style={{
-            padding: "6px",
-            borderRadius: "20px",
-            background: "linear-gradient(135deg, #6A00F4, #7B3FF2, #8E63E6, #A07CE0, #B89AE6)",
+            padding: "8px",
+            borderRadius: "22px",
+            background: "linear-gradient(135deg, #6A00F4 0%, #9333EA 50%, #C084FC 100%)",
             boxShadow: "0 4px 12px rgba(123,47,190,0.3)",
             width: "210px",
             height: "210px",
