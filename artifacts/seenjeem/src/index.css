@@ -670,15 +670,21 @@
   border-radius: 18px !important;
 }
 
-/* ─── Image: gradient border + rounded ─── */
+/* ─── Image: gradient border exactly on image ─── */
 .score-gameboard .score-img-wrap {
-  padding: 3px !important;
-  background: linear-gradient(135deg, #6A00F4, #7B3FF2, #8E63E6, #A07CE0, #B89AE6) !important;
-  border-radius: 20px !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 .score-gameboard .score-cat-img {
   border-radius: 18px !important;
-  background: white;
+  border: 3px solid transparent !important;
+  background-image: linear-gradient(white, white), linear-gradient(135deg, #6A00F4, #7B3FF2, #8E63E6, #A07CE0, #B89AE6) !important;
+  background-origin: border-box !important;
+  background-clip: padding-box, border-box !important;
   display: block !important;
 }
