@@ -325,16 +325,16 @@ export default function ScorePage() {
               </svg>
               <div style={{position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "2px"}}>
                 <span style={{fontSize: "42px", fontWeight: 900, color: "#4c1d95", lineHeight: 1}}>{team1Score}</span>
-                <div style={{display: "flex", alignItems: "center", gap: "14px", direction: "ltr"}}>
+                <div style={{display: "flex", alignItems: "center", gap: "28px", direction: "ltr"}}>
                   <button onClick={() => setTeam1Score((s) => s - 200)} style={{width: "44px", height: "44px", borderRadius: "50%", background: "#f3e8ff", border: "2px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
                     <Minus size={22} color="#7c3aed" strokeWidth={3}/>
                   </button>
-                  <span style={{fontSize: "20px", fontWeight: 900, color: "#6d28d9", direction: "rtl"}}>{gameData.team1Name}</span>
+                  <span style={{fontSize: "26px", fontWeight: 900, color: "#6d28d9", direction: "rtl"}}>{gameData.team1Name}</span>
                   <button onClick={() => setTeam1Score((s) => s + 200)} style={{width: "44px", height: "44px", borderRadius: "50%", background: "#f3e8ff", border: "2px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
                     <Plus size={22} color="#7c3aed" strokeWidth={3}/>
                   </button>
                 </div>
-                <div style={{display: "flex", alignItems: "center", gap: "10px"}}>
+                <div style={{display: "flex", alignItems: "center", gap: "20px", marginTop: "12px"}}>
                   {((gameData.team1Tools?.length > 0) ? gameData.team1Tools : ["double","pit","rest"]).map((toolId) => {
                     const tool = HELP_TOOLS_MAP[toolId];
                     if (!tool) return null;
@@ -349,7 +349,7 @@ export default function ScorePage() {
                         title={tool.name}
                         style={{width: "52px", height: "52px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", border: "2px solid rgba(196,181,253,0.6)", background: isActive && pitActive ? "#facc15" : isActive ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.2)", cursor: isActive ? "pointer" : "not-allowed"}}
                       >
-                        <img src={tool.icon} alt={tool.name} style={{width: "28px", height: "28px", objectFit: "contain", opacity: isActive ? 1 : 0.6}}/>
+                        <img src={tool.icon} alt={tool.name} style={{width: "28px", height: "28px", objectFit: "contain", opacity: isActive ? 1 : 0.7, filter: "brightness(0) saturate(100%) invert(20%) sepia(86%) saturate(3833%) hue-rotate(264deg) brightness(91%) contrast(101%)"}}/>
                       </motion.button>
                     );
                   })}
@@ -374,16 +374,16 @@ export default function ScorePage() {
               </svg>
               <div style={{position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "2px"}}>
                 <span style={{fontSize: "42px", fontWeight: 900, color: "#4c1d95", lineHeight: 1}}>{team2Score}</span>
-                <div style={{display: "flex", alignItems: "center", gap: "14px", direction: "ltr"}}>
+                <div style={{display: "flex", alignItems: "center", gap: "28px", direction: "ltr"}}>
                   <button onClick={() => setTeam2Score((s) => s - 200)} style={{width: "44px", height: "44px", borderRadius: "50%", background: "#f3e8ff", border: "2px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
                     <Minus size={22} color="#7c3aed" strokeWidth={3}/>
                   </button>
-                  <span style={{fontSize: "20px", fontWeight: 900, color: "#6d28d9", direction: "rtl"}}>{gameData.team2Name}</span>
+                  <span style={{fontSize: "26px", fontWeight: 900, color: "#6d28d9", direction: "rtl"}}>{gameData.team2Name}</span>
                   <button onClick={() => setTeam2Score((s) => s + 200)} style={{width: "44px", height: "44px", borderRadius: "50%", background: "#f3e8ff", border: "2px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
                     <Plus size={22} color="#7c3aed" strokeWidth={3}/>
                   </button>
                 </div>
-                <div style={{display: "flex", alignItems: "center", gap: "10px"}}>
+                <div style={{display: "flex", alignItems: "center", gap: "20px", marginTop: "12px"}}>
                   {((gameData.team2Tools?.length > 0) ? gameData.team2Tools : ["double","pit","rest"]).map((toolId) => {
                     const tool = HELP_TOOLS_MAP[toolId];
                     if (!tool) return null;
@@ -398,7 +398,7 @@ export default function ScorePage() {
                         title={tool.name}
                         style={{width: "52px", height: "52px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", border: "2px solid rgba(196,181,253,0.6)", background: isActive && pitActive ? "#facc15" : isActive ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.2)", cursor: isActive ? "pointer" : "not-allowed"}}
                       >
-                        <img src={tool.icon} alt={tool.name} style={{width: "28px", height: "28px", objectFit: "contain", opacity: isActive ? 1 : 0.6}}/>
+                        <img src={tool.icon} alt={tool.name} style={{width: "28px", height: "28px", objectFit: "contain", opacity: isActive ? 1 : 0.7, filter: "brightness(0) saturate(100%) invert(20%) sepia(86%) saturate(3833%) hue-rotate(264deg) brightness(91%) contrast(101%)"}}/>
                       </motion.button>
                     );
                   })}
