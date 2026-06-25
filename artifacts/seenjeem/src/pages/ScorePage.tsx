@@ -321,7 +321,7 @@ export default function ScorePage() {
                     <stop offset="100%" stopColor="#B89AE6"/>
                   </linearGradient>
                 </defs>
-                <polygon points="190,8 372,100 190,192 8,100" fill="white" stroke="url(#dg1)" strokeWidth="6" strokeLinejoin="round"/>
+                <polygon points="190,12 368,100 190,188 12,100" fill="white" stroke="url(#dg1)" strokeWidth="14" strokeLinejoin="round" strokeLinecap="round"/>
               </svg>
               <div style={{position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "2px"}}>
                 <span style={{fontSize: "42px", fontWeight: 900, color: "#4c1d95", lineHeight: 1}}>{team1Score}</span>
@@ -370,7 +370,7 @@ export default function ScorePage() {
                     <stop offset="100%" stopColor="#6A00F4"/>
                   </linearGradient>
                 </defs>
-                <polygon points="190,8 372,100 190,192 8,100" fill="white" stroke="url(#dg2)" strokeWidth="6" strokeLinejoin="round"/>
+                <polygon points="190,12 368,100 190,188 12,100" fill="white" stroke="url(#dg2)" strokeWidth="14" strokeLinejoin="round" strokeLinecap="round"/>
               </svg>
               <div style={{position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "2px"}}>
                 <span style={{fontSize: "42px", fontWeight: 900, color: "#4c1d95", lineHeight: 1}}>{team2Score}</span>
