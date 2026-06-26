@@ -2,7 +2,7 @@ import { API_BASE } from "@/lib/apiBase";
 import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Navbar } from "@/components/sections/Navbar";
-import { Check, Info, X, Search, Lock } from "lucide-react";
+import { Check, Info, X, Search, Lock, Heart } from "lucide-react";
 import { useLocation } from "wouter";
 import { useAuth } from "@/context/AuthContext";
 
@@ -36,6 +36,41 @@ export default function StartGame() {
   const [sections, setSections] = useState<Section[]>([]);
   const [loadingSections, setLoadingSections] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
+  const [favorites, setFavorites] = useState<Set<string>>(new Set());
+
+  useEffect(() => {
+    if (!token) return;
+    fetch(`${API_BASE}/favorites`, { headers: { Authorization: `Bearer ${token}` } })
+      .then((r) => r.json())
+      .then((data) => {
+        const ids = new Set<string>((data.favorites ?? []).map((f: any) => String(f.categoryId)));
+        setFavorites(ids);
+      })
+      .catch(() => {});
+  }, [token]);
+
+  const toggleFavorite = (catId: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!token) return;
+    const isFav = favorites.has(catId);
+    setFavorites((prev) => {
+      const next = new Set(prev);
+      if (isFav) next.delete(catId);
+      else next.add(catId);
+      return next;
+    });
+    fetch(`${API_BASE}/favorites/${catId}/toggle`, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${token}` },
+    }).catch(() => {
+      setFavorites((prev) => {
+        const next = new Set(prev);
+        if (isFav) next.add(catId);
+        else next.delete(catId);
+        return next;
+      });
+    });
+  };
 
   useEffect(() => {
     fetch(`${API_BASE}/categories`)
@@ -262,6 +297,22 @@ export default function StartGame() {
                         }`}
                         onClick={() => !disabled && !isLocked && toggleCategory(cat)}
                       >
+                        {/* Favorite heart button */}
+                        {token && (
+                          <button
+                            onClick={(e) => toggleFavorite(cat.id, e)}
+                            className="absolute top-2 right-2 z-30 w-9 h-9 rounded-full bg-white/25 backdrop-blur-sm flex items-center justify-center hover:bg-white/40 transition-all hover:scale-110"
+                            title={favorites.has(cat.id) ? "إزالة من المفضلة" : "إضافة للمفضلة"}
+                          >
+                            <Heart
+                              size={20}
+                              fill={favorites.has(cat.id) ? "#ef4444" : "transparent"}
+                              color={favorites.has(cat.id) ? "#ef4444" : "#ffffff"}
+                              strokeWidth={2.5}
+                            />
+                          </button>
+                        )}
+
                         {/* Card image */}
                         <div className="relative aspect-[4/5] bg-purple-100">
                           <img
