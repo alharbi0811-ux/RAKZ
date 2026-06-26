@@ -674,3 +674,59 @@
   background: transparent !important;
   padding: 0 !important;
 }
+
+/* ─── Responsive Diamond Size ─── */
+.diamond-svg-wrap {
+  width: 700px;
+  height: 370px;
+}
+@media (max-width: 1280px) {
+  .diamond-svg-wrap { width: 500px; height: 265px; }
+}
+@media (max-width: 1024px) {
+  .diamond-svg-wrap { width: 380px; height: 200px; }
+}
+@media (max-width: 768px) {
+  .diamond-svg-wrap { width: 300px; height: 160px; }
+}
+@media (max-width: 600px) {
+  .diamond-svg-wrap { width: 240px; height: 130px; }
+}
+
+/* ─── Rotate device prompt for portrait mode ─── */
+.rotate-device-prompt {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: linear-gradient(135deg, #6A00F4, #7B3FF2, #8E63E6, #A07CE0, #B89AE6);
+  color: white;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 24px;
+  font-family: inherit;
+}
+.rotate-device-prompt-icon {
+  font-size: 80px;
+  animation: rotate-hint 2s ease-in-out infinite;
+  margin-bottom: 24px;
+}
+.rotate-device-prompt-text {
+  font-size: 24px;
+  font-weight: 900;
+  margin-bottom: 8px;
+}
+.rotate-device-prompt-sub {
+  font-size: 16px;
+  opacity: 0.9;
+}
+@keyframes rotate-hint {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(90deg); }
+}
+@media (max-width: 900px) and (orientation: portrait) {
+  .rotate-device-prompt { display: flex; }
+  body.score-page-active { overflow: hidden; }
+}
