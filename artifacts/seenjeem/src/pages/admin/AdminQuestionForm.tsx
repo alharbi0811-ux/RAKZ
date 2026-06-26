@@ -1,3 +1,4 @@
+import { API_BASE } from "@/lib/apiBase";
 import { useEffect, useRef, useState } from "react";
 import { useLocation, useRoute } from "wouter";
 import { ArrowRight, Check, Eye, EyeOff, ImagePlus, X, Loader2 } from "lucide-react";
@@ -79,7 +80,7 @@ export default function AdminQuestionForm() {
     try {
       const fd = new FormData();
       fd.append("image", file);
-      const res = await fetch("/api/admin/upload-image", {
+      const res = await fetch(`${API_BASE}/admin/upload-image`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
         body: fd,
