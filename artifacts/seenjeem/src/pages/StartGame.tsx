@@ -109,11 +109,20 @@ export default function StartGame() {
   const team1 = selectedIds.slice(0, 3);
   const team2 = selectedIds.slice(3, 6);
 
-  // Filter sections based on search query
+  // Filter sections based on search query + inject Favorites section at top
   const filteredSections = useMemo(() => {
-    if (!searchQuery.trim()) return sections;
+    // Build favorites section from all categories that match user's favorites
+    const allCats = sections.flatMap((s) => s.categories);
+    const favCats = allCats.filter((c) => favorites.has(c.id));
+    const favSection: Section | null = favCats.length > 0
+      ? { name: "المفضلة", categories: favCats }
+      : null;
+
+    const baseSections = favSection ? [favSection, ...sections] : sections;
+
+    if (!searchQuery.trim()) return baseSections;
     const q = searchQuery.trim().toLowerCase();
-    return sections
+    return baseSections
       .map((s) => ({
         ...s,
         categories: s.categories.filter((c) =>
@@ -121,7 +130,7 @@ export default function StartGame() {
         ),
       }))
       .filter((s) => s.categories.length > 0);
-  }, [sections, searchQuery]);
+  }, [sections, searchQuery, favorites]);
 
   const totalFiltered = filteredSections.reduce((acc, s) => acc + s.categories.length, 0);
 
