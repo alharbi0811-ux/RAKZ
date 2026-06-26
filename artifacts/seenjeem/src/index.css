@@ -793,76 +793,76 @@
   .diamond-svg-wrap img { width: 10px !important; height: 10px !important; }
 }
 
-/* ─── Force rotate prompt visible on portrait ─── */
-@media (orientation: portrait) {
-  .rotate-device-prompt { display: flex !important; }
-}
+/* rotate-device-prompt disabled — smart scale handles all screen sizes */
 
 /* ================================================================
    SMART SCALE — يصغر اللعبة تلقائياً حسب حجم الشاشة
    لا يأثر على الديسكتوب (>1280px) أبداً
    ================================================================ */
 
-/* الجذر: اللعبة كلها داخل score-page-wrapper */
+/* إخفاء rotate prompt بالكامل - scale يكفي */
+.rotate-device-prompt { display: none !important; }
+
+/* الأساس: اللعبة بحجمها الطبيعي */
 .score-page-wrapper {
-  transform-origin: top center;
+  transform-origin: top left;
 }
 
-/* تابلت كبير / لاب توب صغير */
+/* تابلت كبير */
 @media (max-width: 1280px) and (min-width: 1025px) {
   .score-page-wrapper {
-    transform: scale(0.85);
-    width: calc(100% / 0.85);
-    margin-left: calc((100% - 100% / 0.85) / 2);
-    height: calc(100vh / 0.85);
+    transform: scale(0.82);
+    transform-origin: top left;
+    width: 121.95vw !important;
+    height: 121.95vh !important;
+    overflow: hidden !important;
   }
-  html, body { overflow: hidden; }
+  body { overflow: hidden !important; width: 100vw; }
 }
 
-/* تابلت صغير / iPad */
+/* iPad */
 @media (max-width: 1024px) and (min-width: 769px) {
   .score-page-wrapper {
-    transform: scale(0.65);
-    width: calc(100% / 0.65);
-    margin-left: calc((100% - 100% / 0.65) / 2);
-    height: calc(100vh / 0.65);
+    transform: scale(0.62);
+    transform-origin: top left;
+    width: 161.3vw !important;
+    height: 161.3vh !important;
+    overflow: hidden !important;
   }
-  html, body { overflow: hidden; }
+  body { overflow: hidden !important; width: 100vw; }
 }
 
 /* موبايل landscape */
 @media (max-width: 768px) and (orientation: landscape) {
   .score-page-wrapper {
-    transform: scale(0.42);
+    transform: scale(0.40);
     transform-origin: top left;
-    width: calc(100% / 0.42);
-    height: calc(100vh / 0.42);
+    width: 250vw !important;
+    height: 250vh !important;
+    overflow: hidden !important;
   }
-  html, body { overflow: hidden; }
-  /* نخفي رسالة التدوير في landscape */
-  .rotate-device-prompt { display: none !important; }
+  body { overflow: hidden !important; width: 100vw; height: 100vh; }
+}
+
+/* iPhone SE landscape */
+@media (max-width: 667px) and (orientation: landscape) {
+  .score-page-wrapper {
+    transform: scale(0.33);
+    transform-origin: top left;
+    width: 303vw !important;
+    height: 303vh !important;
+    overflow: hidden !important;
+  }
 }
 
 /* موبايل portrait */
 @media (max-width: 768px) and (orientation: portrait) {
   .score-page-wrapper {
-    transform: scale(0.28);
-    transform-origin: top center;
-    width: calc(100% / 0.28);
-    margin-left: calc((100% - 100% / 0.28) / 2);
-    height: calc(100vh / 0.28);
-  }
-  html, body { overflow: hidden; }
-  /* نخفي رسالة التدوير - scale يكفي */
-  .rotate-device-prompt { display: none !important; }
-}
-
-/* iPhone SE / شاشات صغيرة جداً landscape */
-@media (max-width: 667px) and (orientation: landscape) {
-  .score-page-wrapper {
-    transform: scale(0.35);
+    transform: scale(0.26);
     transform-origin: top left;
-    width: calc(100% / 0.35);
-    height: calc(100vh / 0.35);
+    width: 384.6vw !important;
+    height: 384.6vh !important;
+    overflow: hidden !important;
   }
+  body { overflow: hidden !important; width: 100vw; height: 100vh; }
 }
