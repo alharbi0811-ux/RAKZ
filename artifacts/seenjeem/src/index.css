@@ -677,20 +677,22 @@
 
 /* ─── Responsive Diamond Size ─── */
 .diamond-svg-wrap {
-  width: 700px;
-  height: 370px;
+  width: 700px !important;
+  height: 370px !important;
 }
 @media (max-width: 1280px) {
-  .diamond-svg-wrap { width: 500px; height: 265px; }
+  .diamond-svg-wrap { width: 500px !important; height: 265px !important; }
 }
 @media (max-width: 1024px) {
-  .diamond-svg-wrap { width: 380px; height: 200px; }
+  .diamond-svg-wrap { width: 320px !important; height: 170px !important; }
 }
-@media (max-width: 768px) {
-  .diamond-svg-wrap { width: 300px; height: 160px; }
-}
-@media (max-width: 600px) {
-  .diamond-svg-wrap { width: 240px; height: 130px; }
+@media (max-height: 500px) {
+  .diamond-svg-wrap { width: 220px !important; height: 120px !important; }
+  .diamond-svg-wrap span { font-size: 14px !important; }
+  .diamond-svg-wrap button { width: 22px !important; height: 22px !important; }
+  .diamond-svg-wrap button svg { width: 12px !important; height: 12px !important; }
+  .diamond-svg-wrap img { width: 14px !important; height: 14px !important; }
+  .diamond-svg-wrap > div > div > span:first-child { font-size: 18px !important; }
 }
 
 /* ─── Rotate device prompt for portrait mode ─── */
