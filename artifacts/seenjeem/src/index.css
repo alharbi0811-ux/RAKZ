@@ -797,3 +797,72 @@
 @media (orientation: portrait) {
   .rotate-device-prompt { display: flex !important; }
 }
+
+/* ================================================================
+   SMART SCALE — يصغر اللعبة تلقائياً حسب حجم الشاشة
+   لا يأثر على الديسكتوب (>1280px) أبداً
+   ================================================================ */
+
+/* الجذر: اللعبة كلها داخل score-page-wrapper */
+.score-page-wrapper {
+  transform-origin: top center;
+}
+
+/* تابلت كبير / لاب توب صغير */
+@media (max-width: 1280px) and (min-width: 1025px) {
+  .score-page-wrapper {
+    transform: scale(0.85);
+    width: calc(100% / 0.85);
+    margin-left: calc((100% - 100% / 0.85) / 2);
+    height: calc(100vh / 0.85);
+  }
+  html, body { overflow: hidden; }
+}
+
+/* تابلت صغير / iPad */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .score-page-wrapper {
+    transform: scale(0.65);
+    width: calc(100% / 0.65);
+    margin-left: calc((100% - 100% / 0.65) / 2);
+    height: calc(100vh / 0.65);
+  }
+  html, body { overflow: hidden; }
+}
+
+/* موبايل landscape */
+@media (max-width: 768px) and (orientation: landscape) {
+  .score-page-wrapper {
+    transform: scale(0.42);
+    transform-origin: top left;
+    width: calc(100% / 0.42);
+    height: calc(100vh / 0.42);
+  }
+  html, body { overflow: hidden; }
+  /* نخفي رسالة التدوير في landscape */
+  .rotate-device-prompt { display: none !important; }
+}
+
+/* موبايل portrait */
+@media (max-width: 768px) and (orientation: portrait) {
+  .score-page-wrapper {
+    transform: scale(0.28);
+    transform-origin: top center;
+    width: calc(100% / 0.28);
+    margin-left: calc((100% - 100% / 0.28) / 2);
+    height: calc(100vh / 0.28);
+  }
+  html, body { overflow: hidden; }
+  /* نخفي رسالة التدوير - scale يكفي */
+  .rotate-device-prompt { display: none !important; }
+}
+
+/* iPhone SE / شاشات صغيرة جداً landscape */
+@media (max-width: 667px) and (orientation: landscape) {
+  .score-page-wrapper {
+    transform: scale(0.35);
+    transform-origin: top left;
+    width: calc(100% / 0.35);
+    height: calc(100vh / 0.35);
+  }
+}
