@@ -270,6 +270,12 @@ export default function ScorePage() {
 
   return (
     <div className="score-page-wrapper h-screen overflow-hidden bg-gradient-to-br from-[#f0e8ff] via-[#e8e0f0] to-[#f0f0ff] flex flex-col" dir="rtl">
+      {/* Rotate device prompt for portrait mode */}
+      <div className="rotate-device-prompt">
+        <div className="rotate-device-prompt-icon">📱</div>
+        <div className="rotate-device-prompt-text">قم بتدوير الجهاز أفقياً</div>
+        <div className="rotate-device-prompt-sub">للحصول على أفضل تجربة لعب</div>
+      </div>
       {/* Top Bar */}
       <div className="score-topbar shrink-0 px-3 py-2 md:px-6 md:pt-[24px] md:pb-[24px] shadow-lg border-b border-white/10" style={{ background: "linear-gradient(135deg, #6A00F4, #7B3FF2, #8E63E6, #A07CE0, #B89AE6)" }}>
         <div className="flex items-center justify-between h-full relative">
