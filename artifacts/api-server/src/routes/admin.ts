@@ -34,7 +34,8 @@ router.use(requireAuth, requireAdmin);
 // ───── Image Upload ─────
 router.post("/admin/upload-image", uploadImg.single("image"), (req, res) => {
   if (!req.file) return res.status(400).json({ error: "لم يتم رفع أي صورة" });
-  res.json({ url: `/api/uploads/${req.file.filename}` });
+  const baseUrl = `${req.protocol}://${req.get("host")}`;
+  res.json({ url: `${baseUrl}/api/uploads/${req.file.filename}` });
 });
 
 // ───── Stats ─────
