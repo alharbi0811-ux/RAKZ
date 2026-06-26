@@ -732,3 +732,68 @@
   .rotate-device-prompt { display: flex; }
   body.score-page-active { overflow: hidden; }
 }
+
+/* ─── Mobile Landscape: shrink EVERYTHING to ~25% ─── */
+@media (max-height: 500px) {
+  /* Diamond very small */
+  .diamond-svg-wrap { width: 160px !important; height: 85px !important; }
+  
+  /* Category card buttons */
+  .score-gameboard .score-btn-col > button {
+    height: 22px !important;
+    min-height: 22px !important;
+    max-height: 22px !important;
+    font-size: 9px !important;
+    border-radius: 6px !important;
+  }
+  
+  /* Category image wrapper - smaller */
+  .score-gameboard .score-img-wrap img.score-cat-img,
+  .score-gameboard .score-img-wrap > div > img {
+    max-width: 70px !important;
+    max-height: 70px !important;
+  }
+  .score-gameboard .score-img-wrap > div {
+    padding: 2px !important;
+    border-radius: 8px !important;
+    width: 70px !important;
+    height: 70px !important;
+  }
+  
+  /* Category card padding */
+  .score-gameboard > div.grid:first-of-type > div {
+    padding: 12px 14px 22px !important;
+  }
+  .score-gameboard > div.grid:last-of-type > div {
+    padding: 22px 14px 6px !important;
+  }
+  
+  /* Category name */
+  .score-gameboard .shrink-0.px-3.py-2.text-center.font-black.text-sm.truncate {
+    font-size: 11px !important;
+    padding: 2px 4px !important;
+  }
+  
+  /* Button col width */
+  .score-gameboard .score-btn-col {
+    width: 38px !important;
+    gap: 3px !important;
+  }
+  
+  /* Top bar smaller */
+  .score-topbar {
+    padding: 4px 8px !important;
+  }
+  
+  /* Diamond interior elements */
+  .diamond-svg-wrap span { font-size: 9px !important; }
+  .diamond-svg-wrap > div > div > span:first-child { font-size: 14px !important; }
+  .diamond-svg-wrap button { width: 16px !important; height: 16px !important; border-width: 1px !important; }
+  .diamond-svg-wrap button svg { width: 8px !important; height: 8px !important; }
+  .diamond-svg-wrap img { width: 10px !important; height: 10px !important; }
+}
+
+/* ─── Force rotate prompt visible on portrait ─── */
+@media (orientation: portrait) {
+  .rotate-device-prompt { display: flex !important; }
+}
