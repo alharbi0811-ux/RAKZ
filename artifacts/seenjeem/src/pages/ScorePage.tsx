@@ -43,6 +43,40 @@ export default function ScorePage() {
   const [pitActive, setPitActive] = useState(false);
   const [categoryStatuses, setCategoryStatuses] = useState<Record<string, { status: CategoryStatus; lockMessage: string | null }>>({});
   const saveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  // ─── Smart Scale: يضبط حجم اللعبة حسب شاشة الجهاز ───
+  useEffect(() => {
+    const GAME_W = 1400; // العرض التصميمي للعبة
+    const GAME_H = 700;  // الارتفاع التصميمي للعبة
+
+    function applyScale() {
+      const el = wrapperRef.current;
+      if (!el) return;
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      const scaleX = vw / GAME_W;
+      const scaleY = vh / GAME_H;
+      const scale = Math.min(scaleX, scaleY, 1); // لا تكبر فوق 100% على الديسكتوب
+      el.style.transform = `scale(${scale})`;
+      el.style.transformOrigin = "top left";
+      el.style.width = `${GAME_W}px`;
+      el.style.height = `${GAME_H}px`;
+      el.style.position = "fixed";
+      el.style.top = "0";
+      // نحسب offset لمركزة اللعبة أفقياً
+      const scaledW = GAME_W * scale;
+      el.style.left = `${(vw - scaledW) / 2}px`;
+    }
+
+    applyScale();
+    window.addEventListener("resize", applyScale);
+    window.addEventListener("orientationchange", () => setTimeout(applyScale, 300));
+    return () => {
+      window.removeEventListener("resize", applyScale);
+      window.removeEventListener("orientationchange", applyScale);
+    };
+  }, []);
 
   useEffect(() => {
     const stored = localStorage.getItem("rakez-game-data");
@@ -269,7 +303,7 @@ export default function ScorePage() {
   const currentTeamName = currentTeam === 1 ? gameData.team1Name : gameData.team2Name;
 
   return (
-    <div className="score-page-wrapper h-screen overflow-hidden bg-gradient-to-br from-[#f0e8ff] via-[#e8e0f0] to-[#f0f0ff] flex flex-col" dir="rtl">
+    <div ref={wrapperRef} className="score-page-wrapper bg-gradient-to-br from-[#f0e8ff] via-[#e8e0f0] to-[#f0f0ff] flex flex-col" dir="rtl">
       {/* Rotate device prompt for portrait mode */}
       <div className="rotate-device-prompt">
         <div className="rotate-device-prompt-icon">📱</div>
