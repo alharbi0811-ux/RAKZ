@@ -26,7 +26,7 @@ function Confetti() {
   }));
 
   return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+    <div ref={pageRef} className="fixed inset-0 pointer-events-none overflow-hidden z-0">
       {pieces.map((p) => (
         <motion.div
           key={p.id}
@@ -73,6 +73,30 @@ const SPARKLES = Array.from({ length: 14 }, (_, i) => ({
 }));
 
 export default function WinPage() {
+  // ─── Smart Scale للأيفون ───
+  const pageRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const DESIGN_W = 1024, DESIGN_H = 768;
+    function applyScale() {
+      const el = pageRef.current;
+      if (!el) return;
+      const vw = window.innerWidth, vh = window.innerHeight;
+      const scale = Math.min(vw / DESIGN_W, vh / DESIGN_H, 1);
+      el.style.transform = `scale(${scale})`;
+      el.style.transformOrigin = "top left";
+      el.style.width = `${DESIGN_W}px`;
+      el.style.height = `${DESIGN_H}px`;
+      el.style.position = "fixed";
+      el.style.top = "0";
+      el.style.left = `${(vw - DESIGN_W * scale) / 2}px`;
+    }
+    applyScale();
+    window.addEventListener("resize", applyScale);
+    window.addEventListener("orientationchange", () => setTimeout(applyScale, 300));
+    return () => { window.removeEventListener("resize", applyScale); };
+  }, []);
+
+
   const [, navigate] = useLocation();
   const [data, setData] = useState<{
     team1Name: string; team2Name: string;
