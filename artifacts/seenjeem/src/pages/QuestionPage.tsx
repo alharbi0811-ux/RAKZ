@@ -73,6 +73,30 @@ function CircularTimerSVG({ timeLeft, totalTime, color, size = 160 }: { timeLeft
 }
 
 export default function QuestionPage() {
+  // ─── Smart Scale للأيفون ───
+  const pageRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const DESIGN_W = 1024, DESIGN_H = 768;
+    function applyScale() {
+      const el = pageRef.current;
+      if (!el) return;
+      const vw = window.innerWidth, vh = window.innerHeight;
+      const scale = Math.min(vw / DESIGN_W, vh / DESIGN_H, 1);
+      el.style.transform = `scale(${scale})`;
+      el.style.transformOrigin = "top left";
+      el.style.width = `${DESIGN_W}px`;
+      el.style.height = `${DESIGN_H}px`;
+      el.style.position = "fixed";
+      el.style.top = "0";
+      el.style.left = `${(vw - DESIGN_W * scale) / 2}px`;
+    }
+    applyScale();
+    window.addEventListener("resize", applyScale);
+    window.addEventListener("orientationchange", () => setTimeout(applyScale, 300));
+    return () => { window.removeEventListener("resize", applyScale); };
+  }, []);
+
+
   const [, navigate] = useLocation();
   const { user } = useAuth();
   const isAdmin = user?.isAdmin ?? false;
@@ -772,7 +796,7 @@ export default function QuestionPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-white dark:bg-[#0d0d1a] z-50 flex flex-col"
+            ref={pageRef} className="fixed inset-0 bg-white dark:bg-[#0d0d1a] z-50 flex flex-col"
             dir="rtl"
           >
             {renderHeader()}
@@ -789,7 +813,7 @@ export default function QuestionPage() {
                       timeLeft={circularTimeLeft}
                       totalTime={circTotal}
                       color={circCfg.color}
-                      size={560}
+                      size={280}
                     />
                     <div className="flex items-center gap-4">
                       <button
