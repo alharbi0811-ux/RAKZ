@@ -429,241 +429,89 @@ export default function ScorePage() {
       </div>
 
       {/* Game Board */}
-      <div className="score-gameboard flex-1 min-h-0 p-2 md:p-4 flex flex-col gap-2 md:gap-4">
-        <div className="flex-1 min-h-0 grid grid-cols-3 gap-1.5 md:gap-4">
-          {gameData.team1Categories.map((cat, catIdx) => (
-            <CategoryCard
-              key={cat.id} category={cat} catIdx={catIdx} playedCells={playedCells}
-              onCellClick={handleCellClick} teamColor="#7B2FBE" loadingCell={loadingCell}
-              catStatus={categoryStatuses[cat.id] ?? { status: "open", lockMessage: null }}
-              isAdmin={isAdmin}
-            />
-          ))}
-        </div>
-        {/* ─── Diamond Score Zone — في المنتصف بين الدروع ─── */}
-        <div style={{position: "relative", flexShrink: 0, height: "100px", margin: "-20px 0", zIndex: 50}}>
-          {/* خط الوسط المتوهج */}
-          <div style={{position: "absolute", top: "50%", left: "5%", right: "5%", height: "1.5px", background: "linear-gradient(90deg,transparent,#c4b5fd,#8b5cf6,#c4b5fd,transparent)", transform: "translateY(-50%)"}}/>
-
-          {/* ماسة الفريق الأول (يمين - بين العمودين 1 و 2) */}
-          <div style={{position: "absolute", top: "50%", right: "33.33%", transform: "translate(50%, -50%)", zIndex: 11, filter: "drop-shadow(0 4px 12px rgba(123,47,190,0.35))"}}>
-            <div className="diamond-svg-wrap" style={{position: "relative", width: "380px", height: "200px"}}>
-              <svg width="100%" height="100%" viewBox="0 0 380 200" style={{position: "absolute", inset: 0}}>
-                <defs>
-                  <linearGradient id="dg1" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#6A00F4"/>
-                    <stop offset="50%" stopColor="#8E63E6"/>
-                    <stop offset="100%" stopColor="#B89AE6"/>
-                  </linearGradient>
-                </defs>
-                <path d="M 200 17 L 358 96 Q 372 100 358 104 L 200 184 Q 190 192 180 184 L 22 104 Q 8 100 22 96 L 180 17 Q 190 8 200 17 Z" fill="white" stroke="url(#dg1)" strokeWidth="5" strokeLinejoin="round"/>
-              </svg>
-              <div style={{position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "2px"}}>
-                <span style={{fontSize: "36px", fontWeight: 900, color: "#4c1d95", lineHeight: 1}}>{team1Score}</span>
-                <div style={{display: "flex", alignItems: "center", gap: "16px", direction: "ltr"}}>
-                  <button onClick={() => setTeam1Score((s) => s - 200)} style={{width: "38px", height: "38px", borderRadius: "50%", background: "#f3e8ff", border: "2px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
-                    <Minus size={18} color="#7c3aed" strokeWidth={3}/>
-                  </button>
-                  <span style={{fontSize: "22px", fontWeight: 900, color: "#6d28d9", direction: "rtl"}}>{gameData.team1Name}</span>
-                  <button onClick={() => setTeam1Score((s) => s + 200)} style={{width: "38px", height: "38px", borderRadius: "50%", background: "#f3e8ff", border: "2px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
-                    <Plus size={18} color="#7c3aed" strokeWidth={3}/>
-                  </button>
-                </div>
-                <div style={{display: "flex", alignItems: "center", gap: "12px", marginTop: "8px"}}>
-                  {((gameData.team1Tools?.length > 0) ? gameData.team1Tools : ["double","pit","rest"]).map((toolId) => {
-                    const tool = HELP_TOOLS_MAP[toolId];
-                    if (!tool) return null;
-                    const used = usedTools.team1.includes(toolId);
-                    const isActive = toolId === "pit" && currentTeam === 1 && !used;
-                    return (
-                      <motion.button key={toolId}
-                        whileHover={isActive ? {scale: 1.1} : {}}
-                        whileTap={isActive ? {scale: 0.9} : {}}
-                        onClick={() => isActive && handlePitToggle()}
-                        disabled={!isActive}
-                        title={tool.name}
-                        style={{width: "44px", height: "44px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", border: "2px solid rgba(196,181,253,0.6)", background: isActive && pitActive ? "#facc15" : isActive ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.2)", cursor: isActive ? "pointer" : "not-allowed"}}
-                      >
-                        <img src={tool.icon} alt={tool.name} style={{width: "24px", height: "24px", objectFit: "contain", opacity: isActive ? 1 : 0.7, filter: "brightness(0) saturate(100%) invert(20%) sepia(86%) saturate(3833%) hue-rotate(264deg) brightness(91%) contrast(101%)"}}/>
-                      </motion.button>
-                    );
-                  })}
-
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* ماسة الفريق الثاني (يسار - بين العمودين 2 و 3) */}
-          <div style={{position: "absolute", top: "50%", left: "33.33%", transform: "translate(-50%, -50%)", zIndex: 11, filter: "drop-shadow(0 4px 12px rgba(123,47,190,0.35))"}}>
-            <div className="diamond-svg-wrap" style={{position: "relative", width: "380px", height: "200px"}}>
-              <svg width="100%" height="100%" viewBox="0 0 380 200" style={{position: "absolute", inset: 0}}>
-                <defs>
-                  <linearGradient id="dg2" x1="100%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="#B89AE6"/>
-                    <stop offset="50%" stopColor="#8E63E6"/>
-                    <stop offset="100%" stopColor="#6A00F4"/>
-                  </linearGradient>
-                </defs>
-                <path d="M 200 17 L 358 96 Q 372 100 358 104 L 200 184 Q 190 192 180 184 L 22 104 Q 8 100 22 96 L 180 17 Q 190 8 200 17 Z" fill="white" stroke="url(#dg2)" strokeWidth="5" strokeLinejoin="round"/>
-              </svg>
-              <div style={{position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "2px"}}>
-                <span style={{fontSize: "36px", fontWeight: 900, color: "#4c1d95", lineHeight: 1}}>{team2Score}</span>
-                <div style={{display: "flex", alignItems: "center", gap: "16px", direction: "ltr"}}>
-                  <button onClick={() => setTeam2Score((s) => s - 200)} style={{width: "38px", height: "38px", borderRadius: "50%", background: "#f3e8ff", border: "2px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
-                    <Minus size={18} color="#7c3aed" strokeWidth={3}/>
-                  </button>
-                  <span style={{fontSize: "22px", fontWeight: 900, color: "#6d28d9", direction: "rtl"}}>{gameData.team2Name}</span>
-                  <button onClick={() => setTeam2Score((s) => s + 200)} style={{width: "38px", height: "38px", borderRadius: "50%", background: "#f3e8ff", border: "2px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
-                    <Plus size={18} color="#7c3aed" strokeWidth={3}/>
-                  </button>
-                </div>
-                <div style={{display: "flex", alignItems: "center", gap: "12px", marginTop: "8px"}}>
-                  {((gameData.team2Tools?.length > 0) ? gameData.team2Tools : ["double","pit","rest"]).map((toolId) => {
-                    const tool = HELP_TOOLS_MAP[toolId];
-                    if (!tool) return null;
-                    const used = usedTools.team2.includes(toolId);
-                    const isActive = toolId === "pit" && currentTeam === 2 && !used;
-                    return (
-                      <motion.button key={toolId}
-                        whileHover={isActive ? {scale: 1.1} : {}}
-                        whileTap={isActive ? {scale: 0.9} : {}}
-                        onClick={() => isActive && handlePitToggle()}
-                        disabled={!isActive}
-                        title={tool.name}
-                        style={{width: "44px", height: "44px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", border: "2px solid rgba(196,181,253,0.6)", background: isActive && pitActive ? "#facc15" : isActive ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.2)", cursor: isActive ? "pointer" : "not-allowed"}}
-                      >
-                        <img src={tool.icon} alt={tool.name} style={{width: "24px", height: "24px", objectFit: "contain", opacity: isActive ? 1 : 0.7, filter: "brightness(0) saturate(100%) invert(20%) sepia(86%) saturate(3833%) hue-rotate(264deg) brightness(91%) contrast(101%)"}}/>
-                      </motion.button>
-                    );
-                  })}
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="flex-1 min-h-0 grid grid-cols-3 gap-1.5 md:gap-4">
-          {gameData.team2Categories.map((cat, catIdx) => (
-            <CategoryCard
-              key={cat.id} category={cat} catIdx={catIdx + 3} playedCells={playedCells}
-              onCellClick={handleCellClick} teamColor="#9333ea" loadingCell={loadingCell}
-              catStatus={categoryStatuses[cat.id] ?? { status: "open", lockMessage: null }}
-              isAdmin={isAdmin}
-            />
-          ))}
+      <div className="flex-1 min-h-0 p-3 md:p-4">
+        <div className="grid grid-cols-3 gap-3 h-full" style={{gridTemplateRows: "1fr 1fr"}}>
+          {[...gameData.team1Categories, ...gameData.team2Categories].map((cat, i) => {
+            const catIdx = i < 3 ? i : i - 3;
+            return (
+              <CategoryCard
+                key={cat.id} category={cat} catIdx={catIdx} playedCells={playedCells}
+                onCellClick={handleCellClick} teamColor="#7B2FBE" loadingCell={loadingCell}
+                catStatus={categoryStatuses[cat.id] ?? { status: "open", lockMessage: null }}
+                isAdmin={isAdmin}
+              />
+            );
+          })}
         </div>
       </div>
 
       {/* Bottom Bar */}
-      <div className="score-bottombar shrink-0 hidden px-2 md:px-6 border-t border-white/10 py-2 md:py-4 flex items-center justify-between gap-1 md:gap-4 relative" style={{ background: "linear-gradient(135deg, #6A00F4, #7B3FF2, #8E63E6, #A07CE0, #B89AE6)" }}>
-        {/* Team 1 */}
-        <div className="flex items-center gap-1 md:gap-2 flex-1">
-          <div className="hidden md:flex h-10 items-center bg-white/20 text-white px-4 rounded-full font-black border border-white/20 text-[14px] shrink-0 whitespace-nowrap">
-            {gameData.team1Name}
+      <div className="shrink-0 px-4 py-3 flex items-center justify-between gap-4"
+        style={{background: "linear-gradient(135deg, #6A00F4, #7B3FF2, #8E63E6, #A07CE0, #B89AE6)"}}>
+
+        {/* الفريق الثاني */}
+        <div className="flex items-center gap-3">
+          <div className="text-white text-center">
+            <div className="text-xs font-bold opacity-80">{gameData.team2Name}</div>
+            <div className="text-3xl font-black">{team2Score}</div>
           </div>
-          <div className="h-8 md:h-10 flex items-center justify-center bg-white/90 text-[#7B2FBE] font-black text-sm md:text-lg rounded-full shadow-inner px-2 md:px-4 border-2 min-w-[40px] md:min-w-[60px] shrink-0">
-            {team1Score}
+          <div className="flex gap-1">
+            <button onClick={() => setTeam2Score(s => s - 200)}
+              className="w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 text-white font-black text-xl flex items-center justify-center">−</button>
+            <button onClick={() => setTeam2Score(s => s + 200)}
+              className="w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 text-white font-black text-xl flex items-center justify-center">+</button>
           </div>
-          {/* Tool icons — same height h-10 */}
-          {((gameData.team1Tools?.length > 0) ? gameData.team1Tools : ["double", "pit", "rest"]).map((toolId) => {
-            const tool = HELP_TOOLS_MAP[toolId];
-            if (!tool) return null;
-            const used = usedTools.team1.includes(toolId);
-            const isActive = toolId === "pit" && currentTeam === 1 && !used;
-            return (
-              <motion.button
-                key={toolId}
-                whileHover={isActive ? { scale: 1.1 } : {}}
-                whileTap={isActive ? { scale: 0.9 } : {}}
-                onClick={() => isActive && handlePitToggle()}
-                disabled={!isActive}
-                title={tool.name}
-                className={`w-7 h-7 md:w-10 md:h-10 rounded-full flex items-center justify-center shrink-0 transition-all border-2 ${
-                  isActive && pitActive
-                    ? "bg-yellow-400 border-yellow-200 shadow-[0_0_12px_rgba(250,204,21,0.9)] cursor-pointer"
-                    : isActive
-                      ? "bg-white/25 border-white/50 hover:bg-white/40 cursor-pointer"
-                      : "bg-white/8 border-white/15 cursor-not-allowed"
-                }`}
-              >
-                <img src={tool.icon} alt={tool.name} className="w-4 h-4 md:w-5 md:h-5 object-contain"
-                  style={isActive ? { filter: "brightness(0) invert(1)" } : { filter: "brightness(0) invert(1) opacity(0.35)" }} />
-              </motion.button>
-            );
-          })}
-          {/* Score controls */}
-          <button onClick={() => setTeam1Score((s) => s - 200)} className="w-7 h-7 md:w-10 md:h-10 rounded-full bg-white hover:bg-white/90 flex items-center justify-center transition-colors shrink-0 shadow-sm">
-            <Minus size={14} color="#5a1f8e" strokeWidth={3} />
-          </button>
-          <button onClick={() => setTeam1Score((s) => s + 200)} className="w-7 h-7 md:w-10 md:h-10 rounded-full bg-white hover:bg-white/90 flex items-center justify-center transition-colors shrink-0 shadow-sm">
-            <Plus size={14} color="#5a1f8e" strokeWidth={3} />
+          <div className="flex gap-1">
+            {Object.entries(HELP_TOOLS_MAP).map(([id, tool]) => {
+              const used = usedTools.team2.includes(id);
+              return (
+                <button key={id} onClick={() => handlePitToggle("team2", id)}
+                  className={`w-9 h-9 rounded-full flex items-center justify-center transition-all ${used ? "opacity-30" : "opacity-100"}`}
+                  style={{background: "rgba(255,255,255,0.15)"}} title={tool.name}>
+                  <img src={tool.icon} alt={tool.name} className="w-5 h-5 object-contain" />
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* الوسط */}
+        <div className="flex flex-col items-center gap-1">
+          <span className="text-white/80 text-xs font-bold">
+            دور {currentTeam === 1 ? gameData.team1Name : gameData.team2Name}
+          </span>
+          <button onClick={() => setShowEndModal(true)}
+            className="px-4 py-1.5 rounded-full bg-white/20 hover:bg-white/30 text-white text-sm font-black">
+            انهاء اللعبة
           </button>
         </div>
 
-        {/* Center — glowing vertical divider */}
-        <div className="absolute left-1/2 top-0 -translate-x-1/2 flex items-center justify-center pointer-events-none h-full">
-          <div className="bottombar-divider" />
-        </div>
-
-        {/* Team 2 */}
-        <div className="flex items-center gap-1 md:gap-2 flex-1 justify-end">
-          <button onClick={() => setTeam2Score((s) => s - 200)} className="w-7 h-7 md:w-10 md:h-10 rounded-full bg-white hover:bg-white/90 flex items-center justify-center transition-colors shrink-0 shadow-sm">
-            <Minus size={14} color="#5a1f8e" strokeWidth={3} />
-          </button>
-          <button onClick={() => setTeam2Score((s) => s + 200)} className="w-7 h-7 md:w-10 md:h-10 rounded-full bg-white hover:bg-white/90 flex items-center justify-center transition-colors shrink-0 shadow-sm">
-            <Plus size={14} color="#5a1f8e" strokeWidth={3} />
-          </button>
-          {/* Tool icons */}
-          {((gameData.team2Tools?.length > 0) ? gameData.team2Tools : ["double", "pit", "rest"]).map((toolId) => {
-            const tool = HELP_TOOLS_MAP[toolId];
-            if (!tool) return null;
-            const used = usedTools.team2.includes(toolId);
-            const isActive = toolId === "pit" && currentTeam === 2 && !used;
-            return (
-              <motion.button
-                key={toolId}
-                whileHover={isActive ? { scale: 1.1 } : {}}
-                whileTap={isActive ? { scale: 0.9 } : {}}
-                onClick={() => isActive && handlePitToggle()}
-                disabled={!isActive}
-                title={tool.name}
-                className={`w-7 h-7 md:w-10 md:h-10 rounded-full flex items-center justify-center shrink-0 transition-all border-2 ${
-                  isActive && pitActive
-                    ? "bg-yellow-400 border-yellow-200 shadow-[0_0_12px_rgba(250,204,21,0.9)] cursor-pointer"
-                    : isActive
-                      ? "bg-white/25 border-white/50 hover:bg-white/40 cursor-pointer"
-                      : "bg-white/8 border-white/15 cursor-not-allowed"
-                }`}
-              >
-                <img src={tool.icon} alt={tool.name} className="w-4 h-4 md:w-5 md:h-5 object-contain"
-                  style={isActive ? { filter: "brightness(0) invert(1)" } : { filter: "brightness(0) invert(1) opacity(0.35)" }} />
-              </motion.button>
-            );
-          })}
-          <div className="h-8 md:h-10 flex items-center justify-center bg-white/90 text-[#7B2FBE] font-black text-sm md:text-lg rounded-full shadow-inner px-2 md:px-4 border-2 min-w-[40px] md:min-w-[60px] shrink-0">
-            {team2Score}
+        {/* الفريق الأول */}
+        <div className="flex items-center gap-3 flex-row-reverse">
+          <div className="text-white text-center">
+            <div className="text-xs font-bold opacity-80">{gameData.team1Name}</div>
+            <div className="text-3xl font-black">{team1Score}</div>
           </div>
-          <div className="hidden md:flex h-10 items-center bg-white/20 text-white px-4 rounded-full font-black border border-white/20 text-[14px] shrink-0 whitespace-nowrap">
-            {gameData.team2Name}
+          <div className="flex gap-1">
+            <button onClick={() => setTeam1Score(s => s + 200)}
+              className="w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 text-white font-black text-xl flex items-center justify-center">+</button>
+            <button onClick={() => setTeam1Score(s => s - 200)}
+              className="w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 text-white font-black text-xl flex items-center justify-center">−</button>
+          </div>
+          <div className="flex gap-1">
+            {Object.entries(HELP_TOOLS_MAP).map(([id, tool]) => {
+              const used = usedTools.team1.includes(id);
+              return (
+                <button key={id} onClick={() => handlePitToggle("team1", id)}
+                  className={`w-9 h-9 rounded-full flex items-center justify-center transition-all ${used ? "opacity-30" : "opacity-100"}`}
+                  style={{background: "rgba(255,255,255,0.15)"}} title={tool.name}>
+                  <img src={tool.icon} alt={tool.name} className="w-5 h-5 object-contain" />
+                </button>
+              );
+            })}
           </div>
         </div>
       </div>
-
-      {/* Pit active indicator */}
-      <AnimatePresence>
-        {pitActive && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            className="fixed bottom-24 left-1/2 -translate-x-1/2 z-50 bg-yellow-400 text-black font-black px-6 py-3 rounded-full shadow-xl text-sm border-2 border-yellow-300"
-          >
-            ⚡ الحفرة نشطة — اضغط على سؤال لتفعيلها
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* End Game Modal */}
       <AnimatePresence>
