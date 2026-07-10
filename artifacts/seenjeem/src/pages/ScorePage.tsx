@@ -364,17 +364,17 @@ export default function ScorePage() {
                 <path d="M 200 17 L 358 96 Q 372 100 358 104 L 200 184 Q 190 192 180 184 L 22 104 Q 8 100 22 96 L 180 17 Q 190 8 200 17 Z" fill="white" stroke="url(#dg1)" strokeWidth="5" strokeLinejoin="round"/>
               </svg>
               <div style={{position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "2px"}}>
-                <span style={{fontSize: "52px", fontWeight: 900, color: "#4c1d95", lineHeight: 1}}>{team1Score}</span>
-                <div style={{display: "flex", alignItems: "center", gap: "28px", direction: "ltr"}}>
-                  <button onClick={() => setTeam1Score((s) => s - 200)} style={{width: "54px", height: "54px", borderRadius: "50%", background: "#f3e8ff", border: "2px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
-                    <Minus size={28} color="#7c3aed" strokeWidth={3}/>
+                <span style={{fontSize: "36px", fontWeight: 900, color: "#4c1d95", lineHeight: 1}}>{team1Score}</span>
+                <div style={{display: "flex", alignItems: "center", gap: "16px", direction: "ltr"}}>
+                  <button onClick={() => setTeam1Score((s) => s - 200)} style={{width: "38px", height: "38px", borderRadius: "50%", background: "#f3e8ff", border: "2px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
+                    <Minus size={18} color="#7c3aed" strokeWidth={3}/>
                   </button>
-                  <span style={{fontSize: "32px", fontWeight: 900, color: "#6d28d9", direction: "rtl"}}>{gameData.team1Name}</span>
-                  <button onClick={() => setTeam1Score((s) => s + 200)} style={{width: "54px", height: "54px", borderRadius: "50%", background: "#f3e8ff", border: "2px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
-                    <Plus size={28} color="#7c3aed" strokeWidth={3}/>
+                  <span style={{fontSize: "22px", fontWeight: 900, color: "#6d28d9", direction: "rtl"}}>{gameData.team1Name}</span>
+                  <button onClick={() => setTeam1Score((s) => s + 200)} style={{width: "38px", height: "38px", borderRadius: "50%", background: "#f3e8ff", border: "2px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
+                    <Plus size={18} color="#7c3aed" strokeWidth={3}/>
                   </button>
                 </div>
-                <div style={{display: "flex", alignItems: "center", gap: "20px", marginTop: "12px"}}>
+                <div style={{display: "flex", alignItems: "center", gap: "12px", marginTop: "8px"}}>
                   {((gameData.team1Tools?.length > 0) ? gameData.team1Tools : ["double","pit","rest"]).map((toolId) => {
                     const tool = HELP_TOOLS_MAP[toolId];
                     if (!tool) return null;
@@ -387,9 +387,9 @@ export default function ScorePage() {
                         onClick={() => isActive && handlePitToggle()}
                         disabled={!isActive}
                         title={tool.name}
-                        style={{width: "62px", height: "62px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", border: "2px solid rgba(196,181,253,0.6)", background: isActive && pitActive ? "#facc15" : isActive ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.2)", cursor: isActive ? "pointer" : "not-allowed"}}
+                        style={{width: "44px", height: "44px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", border: "2px solid rgba(196,181,253,0.6)", background: isActive && pitActive ? "#facc15" : isActive ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.2)", cursor: isActive ? "pointer" : "not-allowed"}}
                       >
-                        <img src={tool.icon} alt={tool.name} style={{width: "36px", height: "36px", objectFit: "contain", opacity: isActive ? 1 : 0.7, filter: "brightness(0) saturate(100%) invert(20%) sepia(86%) saturate(3833%) hue-rotate(264deg) brightness(91%) contrast(101%)"}}/>
+                        <img src={tool.icon} alt={tool.name} style={{width: "24px", height: "24px", objectFit: "contain", opacity: isActive ? 1 : 0.7, filter: "brightness(0) saturate(100%) invert(20%) sepia(86%) saturate(3833%) hue-rotate(264deg) brightness(91%) contrast(101%)"}}/>
                       </motion.button>
                     );
                   })}
@@ -413,17 +413,17 @@ export default function ScorePage() {
                 <path d="M 200 17 L 358 96 Q 372 100 358 104 L 200 184 Q 190 192 180 184 L 22 104 Q 8 100 22 96 L 180 17 Q 190 8 200 17 Z" fill="white" stroke="url(#dg2)" strokeWidth="5" strokeLinejoin="round"/>
               </svg>
               <div style={{position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "2px"}}>
-                <span style={{fontSize: "52px", fontWeight: 900, color: "#4c1d95", lineHeight: 1}}>{team2Score}</span>
-                <div style={{display: "flex", alignItems: "center", gap: "28px", direction: "ltr"}}>
-                  <button onClick={() => setTeam2Score((s) => s - 200)} style={{width: "54px", height: "54px", borderRadius: "50%", background: "#f3e8ff", border: "2px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
-                    <Minus size={28} color="#7c3aed" strokeWidth={3}/>
+                <span style={{fontSize: "36px", fontWeight: 900, color: "#4c1d95", lineHeight: 1}}>{team2Score}</span>
+                <div style={{display: "flex", alignItems: "center", gap: "16px", direction: "ltr"}}>
+                  <button onClick={() => setTeam2Score((s) => s - 200)} style={{width: "38px", height: "38px", borderRadius: "50%", background: "#f3e8ff", border: "2px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
+                    <Minus size={18} color="#7c3aed" strokeWidth={3}/>
                   </button>
-                  <span style={{fontSize: "32px", fontWeight: 900, color: "#6d28d9", direction: "rtl"}}>{gameData.team2Name}</span>
-                  <button onClick={() => setTeam2Score((s) => s + 200)} style={{width: "54px", height: "54px", borderRadius: "50%", background: "#f3e8ff", border: "2px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
-                    <Plus size={28} color="#7c3aed" strokeWidth={3}/>
+                  <span style={{fontSize: "22px", fontWeight: 900, color: "#6d28d9", direction: "rtl"}}>{gameData.team2Name}</span>
+                  <button onClick={() => setTeam2Score((s) => s + 200)} style={{width: "38px", height: "38px", borderRadius: "50%", background: "#f3e8ff", border: "2px solid #c4b5fd", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer"}}>
+                    <Plus size={18} color="#7c3aed" strokeWidth={3}/>
                   </button>
                 </div>
-                <div style={{display: "flex", alignItems: "center", gap: "20px", marginTop: "12px"}}>
+                <div style={{display: "flex", alignItems: "center", gap: "12px", marginTop: "8px"}}>
                   {((gameData.team2Tools?.length > 0) ? gameData.team2Tools : ["double","pit","rest"]).map((toolId) => {
                     const tool = HELP_TOOLS_MAP[toolId];
                     if (!tool) return null;
@@ -436,9 +436,9 @@ export default function ScorePage() {
                         onClick={() => isActive && handlePitToggle()}
                         disabled={!isActive}
                         title={tool.name}
-                        style={{width: "62px", height: "62px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", border: "2px solid rgba(196,181,253,0.6)", background: isActive && pitActive ? "#facc15" : isActive ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.2)", cursor: isActive ? "pointer" : "not-allowed"}}
+                        style={{width: "44px", height: "44px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", border: "2px solid rgba(196,181,253,0.6)", background: isActive && pitActive ? "#facc15" : isActive ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.2)", cursor: isActive ? "pointer" : "not-allowed"}}
                       >
-                        <img src={tool.icon} alt={tool.name} style={{width: "36px", height: "36px", objectFit: "contain", opacity: isActive ? 1 : 0.7, filter: "brightness(0) saturate(100%) invert(20%) sepia(86%) saturate(3833%) hue-rotate(264deg) brightness(91%) contrast(101%)"}}/>
+                        <img src={tool.icon} alt={tool.name} style={{width: "24px", height: "24px", objectFit: "contain", opacity: isActive ? 1 : 0.7, filter: "brightness(0) saturate(100%) invert(20%) sepia(86%) saturate(3833%) hue-rotate(264deg) brightness(91%) contrast(101%)"}}/>
                       </motion.button>
                     );
                   })}
@@ -649,7 +649,7 @@ function CategoryCard({
           </div>
         )}
 
-        <div className="score-btn-col flex flex-col justify-center gap-2 shrink-0" style={{width: "110px", padding: "0 4px"}}>
+        <div className="score-btn-col flex flex-col justify-center gap-2 shrink-0" style={{width: "80px", padding: "0 4px"}}>
           {POINTS.map((points) => {
             const played = playedCells.has(`${catIdx}-${points}-l`);
             const isLoading = loadingCell === `${catIdx}-${points}-l`;
@@ -667,8 +667,8 @@ function CategoryCard({
             borderRadius: "20px",
             background: "linear-gradient(135deg, #6A00F4 0%, #9333EA 50%, #C084FC 100%)",
             boxShadow: "0 4px 12px rgba(123,47,190,0.3)",
-            width: "210px",
-            height: "210px",
+            width: "150px",
+            height: "150px",
             flexShrink: 0,
             display: "flex",
             alignItems: "center",
@@ -677,7 +677,7 @@ function CategoryCard({
             <img src={category.img} alt={category.name} className="score-cat-img" style={{width: "100%", height: "100%", objectFit: "contain", borderRadius: "14px", background: "white", display: "block"}} />
           </div>
         </div>
-        <div className="score-btn-col flex flex-col justify-center gap-2 shrink-0" style={{width: "110px", padding: "0 4px"}}>
+        <div className="score-btn-col flex flex-col justify-center gap-2 shrink-0" style={{width: "80px", padding: "0 4px"}}>
           {POINTS.map((points) => {
             const played = playedCells.has(`${catIdx}-${points}-r`);
             const isLoading = loadingCell === `${catIdx}-${points}-r`;
