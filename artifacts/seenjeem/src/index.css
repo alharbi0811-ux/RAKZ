@@ -941,3 +941,65 @@
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(168,85,247,0.6), transparent);
 }
+
+/* ================================================================
+   QUESTION PAGE — Mobile Responsive
+   ================================================================ */
+
+/* نخفي الـ sidebar على الموبايل */
+@media (max-width: 768px) {
+  .hidden.md\:flex { display: none !important; }
+
+  /* السؤال يأخذ المساحة كاملة */
+  .flex-1.flex-col.p-6.pt-10 {
+    padding: 12px !important;
+    padding-top: 12px !important;
+  }
+
+  /* نص السؤال أصغر على الموبايل */
+  .flex-1.relative.flex.flex-col p {
+    font-size: clamp(16px, 4vw, 28px) !important;
+  }
+
+  /* شريط أسفل السؤال */
+  .flex.items-end.justify-between.px-8.pb-8 {
+    padding: 8px 12px !important;
+    padding-bottom: 12px !important;
+  }
+
+  /* زر كشف الإجابة */
+  .bg-\[\#7B2FBE\] {
+    padding: 10px 20px !important;
+    font-size: 16px !important;
+  }
+
+  /* الـ header */
+  .score-topbar {
+    padding: 6px 12px !important;
+    font-size: 13px !important;
+  }
+}
+
+/* صفحة الجواب على الموبايل */
+@media (max-width: 768px) {
+  /* الـ overlay يكون scrollable */
+  .fixed.inset-0.z-50.flex.flex-col {
+    overflow-y: auto !important;
+  }
+
+  /* نص الجواب */
+  .fixed.inset-0.z-50.flex.flex-col .text-center {
+    font-size: clamp(18px, 5vw, 36px) !important;
+  }
+
+  /* أزرار اختيار الفريق */
+  .fixed.inset-0.z-50.flex.flex-col button {
+    font-size: clamp(14px, 3.5vw, 20px) !important;
+    padding: 10px 16px !important;
+  }
+
+  /* الـ bottom bar في صفحة السؤال */
+  .flex.items-center.gap-12 {
+    gap: 12px !important;
+  }
+}
