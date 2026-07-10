@@ -462,7 +462,7 @@ export default function QuestionPage() {
 
       return (
         <div className="flex-1 flex items-center justify-center">
-          <div className="p-4 bg-white rounded-2xl" style={{ border: `4px solid ${design.accentColor}`, boxShadow: `0 0 32px ${design.accentColor}88` }}>
+          <div className="p-4 bg-white dark:bg-[#1e1830] rounded-2xl" style={{ border: `4px solid ${design.accentColor}`, boxShadow: `0 0 32px ${design.accentColor}88` }}>
             <LogoQR value={qrValue} size={280} />
           </div>
         </div>
@@ -509,7 +509,7 @@ export default function QuestionPage() {
     if (design.showQr && questionData.externalPageSlug && !qrTemplate) {
       return (
         <div className="flex flex-col items-center gap-3 pb-4">
-          <div className="p-3 bg-white rounded-2xl" style={{ border: `4px solid ${design.accentColor}`, boxShadow: `0 0 24px ${design.accentColor}66` }}>
+          <div className="p-3 bg-white dark:bg-[#1e1830] rounded-2xl" style={{ border: `4px solid ${design.accentColor}`, boxShadow: `0 0 24px ${design.accentColor}66` }}>
             <LogoQR value={`${window.location.origin}/p/${questionData.externalPageSlug}`} size={180} />
           </div>
           <p className="text-xs font-mono text-gray-400">/p/{questionData.externalPageSlug}</p>
@@ -603,7 +603,7 @@ export default function QuestionPage() {
   );
 
   const renderSidebar = () => (
-    <div className="hidden md:flex w-[260px] bg-gray-50 border-l-2 border-gray-100 p-4 pt-16 flex-col gap-6">
+    <div className="hidden md:flex w-[260px] bg-gray-50 dark:bg-[#12101f] border-l-2 border-gray-100 dark:border-purple-900/30 p-4 pt-16 flex-col gap-6">
       <TeamToolCard
         teamName={gameData!.team1Name} score={team1Score} tools={team1Tools}
         usedTools={usedTools.team1} onUseTool={(t) => handleUseTool(1, t)}
@@ -721,7 +721,7 @@ export default function QuestionPage() {
             <div className="flex items-end justify-between px-8 pb-8 mt-auto">
               {design.showCategoryBadge ? (
                 <div
-                  className="rounded-2xl bg-white px-4 py-2"
+                  className="rounded-2xl bg-white dark:bg-[#1a1428] px-4 py-2"
                   style={{
                     border: `2px solid ${design.accentColor}`,
                     ...editOutline("category-badge"),
@@ -772,7 +772,7 @@ export default function QuestionPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-white z-50 flex flex-col"
+            className="fixed inset-0 bg-white dark:bg-[#0d0d1a] z-50 flex flex-col"
             dir="rtl"
           >
             {renderHeader()}
@@ -781,7 +781,7 @@ export default function QuestionPage() {
               {renderSidebar()}
 
               <div className="flex-1 flex flex-col p-6 pt-10">
-                <div className="flex-1 relative border-4 border-[#7B2FBE] rounded-3xl bg-white flex flex-col">
+                <div className="flex-1 relative border-4 border-[#7B2FBE] rounded-3xl bg-white dark:bg-[#1e1830] flex flex-col">
 
                   {/* Circular timer — centered in card */}
                   <div className="flex-1 flex flex-col items-center justify-center gap-5">
@@ -813,7 +813,7 @@ export default function QuestionPage() {
 
                   {/* Bottom row */}
                   <div className="flex items-end justify-between px-8 pb-8">
-                    <div className="border-2 border-[#7B2FBE] rounded-2xl bg-white px-4 py-2">
+                    <div className="border-2 border-[#7B2FBE] rounded-2xl bg-white dark:bg-[#1a1428] px-4 py-2">
                       <span className="font-black text-[#7B2FBE] tracking-wide text-[20px]">{questionData.categoryName}</span>
                     </div>
                     <button
@@ -877,7 +877,7 @@ export default function QuestionPage() {
       <AnimatePresence>
         {showTeamSelection && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-white z-50 flex flex-col p-6" dir="rtl">
+            className="fixed inset-0 bg-white dark:bg-[#0d0d1a] z-50 flex flex-col p-6" dir="rtl">
             <div className="flex-1 flex flex-col items-center justify-center gap-12">
               <h1 className="text-4xl font-black text-[#7B2FBE] text-center">أي فريق جاوب صح ؟</h1>
               <div className="flex flex-col gap-4">
@@ -917,7 +917,7 @@ export default function QuestionPage() {
         {lightboxImage && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             onClick={() => setLightboxImage(null)}
-            className="fixed inset-0 z-[100] bg-black/80 flex items-center justify-center cursor-zoom-out p-8">
+            className="fixed inset-0 z-[100] bg-black/85 dark:bg-black/90 flex items-center justify-center cursor-zoom-out p-8">
             <motion.img initial={{ scale: 0.85 }} animate={{ scale: 1 }} exit={{ scale: 0.85 }}
               src={lightboxImage} alt="صورة مكبّرة" className="max-h-full max-w-full object-contain rounded-2xl shadow-2xl"
               onClick={(e) => e.stopPropagation()} />
