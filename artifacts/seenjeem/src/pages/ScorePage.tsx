@@ -18,6 +18,8 @@ const HELP_TOOLS_MAP: Record<string, { name: string; icon: string }> = {
   rest:   { name: "استريح",      icon: `${TOOLS_CDN}/circle-hand.png` },
 };
 
+const HELP_TOOLS = Object.entries(HELP_TOOLS_MAP).map(([id, val]) => ({ id, ...val }));
+
 type CategoryStatus = "open" | "closed" | "in_progress";
 type CategoryData = { id: string; name: string; img: string };
 type GameData = {
