@@ -644,8 +644,9 @@ export default function QuestionPage() {
 
   return (
     <div
-      className="min-h-screen flex flex-col" dir="rtl"
-      style={{ background: design.bgColor }}
+      ref={pageRef}
+      className="flex flex-col" dir="rtl"
+      style={{ background: design.bgColor, minHeight: "768px", minWidth: "1024px" }}
       onClick={() => { if (editMode) { setEditSelected(null); setEditToolbarPos(null); } }}
     >
       {renderHeader()}
@@ -796,7 +797,7 @@ export default function QuestionPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            ref={pageRef} className="fixed inset-0 bg-white dark:bg-[#0d0d1a] z-50 flex flex-col"
+            className="fixed inset-0 bg-white dark:bg-[#0d0d1a] z-50 flex flex-col"
             dir="rtl"
           >
             {renderHeader()}
