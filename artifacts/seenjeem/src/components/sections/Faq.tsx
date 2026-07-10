@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 
@@ -35,6 +35,15 @@ const faqs = [
 
 export function Faq() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsDark(document.documentElement.classList.contains("dark"));
+    check();
+    const observer = new MutationObserver(check);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section className="py-20 relative" dir="rtl">
@@ -70,7 +79,7 @@ export function Faq() {
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.04 }}
                 key={idx}
-                className="rounded-2xl overflow-hidden transition-all duration-300 bg-white dark:bg-[#1e1830]"
+                className="rounded-2xl overflow-hidden transition-all duration-300"
                 style={{
                   border: `1px solid ${isOpen ? "rgba(123,47,190,0.3)" : "rgba(0,0,0,0.08)"}`,
                   boxShadow: isOpen ? "0 4px 24px rgba(123,47,190,0.12)" : "0 1px 4px rgba(0,0,0,0.04)",
@@ -78,8 +87,8 @@ export function Faq() {
               >
                 <button
                   onClick={() => setOpenIndex(isOpen ? null : idx)}
-                  className="w-full px-6 py-5 flex items-center justify-between text-right transition-colors focus:outline-none bg-white dark:bg-[#1e1830]"
-                  style={{ background: isOpen ? "rgba(123,47,190,0.08)" : undefined }}
+                  className="w-full px-6 py-5 flex items-center justify-between text-right transition-colors focus:outline-none"
+                  style={{ background: isDark ? (isOpen ? "rgba(109,40,217,0.15)" : "rgba(30,24,48,0.95)") : (isOpen ? "rgba(123,47,190,0.05)" : "white") }}
                 >
                   <span className="text-lg font-black text-foreground pl-4 leading-relaxed flex-1">
                     {faq.q}
@@ -103,9 +112,10 @@ export function Faq() {
                       transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
                       className="overflow-hidden"
                     >
-                      <div className="px-6 pb-6 pt-3 font-medium text-base leading-relaxed text-gray-600 dark:text-purple-200"
+                      <div className="px-6 pb-6 pt-3 font-medium text-base leading-relaxed"
                         style={{
-                          borderTop: "1px solid rgba(123,47,190,0.1)",
+                          borderTop: "1px solid rgba(123,47,190,0.15)",
+                          color: isDark ? "rgba(196,181,253,0.85)" : "rgba(0,0,0,0.65)",
                         }}>
                         {faq.a}
                       </div>
