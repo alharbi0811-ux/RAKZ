@@ -70,7 +70,7 @@ export function Faq() {
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.04 }}
                 key={idx}
-                className="rounded-2xl overflow-hidden transition-all duration-300"
+                className="rounded-2xl overflow-hidden transition-all duration-300 bg-white dark:bg-[#1e1830]"
                 style={{
                   border: `1px solid ${isOpen ? "rgba(123,47,190,0.3)" : "rgba(0,0,0,0.08)"}`,
                   boxShadow: isOpen ? "0 4px 24px rgba(123,47,190,0.12)" : "0 1px 4px rgba(0,0,0,0.04)",
@@ -78,8 +78,8 @@ export function Faq() {
               >
                 <button
                   onClick={() => setOpenIndex(isOpen ? null : idx)}
-                  className="w-full px-6 py-5 flex items-center justify-between text-right transition-colors focus:outline-none"
-                  style={{ background: isOpen ? "rgba(123,47,190,0.05)" : "white" }}
+                  className="w-full px-6 py-5 flex items-center justify-between text-right transition-colors focus:outline-none bg-white dark:bg-[#1e1830]"
+                  style={{ background: isOpen ? "rgba(123,47,190,0.08)" : undefined }}
                 >
                   <span className="text-lg font-black text-foreground pl-4 leading-relaxed flex-1">
                     {faq.q}
@@ -103,9 +103,8 @@ export function Faq() {
                       transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
                       className="overflow-hidden"
                     >
-                      <div className="px-6 pb-6 pt-3 font-medium text-base leading-relaxed"
+                      <div className="px-6 pb-6 pt-3 font-medium text-base leading-relaxed text-gray-600 dark:text-purple-200"
                         style={{
-                          color: "rgba(0,0,0,0.65)",
                           borderTop: "1px solid rgba(123,47,190,0.1)",
                         }}>
                         {faq.a}
