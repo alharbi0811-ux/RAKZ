@@ -75,7 +75,31 @@ function CircularTimerSVG({ timeLeft, totalTime, color, size = 160 }: { timeLeft
 export default function QuestionPage() {
 
 
-  const [, navigate] = useLocation();
+  // ─── Smart Scale ───
+  const qPageRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const DESIGN_W = 1440, DESIGN_H = 900;
+    function applyScale() {
+      const el = qPageRef.current;
+      if (!el) return;
+      const vw = window.innerWidth, vh = window.innerHeight;
+      const scale = Math.min(vw / DESIGN_W, vh / DESIGN_H, 1);
+      el.style.transform = `scale(${scale})`;
+      el.style.transformOrigin = "top left";
+      el.style.width = `${DESIGN_W}px`;
+      el.style.height = `${DESIGN_H}px`;
+      el.style.position = "fixed";
+      el.style.top = "0";
+      el.style.left = `${(vw - DESIGN_W * scale) / 2}px`;
+      el.style.overflow = "hidden";
+    }
+    applyScale();
+    window.addEventListener("resize", applyScale);
+    window.addEventListener("orientationchange", () => setTimeout(applyScale, 300));
+    return () => window.removeEventListener("resize", applyScale);
+  }, []);
+
+    const [, navigate] = useLocation();
   const { user } = useAuth();
   const isAdmin = user?.isAdmin ?? false;
   const [gameData, setGameData] = useState<GameData | null>(null);
@@ -622,7 +646,8 @@ export default function QuestionPage() {
 
   return (
     <div
-      className="min-h-screen flex flex-col" dir="rtl"
+      ref={qPageRef}
+      className="flex flex-col" dir="rtl"
       style={{ background: design.bgColor }}
       onClick={() => { if (editMode) { setEditSelected(null); setEditToolbarPos(null); } }}
     >
