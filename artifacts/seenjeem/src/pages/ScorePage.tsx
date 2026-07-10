@@ -334,6 +334,520 @@ export default function ScorePage() {
       </div>
 
       {/* Game Board */}
+      <div className="flex-1 min-h-0 p-3 md:p-4 overflow-auto">
+        <div className="grid grid-cols-3 gap-3 h-full" style={{ gridTemplateRows: "1fr 1fr" }}>
+          {[...gameData.team1Categories, ...gameData.team2Categories].map((cat, i) => {
+            const catIdx = i < 3 ? i : i - 3;
+            return (
+              <CategoryCard
+                key={cat.id} category={cat} catIdx={catIdx} playedCells={playedCells}
+                onCellClick={handleCellClick} teamColor="#7B2FBE" loadingCell={loadingCell}
+                catStatus={categoryStatuses[cat.id] ?? { status: "open", lockMessage: null }}
+                isAdmin={isAdmin}
+              />
+            );
+          })}
+        </div>
+      </div>
+
+      {/* ─── Bottom Bar — النقاط والأدوات ─── */}
+      <div className="shrink-0 px-4 py-3 flex items-center justify-between gap-4"
+        style={{ background: "linear-gradient(135deg, #6A00F4, #7B3FF2, #8E63E6, #A07CE0, #B89AE6)" }}>
+
+        {/* الفريق الثاني */}
+        <div className="flex items-center gap-3">
+          <div className="text-white text-center">
+            <div className="text-xs font-bold opacity-80">{gameData.team2Name}</div>
+            <div className="text-3xl font-black">{team2Score}</div>
+          </div>
+          <div className="flex items-center gap-1">
+            <button onClick={() => setTeam2Score(s => s - 200)}
+              className="w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white font-black text-lg">−</button>
+            <button onClick={() => setTeam2Score(s => s + 200)}
+              className="w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white font-black text-lg">+</button>
+          </div>
+          <div className="flex gap-1">
+            {HELP_TOOLS.map(tool => {
+              const used = usedTools.team2.includes(tool.id);
+              return (
+                <button key={tool.id}
+                  onClick={() => handlePitToggle("team2", tool.id)}
+                  className={`w-9 h-9 rounded-full flex items-center justify-center transition-all ${used ? "opacity-30" : "opacity-100"}`}
+                  style={{ background: "rgba(255,255,255,0.15)" }}
+                  title={tool.label}>
+                  <img src={tool.img} alt={tool.label} className="w-5 h-5 object-contain" />
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* وسط - زر الانتهاء */}
+        <div className="flex flex-col items-center gap-1">
+          <span className="text-white/70 text-xs font-bold">دور {currentTeam === 1 ? gameData.team1Name : gameData.team2Name}</span>
+          <button onClick={() => setShowEndModal(true)}
+            className="px-4 py-1.5 rounded-full bg-white/20 hover:bg-white/30 text-white text-sm font-black">
+            انهاء اللعبة
+          </button>
+        </div>
+
+        {/* الفريق الأول */}
+        <div className="flex items-center gap-3 flex-row-reverse">
+          <div className="text-white text-center">
+            <div className="text-xs font-bold opacity-80">{gameData.team1Name}</div>
+            <div className="text-3xl font-black">{team1Score}</div>
+          </div>
+          <div className="flex items-center gap-1">
+            <button onClick={() => setTeam1Score(s => s + 200)}
+              className="w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white font-black text-lg">+</button>
+            <button onClick={() => setTeam1Score(s => s - 200)}
+              className="w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white font-black text-lg">−</button>
+          </div>
+          <div className="flex gap-1">
+            {HELP_TOOLS.map(tool => {
+              const used = usedTools.team1.includes(tool.id);
+              return (
+                <button key={tool.id}
+                  onClick={() => handlePitToggle("team1", tool.id)}
+                  className={`w-9 h-9 rounded-full flex items-center justify-center transition-all ${used ? "opacity-30" : "opacity-100"}`}
+                  style={{ background: "rgba(255,255,255,0.15)" }}
+                  title={tool.label}>
+                  <img src={tool.img} alt={tool.label} className="w-5 h-5 object-contain" />
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
+
+      {/* End Game Modal */}
+      <AnimatePresence>
+        {(showEndModal || allPlayed) && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4"
+            onClick={() => setShowEndModal(false)}
+          >
+            <motion.div initial={{ scale: 0.8, y: 30 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.8, y: 30 }}
+              className="bg-white rounded-3xl overflow-hidden max-w-md w-full shadow-2xl" onClick={(e) => e.stopPropagation()}
+            >
+              <div className="bg-gradient-to-l from-[#7B2FBE] to-[#5a1f8e] p-8 text-center">
+                <Trophy size={64} className="text-yellow-300 mx-auto mb-4" />
+                <h2 className="text-3xl font-black text-white mb-2">
+                  {team1Score > team2Score ? `فاز ${gameData.team1Name}!` : team2Score > team1Score ? `فاز ${gameData.team2Name}!` : "تعادل!"}
+                </h2>
+              </div>
+              <div className="p-6">
+                <div className="flex items-center justify-around mb-6">
+                  <div className="text-center"><p className="text-sm text-foreground/60 mb-1">{gameData.team1Name}</p><p className="text-4xl font-black text-[#7B2FBE]">{team1Score}</p></div>
+                  <div className="text-foreground/30 font-black text-2xl">VS</div>
+                  <div className="text-center"><p className="text-sm text-foreground/60 mb-1">{gameData.team2Name}</p><p className="text-4xl font-black text-[#9333ea]">{team2Score}</p></div>
+                </div>
+                <div className="flex gap-3">
+                  <button onClick={handleResetBoard} className="flex-1 bg-[#7B2FBE] hover:bg-[#8B35D6] text-white font-bold py-3 rounded-xl transition-colors">لعبة جديدة</button>
+                  <button onClick={handleExit} className="flex-1 bg-gray-200 hover:bg-gray-300 text-foreground font-bold py-3 rounded-xl transition-colors">الخروج</button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+function CategoryCard({
+  category, catIdx, playedCells, onCellClick, teamColor, loadingCell, catStatus, isAdmin,
+}: {
+  category: CategoryData; catIdx: number; playedCells: Set<string>;
+  onCellClick: (catIdx: number, points: number, side: "l" | "r") => void;
+  teamColor: string; loadingCell?: string | null;
+  catStatus: { status: string; lockMessage: string | null };
+  isAdmin: boolean;
+}) {
+  const isLocked = catStatus.status !== "open";
+  const playerBlocked = isLocked && !isAdmin;
+
+  const btnClass = (played: boolean, isLoading: boolean) =>
+    `w-full rounded-2xl font-black text-lg transition-all py-3 border-2 ` +
+    (played ? "bg-gray-200 text-gray-400 cursor-not-allowed border-gray-200"
+      : isLoading ? "bg-[#7B2FBE] text-white cursor-wait border-[#7B2FBE]"
+      : playerBlocked ? "bg-gray-200 text-gray-400 cursor-not-allowed border-gray-200"
+      : "bg-gradient-to-b from-[#7c3aed] to-[#a855f7] text-white cursor-pointer shadow-md hover:shadow-lg border-[#7B2FBE] hover:brightness-110 active:scale-95");
+
+  return (
+    <div className="bg-white rounded-3xl shadow-lg border-2 border-[#8b5cf6]/30 flex flex-col overflow-hidden h-full">
+      {/* صورة الفئة واسمها */}
+      <div className="flex-1 flex flex-row items-center gap-2 p-3">
+        {/* أزرار اليمين */}
+        <div className="flex flex-col gap-1.5 flex-1">
+          {[200, 400, 600].map((pts) => {
+            const key = `${catIdx}-${pts}-l`;
+            const played = playedCells.has(key);
+            const loading = loadingCell === key;
+            return (
+              <button key={pts} disabled={played || playerBlocked}
+                className={btnClass(played, loading)}
+                onClick={() => !played && !playerBlocked && onCellClick(catIdx, pts, "l")}>
+                {loading ? "..." : played ? "✓" : pts}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* صورة الفئة */}
+        <div className="flex flex-col items-center gap-1 flex-shrink-0">
+          <div className="rounded-2xl overflow-hidden border-2 border-[#8b5cf6]/40 shadow-md"
+            style={{ width: "80px", height: "80px" }}>
+            <img src={category.img} alt={category.name}
+              className="w-full h-full object-contain bg-white" />
+          </div>
+          <span className="text-[#6d28d9] font-black text-xs text-center leading-tight"
+            style={{ maxWidth: "80px" }}>
+            {category.name}
+          </span>
+        </div>
+
+        {/* أزرار اليسار */}
+        <div className="flex flex-col gap-1.5 flex-1">
+          {[200, 400, 600].map((pts) => {
+            const key = `${catIdx}-${pts}-r`;
+            const played = playedCells.has(key);
+            const loading = loadingCell === key;
+            return (
+              <button key={pts} disabled={played || playerBlocked}
+                className={btnClass(played, loading)}
+                onClick={() => !played && !playerBlocked && onCellClick(catIdx, pts, "r")}>
+                {loading ? "..." : played ? "✓" : pts}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Admin lock badge */}
+      {isAdmin && isLocked && (
+        <div className="text-center text-[10px] font-bold text-red-500 pb-1">
+          🔒 {catStatus.lockMessage || catStatus.status}
+        </div>
+      )}
+      {playerBlocked && (
+        <div className="text-center text-[11px] font-bold text-gray-400 pb-1">
+          🔒 {catStatus.lockMessage || "مغلق"}
+        </div>
+      )}
+    </div>
+  );
+}
+
+
+export default function ScorePage() {
+  const [, navigate] = useLocation();
+  const { token, user } = useAuth();
+  const isAdmin = user?.isAdmin ?? false;
+  const [gameData, setGameData] = useState<GameData | null>(null);
+  const [currentTeam, setCurrentTeam] = useState<1 | 2>(1);
+  const [team1Score, setTeam1Score] = useState(0);
+  const [team2Score, setTeam2Score] = useState(0);
+  const [playedCells, setPlayedCells] = useState<Set<string>>(new Set());
+  const [showEndModal, setShowEndModal] = useState(false);
+  const [loadingCell, setLoadingCell] = useState<string | null>(null);
+  const [questionCache, setQuestionCache] = useState<Record<string, any>>({});
+  const [usedTools, setUsedTools] = useState<{ team1: string[]; team2: string[] }>({ team1: [], team2: [] });
+  const [pitActive, setPitActive] = useState(false);
+  const [categoryStatuses, setCategoryStatuses] = useState<Record<string, { status: CategoryStatus; lockMessage: string | null }>>({});
+  const saveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  // ─── Smart Scale: يضبط حجم اللعبة حسب شاشة الجهاز ───
+  useEffect(() => {
+    const GAME_W = 1400; // العرض التصميمي للعبة
+    const GAME_H = 700;  // الارتفاع التصميمي للعبة
+
+    function applyScale() {
+      const el = wrapperRef.current;
+      if (!el) return;
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      const scaleX = vw / GAME_W;
+      const scaleY = vh / GAME_H;
+      const scale = Math.min(scaleX, scaleY, 1); // لا تكبر فوق 100% على الديسكتوب
+      el.style.transform = `scale(${scale})`;
+      el.style.transformOrigin = "top left";
+      el.style.width = `${GAME_W}px`;
+      el.style.height = `${GAME_H}px`;
+      el.style.position = "fixed";
+      el.style.top = "0";
+      // نحسب offset لمركزة اللعبة أفقياً
+      const scaledW = GAME_W * scale;
+      el.style.left = `${(vw - scaledW) / 2}px`;
+    }
+
+    applyScale();
+    window.addEventListener("resize", applyScale);
+    window.addEventListener("orientationchange", () => setTimeout(applyScale, 300));
+    return () => {
+      window.removeEventListener("resize", applyScale);
+      window.removeEventListener("orientationchange", applyScale);
+    };
+  }, []);
+
+  useEffect(() => {
+    const stored = localStorage.getItem("rakez-game-data");
+    if (stored) setGameData(JSON.parse(stored));
+    else setGameData({
+      team1Name: "الفريق الأول", team2Name: "الفريق الثاني", gameName: "ركز",
+      team1Categories: [
+        { id: "kw", name: "الكويت", img: `${CDN}/1769955614865-48498592.jpg` },
+        { id: "gen-info", name: "معلومات عامة", img: `${CDN}/1714490927962-855974365.jpg` },
+        { id: "gen-products", name: "منتجات", img: `${CDN}/1714490909938-715756503.jpg` },
+      ],
+      team2Categories: [
+        { id: "new-live1", name: "الغميضة", img: `${CDN}/1772459128688-499091855.jpg` },
+        { id: "gen-tech", name: "تكنولوجيا", img: `${CDN}/1755459861188-495099916.jpg` },
+        { id: "gen-poetry", name: "عالم الشعر", img: `${CDN}/1738076222656-24201363.jpg` },
+      ],
+      team1Tools: ["double", "pit", "rest"],
+      team2Tools: ["double", "pit", "rest"],
+    });
+
+    const scores = localStorage.getItem("rakez-scores");
+    if (scores) { const p = JSON.parse(scores); setTeam1Score(p.team1Score || 0); setTeam2Score(p.team2Score || 0); }
+
+    const savedCells = localStorage.getItem("rakez-played-cells");
+    if (savedCells) setPlayedCells(new Set(JSON.parse(savedCells)));
+
+    const savedTeam = localStorage.getItem("rakez-current-team");
+    if (savedTeam) setCurrentTeam(JSON.parse(savedTeam) as 1 | 2);
+
+    const tools = localStorage.getItem("rakez-used-tools");
+    if (tools) setUsedTools(JSON.parse(tools));
+
+    const answered = localStorage.getItem("rakez-answered-cell");
+    if (answered) {
+      const { catIdx, points, side, correct, team, pitActive, double: isDouble } = JSON.parse(answered);
+      localStorage.removeItem("rakez-answered-cell");
+      const key = `${catIdx}-${points}-${side ?? "l"}`;
+      setPlayedCells((prev) => { const next = new Set(prev); next.add(key); return next; });
+      const finalPoints = isDouble ? points * 2 : points;
+      if (correct && team !== 0) {
+        if (pitActive) {
+          if (team === 1) {
+            setTeam1Score((s) => s + finalPoints);
+            setTeam2Score((s) => s - finalPoints);
+          } else {
+            setTeam2Score((s) => s + finalPoints);
+            setTeam1Score((s) => s - finalPoints);
+          }
+        } else {
+          if (team === 1) setTeam1Score((s) => s + finalPoints);
+          else setTeam2Score((s) => s + finalPoints);
+        }
+      }
+      setCurrentTeam((t) => (t === 1 ? 2 : 1));
+    }
+  }, []);
+
+  useEffect(() => { if (playedCells.size > 0) localStorage.setItem("rakez-played-cells", JSON.stringify([...playedCells])); }, [playedCells]);
+  useEffect(() => { localStorage.setItem("rakez-scores", JSON.stringify({ team1Score, team2Score })); }, [team1Score, team2Score]);
+  useEffect(() => { localStorage.setItem("rakez-current-team", JSON.stringify(currentTeam)); }, [currentTeam]);
+
+  const allCategories = gameData ? [...gameData.team1Categories, ...gameData.team2Categories] : [];
+  const totalCells = allCategories.length * POINTS.length * 2;
+  const allPlayed = totalCells > 0 && playedCells.size >= totalCells;
+
+  useEffect(() => {
+    if (totalCells > 0 && allPlayed) {
+      const t = setTimeout(() => navigate("/win-page"), 1200);
+      return () => clearTimeout(t);
+    }
+  }, [allPlayed, totalCells]);
+
+  useEffect(() => {
+    const sessionId = localStorage.getItem("rakez-session-id");
+    if (!sessionId || !token) return;
+    if (saveTimerRef.current) clearTimeout(saveTimerRef.current);
+    saveTimerRef.current = setTimeout(() => {
+      fetch(`${API_BASE}/history/${sessionId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ boardState: { playedCells: [...playedCells], team1Score, team2Score, currentTeam } }),
+      }).catch(() => {});
+    }, 1500);
+    return () => { if (saveTimerRef.current) clearTimeout(saveTimerRef.current); };
+  }, [playedCells, team1Score, team2Score, currentTeam, token]);
+
+  // Fetch category statuses
+  useEffect(() => {
+    if (!gameData) return;
+    const cats = [...gameData.team1Categories, ...gameData.team2Categories];
+    const ids = cats.map((c) => c.id).filter((id) => !isNaN(Number(id))).join(",");
+    if (!ids) return;
+    fetch(`${API_BASE}/categories/statuses?ids=${ids}`)
+      .then((r) => r.ok ? r.json() : {})
+      .then((data) => setCategoryStatuses(data))
+      .catch(() => {});
+  }, [gameData]);
+
+  const POINTS_LIST = [200, 400, 600];
+
+  useEffect(() => {
+    if (!gameData) return;
+    const cats = [...gameData.team1Categories, ...gameData.team2Categories];
+    const usedIds: number[] = JSON.parse(localStorage.getItem("rakez-used-question-ids") || "[]");
+    const excludeParam = usedIds.length ? `&excludeIds=${usedIds.join(",")}` : "";
+    cats.forEach((cat) => {
+      POINTS_LIST.forEach((pts) => {
+        const cacheKey = `${cat.id}-${pts}`;
+        setQuestionCache((prev) => {
+          if (prev[cacheKey]) return prev;
+          fetch(`${API_BASE}/questions/game?categoryId=${cat.id}&points=${pts}${excludeParam}`)
+            .then((r) => (r.ok ? r.json() : null))
+            .then((data) => { if (data) setQuestionCache((p) => ({ ...p, [cacheKey]: data })); })
+            .catch(() => {});
+          return prev;
+        });
+      });
+    });
+  }, [gameData]);
+
+  if (!gameData) return null;
+
+  const prefetchQuestion = (categoryId: string, pts: number, excludeIds: number[]) => {
+    const cacheKey = `${categoryId}-${pts}`;
+    const excludeParam = excludeIds.length ? `&excludeIds=${excludeIds.join(",")}` : "";
+    fetch(`${API_BASE}/questions/game?categoryId=${categoryId}&points=${pts}${excludeParam}`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => { if (data) setQuestionCache((p) => ({ ...p, [cacheKey]: data })); })
+      .catch(() => {});
+  };
+
+  const currentTeamKey = currentTeam === 1 ? "team1" : "team2";
+
+  const handlePitToggle = () => setPitActive((v) => !v);
+
+  const handleCellClick = (catIdx: number, points: number, side: "l" | "r") => {
+    const key = `${catIdx}-${points}-${side}`;
+    if (playedCells.has(key) || loadingCell) return;
+
+    const category = allCategories[catIdx];
+
+    // Block locked/in_progress categories for non-admins
+    if (!isAdmin) {
+      const catStatus = categoryStatuses[category.id];
+      if (catStatus && catStatus.status !== "open") return;
+    }
+
+    const cacheKey = `${category.id}-${points}`;
+    const cached = questionCache[cacheKey];
+
+    if (pitActive) {
+      const updatedTools = { ...usedTools, [currentTeamKey]: [...usedTools[currentTeamKey], "pit"] };
+      setUsedTools(updatedTools);
+      localStorage.setItem("rakez-used-tools", JSON.stringify(updatedTools));
+    }
+
+    const navigateToQuestion = (q: any) => {
+      localStorage.setItem("rakez-current-question", JSON.stringify({
+        categoryId: category.id, categoryName: category.name,
+        points, catIdx, side, currentTeam,
+        questionId: q.id, question: q.question, answer: q.answer,
+        image: q.image || "",
+        answerImage: q.answerImage || "",
+        externalPageSlug: q.externalPageSlug || null,
+        pitActive,
+      }));
+      setPitActive(false);
+      navigate("/question");
+    };
+
+    if (cached) {
+      const usedIds: number[] = JSON.parse(localStorage.getItem("rakez-used-question-ids") || "[]");
+      const newUsed = [...usedIds, cached.id];
+      localStorage.setItem("rakez-used-question-ids", JSON.stringify(newUsed));
+      setQuestionCache((prev) => { const next = { ...prev }; delete next[cacheKey]; return next; });
+      prefetchQuestion(category.id, points, newUsed);
+      navigateToQuestion(cached);
+    } else {
+      setLoadingCell(key);
+      const usedIds: number[] = JSON.parse(localStorage.getItem("rakez-used-question-ids") || "[]");
+      const excludeParam = usedIds.length ? `&excludeIds=${usedIds.join(",")}` : "";
+      fetch(`${API_BASE}/questions/game?categoryId=${category.id}&points=${points}${excludeParam}`)
+        .then((r) => (r.ok ? r.json() : null))
+        .then((data) => {
+          const q = data || { question: "لا توجد أسئلة لهذه الفئة.", answer: "—", image: category.img };
+          if (data?.id) {
+            const latest: number[] = JSON.parse(localStorage.getItem("rakez-used-question-ids") || "[]");
+            const newUsed = [...latest, data.id];
+            localStorage.setItem("rakez-used-question-ids", JSON.stringify(newUsed));
+            prefetchQuestion(category.id, points, newUsed);
+          }
+          navigateToQuestion(q);
+        })
+        .catch(() => setLoadingCell(null))
+        .finally(() => setLoadingCell(null));
+    }
+  };
+
+  const handleEndGame = () => setShowEndModal(true);
+
+  const handleExit = () => {
+    const sessionId = localStorage.getItem("rakez-session-id");
+    if (sessionId && token) {
+      fetch(`${API_BASE}/history/${sessionId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ status: "completed" }),
+      }).catch(() => {});
+    }
+    ["rakez-game-data","rakez-scores","rakez-played-cells","rakez-current-team","rakez-used-tools","rakez-current-question","rakez-session-id","rakez-used-question-ids"].forEach(k => localStorage.removeItem(k));
+    navigate("/start-game");
+  };
+
+  const handleResetBoard = () => {
+    setPlayedCells(new Set()); setTeam1Score(0); setTeam2Score(0); setCurrentTeam(1);
+    setShowEndModal(false); setPitActive(false);
+    setUsedTools({ team1: [], team2: [] });
+    localStorage.removeItem("rakez-played-cells");
+    localStorage.setItem("rakez-scores", JSON.stringify({ team1Score: 0, team2Score: 0 }));
+    localStorage.setItem("rakez-current-team", JSON.stringify(1));
+    localStorage.removeItem("rakez-used-tools");
+  };
+
+  const currentTeamName = currentTeam === 1 ? gameData.team1Name : gameData.team2Name;
+
+  return (
+    <div ref={wrapperRef} className="score-page-wrapper bg-gradient-to-br from-[#f0e8ff] via-[#e8e0f0] to-[#f0f0ff] flex flex-col" dir="rtl">
+      {/* Rotate device prompt for portrait mode */}
+      <div className="rotate-device-prompt">
+        <div className="rotate-device-prompt-icon">📱</div>
+        <div className="rotate-device-prompt-text">قم بتدوير الجهاز أفقياً</div>
+        <div className="rotate-device-prompt-sub">للحصول على أفضل تجربة لعب</div>
+      </div>
+      {/* Top Bar */}
+      <div className="score-topbar shrink-0 px-3 py-2 md:px-6 md:pt-[24px] md:pb-[24px] shadow-lg border-b border-white/10" style={{ background: "linear-gradient(135deg, #6A00F4, #7B3FF2, #8E63E6, #A07CE0, #B89AE6)" }}>
+        <div className="flex items-center justify-between h-full relative">
+          <div className="flex items-center gap-2 md:gap-4 shrink-0">
+            <img src={`${import.meta.env.BASE_URL}logo-white.png`} alt="ركز" className="h-6 md:h-10 md:pl-[22px] md:pr-[22px]" />
+            <div className="bg-white/20 backdrop-blur-sm text-white px-2 py-1 md:px-5 md:py-2 md:pt-[10px] md:pb-[10px] md:pl-[25px] md:pr-[25px] rounded-full font-bold border border-white/20 text-[10px] md:text-[15px]">
+              دور: {currentTeamName}
+            </div>
+          </div>
+          <div className="absolute inset-x-0 flex justify-center pointer-events-none">
+            <span className="text-white font-bold text-xs md:text-lg">{gameData.gameName}</span>
+          </div>
+          <div className="flex items-center gap-1 md:gap-1.5 shrink-0">
+            <IconBtn icon={<Eye size={16} />} label="انتهاء اللعبة" onClick={handleEndGame} tooltipPos="bottom"
+              className="bg-white/15 hover:bg-white/30 border-2 border-white/25 hover:border-white/45 text-white" />
+            <IconBtn icon={<RotateCcw size={16} />} label="إعادة" onClick={handleResetBoard} tooltipPos="bottom"
+              className="bg-white/15 hover:bg-white/30 border-2 border-white/25 hover:border-white/45 text-white" />
+            <IconBtn icon={<LogOut size={16} />} label="الخروج" onClick={handleExit} tooltipPos="bottom"
+              className="bg-white/15 hover:bg-white/30 border-2 border-white/25 hover:border-white/45 text-white" />
+          </div>
+        </div>
+      </div>
+
+      {/* Game Board */}
       <div className="score-gameboard flex-1 min-h-0 p-2 md:p-4 flex flex-col gap-2 md:gap-4">
         <div className="flex-1 min-h-0 grid grid-cols-3 gap-1.5 md:gap-4">
           {gameData.team1Categories.map((cat, catIdx) => (
