@@ -73,28 +73,6 @@ function CircularTimerSVG({ timeLeft, totalTime, color, size = 160 }: { timeLeft
 }
 
 export default function QuestionPage() {
-  // ─── Smart Scale للأيفون ───
-  const pageRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const DESIGN_W = 1024, DESIGN_H = 768;
-    function applyScale() {
-      const el = pageRef.current;
-      if (!el) return;
-      const vw = window.innerWidth, vh = window.innerHeight;
-      const scale = Math.min(vw / DESIGN_W, vh / DESIGN_H, 1);
-      el.style.transform = `scale(${scale})`;
-      el.style.transformOrigin = "top left";
-      el.style.width = `${DESIGN_W}px`;
-      el.style.height = `${DESIGN_H}px`;
-      el.style.position = "fixed";
-      el.style.top = "0";
-      el.style.left = `${(vw - DESIGN_W * scale) / 2}px`;
-    }
-    applyScale();
-    window.addEventListener("resize", applyScale);
-    window.addEventListener("orientationchange", () => setTimeout(applyScale, 300));
-    return () => { window.removeEventListener("resize", applyScale); };
-  }, []);
 
 
   const [, navigate] = useLocation();
@@ -644,9 +622,8 @@ export default function QuestionPage() {
 
   return (
     <div
-      ref={pageRef}
-      className="flex flex-col" dir="rtl"
-      style={{ background: design.bgColor, minHeight: "768px", minWidth: "1024px" }}
+      className="min-h-screen flex flex-col" dir="rtl"
+      style={{ background: design.bgColor }}
       onClick={() => { if (editMode) { setEditSelected(null); setEditToolbarPos(null); } }}
     >
       {renderHeader()}
@@ -814,7 +791,7 @@ export default function QuestionPage() {
                       timeLeft={circularTimeLeft}
                       totalTime={circTotal}
                       color={circCfg.color}
-                      size={280}
+                      size={Math.min(280, window.innerWidth * 0.6)}
                     />
                     <div className="flex items-center gap-4">
                       <button
